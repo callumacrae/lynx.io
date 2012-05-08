@@ -1,0 +1,14 @@
+cache/*
+articles/*
+
+# Composer stuff
+/.settings
+/.project
+/.buildpath
+/composer.phar
+/vendor
+/nbproject
+phpunit.xml
+.vagrant
+Vagrantfile
+.idea

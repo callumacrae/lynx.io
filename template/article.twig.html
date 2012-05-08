@@ -1,0 +1,29 @@
+{% extends "base.twig.html" %}
+
+{% block content %}
+	<article>
+		<header>
+			<h1>{{ article.title }}</h1>
+			<p>Published: <time pubdate="pubdate">{{ article.date|date("m/d/y") }}</time></p>
+		</header>
+
+		{% autoescape false %}
+			{{ article.text }}
+		{% endautoescape %}
+
+		<section>
+			<h3 class="comments">Comments</h3>
+			{% for comm in comments %}
+			<article>
+				<header>
+					<h3>Posted by: {{ comm.author }}</h3>
+					<p><time pubdate="pubdate">{{ comm.date|date("m/y/d") }}</time></p>
+				</header>
+				{% autoescape false %}
+					{{ comm.text }}
+				{% endautoescape %}
+			</article>
+			{% endfor %}
+		</section>
+	</article>
+{% endblock %}

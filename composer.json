@@ -1,0 +1,7 @@
+{
+	"name": "lynxphp/lynxphp.com",
+    "require": {
+        "twig/twig": "1.6.*",
+		"dflydev/markdown": "1.*"
+    }
+}

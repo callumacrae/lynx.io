@@ -1,0 +1,21 @@
+{% extends "base.twig.html" %}
+
+{% block content %}
+	{% for article in articles %}
+	<article>
+		<header>
+			<h1>{{ article.title }}</h1>
+			<p>Published: <time pubdate="pubdate">{{ article.date|date("m/d/y") }}</time></p>
+		</header>
+
+		{% autoescape false %}
+			{{ article.text }}
+		{% endautoescape %}
+
+		<footer>
+			<span class="comments">{{ article.comments }}</span>
+			<a class="readmore" href="{{ article.url }}">Read more</a>
+		</footer>
+	</article>
+	{% endfor %}
+{% endblock %}

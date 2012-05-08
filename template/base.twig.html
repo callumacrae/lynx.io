@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf8">
+	<title>{{ site.name }} &bull; {{ page_title }}</title>
+
+	<link rel="stylesheet" href="{{ assets_path }}/css/style.css">
+</head>
+<body>
+	<header id="header">
+		<a href="{{ site.url }}"><h1>{{ site.name }}</h1></a>
+	</header>
+
+{% block content %}{% endblock %}
+
+	<footer>
+		<span class="copyright">Design Copyright &copy; {{ site.name }}</span>
+		<span class="license"><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons Licence" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a></span>
+	</footer>
+</body>
+</html>
