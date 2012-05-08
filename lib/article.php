@@ -20,5 +20,5 @@ if (is_readable('articles/' . $slug . '.md')) {
 	$tmpl_vars['article'] = $info;
 	$twig->display('article.twig.html', $tmpl_vars);
 } else {
-	// Page not found
+	throw404();
 }

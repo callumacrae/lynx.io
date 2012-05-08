@@ -39,12 +39,16 @@ $tmpl_vars = array(
 
 if (empty($_SERVER['PATH_INFO'])) {
 	include('lib/index.php');
-} else if (preg_match('/\/([a-z]+)\/([a-z0-9-_]+)\/?/i', $_SERVER['PATH_INFO'], $matches)) {
-	if (is_readable('lib/' . $matches[1] . '.php')) {
-		include('lib/' . $matches[1] . '.php');
-	} else {
-		// Page not found
-	}
+} else if (preg_match('/\/([a-z]+)\/([a-z0-9-_]+)\/?/i', $_SERVER['PATH_INFO'], $matches)
+		&& is_readable('lib/' . $matches[1] . '.php')) {
+	include('lib/' . $matches[1] . '.php');
 } else {
-	// Page not found
+	throw404();
+}
+
+function throw404() {
+	global $tmpl_vars, $twig;
+
+	header('HTTP/1.0 404 Not Found');
+	$twig->display('404.twig.html', $tmpl_vars);
 }
