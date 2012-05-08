@@ -38,27 +38,10 @@ $tmpl_vars = array(
 );
 
 if (empty($_SERVER['PATH_INFO'])) {
-	$twig->display('index.twig.html', $tmpl_vars);
-} else if (preg_match('/\/article\/([a-z0-9-_]+)\/?/i', $_SERVER['PATH_INFO'], $matches)) {
-	$slug = $matches[1];
-
-	if (is_readable('articles/' . $slug . '.md')) {
-		$body = file_get_contents('articles/' . $slug . '.md');
-
-		$body = explode("\n</info>\n", $body);
-		$info = explode("\n", $body[0]);
-		unset($info[0]);
-
-		foreach ($info as $key => $value) {
-			$value = explode(': ', $value, 2);
-			$info[$value[0]] = $value[1];
-			unset($info[$key]);
-		}
-
-		$info['body'] = $markdownParser->transformMarkdown($body[1]);
-
-		$tmpl_vars['article'] = $info;
-		$twig->display('article.twig.html', $tmpl_vars);
+	include('lib/index.php');
+} else if (preg_match('/\/([a-z]+)\/([a-z0-9-_]+)\/?/i', $_SERVER['PATH_INFO'], $matches)) {
+	if (is_readable('lib/' . $matches[1] . '.php')) {
+		include('lib/' . $matches[1] . '.php');
 	} else {
 		// Page not found
 	}
