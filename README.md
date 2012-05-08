@@ -1,6 +1,6 @@
 # lynxphp
 
-The source code for the lynxphp website
+The source code for the [lynxphp](http://lynxphp.com/) website
 
 ## Installation
 
