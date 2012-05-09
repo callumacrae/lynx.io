@@ -19,23 +19,26 @@ body {
 	background: #e2e5df url('../imgs/bg.png');
 }
 
-#header {
+#headerwrap {
 	width: 100%;
 	background-color: @green;
+	overflow: auto;
 
-	.logo {
+	header {
 		width: 85%;
 		margin: 0 auto;
 		padding: 10px 0;
+		overflow: auto;
+	}
 
-		a {
-			color: @orange;
-			font-size: 24pt;
-			text-decoration: none;
+	.logo a {
+		color: @orange;
+		font-size: 24pt;
+		text-decoration: none;
+		float: left;
 
-			&:hover {
-				text-decoration: underline;
-			}
+		&:hover {
+			text-decoration: underline;
 		}
 	}
 
@@ -44,10 +47,28 @@ body {
 
 		ul {
 			list-style-type: none;
+			margin: 0;
+			margin-top: 8px;
 		}
 
 		li {
 			display: inline;
+			margin-left: 6px;
+		}
+
+		li:not(:first-child):before {
+			content: '|';
+			color: @orange;
+			margin-right: 10px;
+		}
+
+		a {
+			color: @orange;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
 		}
 	}
 }
