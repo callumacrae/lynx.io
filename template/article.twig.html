@@ -4,12 +4,14 @@
 	<article>
 		<header>
 			<h1>{{ article.title }}</h1>
-			<p>Posted on <time pubdate="pubdate">{{ article.date|date("m/d/y") }}</time></p>
+			<time pubdate="pubdate">{{ article.date|date("jS M Y") }}</time>
 		</header>
 
+		<div class="body">
 		{% autoescape false %}
 			{{ article.body }}
 		{% endautoescape %}
+		</div>
 
 		{#<section>
 			<h3 class="comments">Comments</h3>
