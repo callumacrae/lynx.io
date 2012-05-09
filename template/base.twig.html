@@ -8,13 +8,19 @@
 </head>
 <body>
 	<header id="header">
-		<a href="{{ site.url }}"><h1>{{ site.name }}</h1></a>
+		<div class="logo"><a href="{{ site.url }}">{{ site.name }}</a></div>
+		<nav>
+			<ul>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+		</nav>
 	</header>
 
 {% block content %}{% endblock %}
 
-	<footer>
-		<span class="copyright">Design Copyright &copy; {{ site.name }}</span>
+	<footer id="footer">
+		<span class="copyright">Design copyright &copy; {{ site.name }}</span>
 		<span class="license"><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons Licence" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a></span>
 	</footer>
 </body>

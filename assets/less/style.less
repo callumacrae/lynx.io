@@ -1,26 +1,100 @@
+@green: #2e3638;
+@orange: #f0a531;
+@gray: #333;
+
+@font-face {
+    font-family: 'MelbourneLight';
+    src: url('../fonts/melbourne_light_basic-webfont.eot');
+    src: url('../fonts/melbourne_light_basic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/melbourne_light_basic-webfont.woff') format('woff'),
+         url('../fonts/melbourne_light_basic-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 body {
 	font-family: "Helvetica Neue", Verdana;
 	margin: 0;
-	background: yellow;
+	background: #e2e5df url('../imgs/bg.png');
 }
 
-header#header {
+#header {
 	width: 100%;
-	background-color: darkgreen;
+	background-color: @green;
 
-	a {
-		color: white;
-		text-decoration: none;
+	.logo {
+		width: 85%;
+		margin: 0 auto;
+		padding: 10px 0;
 
-		&:hover {
-			text-decoration: underline;
+		a {
+			color: @orange;
+			font-size: 24pt;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	nav {
+		float: right;
+
+		ul {
+			list-style-type: none;
+		}
+
+		li {
+			display: inline;
 		}
 	}
 }
 
 article {
 	width: 85%;
-	background: white;
+	background-color: white;
 	margin: 0 auto;
+	margin-top: 30px;
 	padding: 10px;
+
+	header {
+		h1, h2 {
+			font-family: MelbourneLight;
+			font-size: 28pt;
+			margin: 0;
+			border-bottom: 3px @orange solid;
+			padding-bottom: 5px;
+		}
+
+		p {
+			text-transform: uppercase;
+			font-size: 10pt;
+			font-weight: 100;
+
+			padding: 0 5px 2px 5px;
+			margin-top: 0;
+			width: 121px;
+			float: right;
+
+			background-color: @orange;
+			color: white;
+		}
+	}
+}
+
+#footer {
+	width: 85%;
+	margin: 20px auto;
+
+	.copyright {
+		color: @gray;
+		font-size: 10pt;
+		float: left;
+	}
+
+	.license {
+		float: right;
+	}
 }
