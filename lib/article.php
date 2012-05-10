@@ -16,6 +16,7 @@ if (is_readable('articles/' . $slug . '.md')) {
 	}
 
 	$info['body'] = $markdownParser->transformMarkdown($body[1]);
+	$info['tags'] = explode(', ', $info['tags']);
 
 	$tmpl_vars['article'] = $info;
 	$twig->display('article.twig.html', $tmpl_vars);

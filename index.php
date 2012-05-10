@@ -31,6 +31,7 @@ $twig = new Twig_Environment($loader, $twig_config);
 // Global template stuff
 $tmpl_vars = array(
 	'assets_path'	=> $config['site_url'] . '/assets',
+	'tags_link'		=> $config['site_url'] . '/tag',
 	'site'			=> array(
 		'name'	=> 'lynxphp',
 		'url'	=> $config['site_url'],

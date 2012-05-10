@@ -13,10 +13,16 @@
 		{% endautoescape %}
 		</div>
 
-		{#<section>
-			<h3 class="comments">Comments</h3>
+		{% if article.tags %}
+		<div class="tags">
+			Tags:{% for tag in article.tags %} <a href="{{ tags_link }}/{{ tag }}">{{ tag }}</a>{% endfor %}
+		</div>
+		{% endif %}
+
+		{#<section class="comments">
+			<h3>Comments</h3>
 			{% for comm in comments %}
-			<article>
+			<article class="comment">
 				<header>
 					<h3>Posted by: {{ comm.author }}</h3>
 					<p><time pubdate="pubdate">{{ comm.date|date("m/y/d") }}</time></p>
