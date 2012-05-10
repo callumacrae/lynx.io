@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf8">
-	<title>{{ site.name }} &bull; {{ page_title }}</title>
+	<title>{{ site.name }}{% if page_title %} &bull; {{ page_title }}{% endif %}</title>
 
 	<link rel="stylesheet" href="{{ assets_path }}/css/style.css">
 	<link rel="stylesheet" href="{{ assets_path }}/css/highlight-github.css">
