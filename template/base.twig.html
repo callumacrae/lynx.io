@@ -20,7 +20,43 @@
 		</header>
 	</div>
 
-{% block content %}{% endblock %}
+{% if sidebar %}
+	<div id="contentwrapper">
+		<div id="content">
+{% endif %}
+
+		{% block content %}{% endblock %}
+
+{% if sidebar %}
+		</div>
+		<div id="sidebar">
+			<input type="search" placeholder="Search">
+
+			<h2>Sponsors</h2>
+			<ul>
+				<li><a href="http://webdevrefinery.com/">webdevRefinery</a></li>
+			</ul>
+
+			<h2>Latest articles</h2>
+			<ul>
+				<li><a href="#">javascript: immediate functions</a></li>
+				<li><a href="#">php: equal to</a></li>
+				<li><a href="#">security: sql injections</a></li>
+				<li><a href="#">security: cross-site scripting (xss)</a></li>
+				<li><a href="#">rumour debunked: single quotes vs double quotes in php</a></li>
+			</ul>
+
+			<h2>Top articles</h2>
+			<ul>
+				<li><a href="#">preventing and dealing with spam in phpbb</a></li>
+				<li><a href="#">preventing ddos</a></li>
+				<li><a href="#">pdo - the basics</a></li>
+				<li><a href="#">what are regular expressions?</a></li>
+				<li><a href="#">the ultimate guide to htaccess</a></li>
+			</ul>
+		</div>
+	</div>
+{% endif %}
 
 	<footer id="footer">
 		<span class="copyright">Design copyright &copy; {{ site.name }}</span>
