@@ -5,6 +5,7 @@
 	<title>{{ site.name }} &bull; {{ page_title }}</title>
 
 	<link rel="stylesheet" href="{{ assets_path }}/css/style.css">
+	<link rel="stylesheet" href="{{ assets_path }}/css/highlight-github.css">
 </head>
 <body>
 	<div id="headerwrap">
@@ -25,5 +26,11 @@
 		<span class="copyright">Design copyright &copy; {{ site.name }}</span>
 		<span class="license"><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons Licence" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a></span>
 	</footer>
+
+	<script src="{{ assets_path }}/js/highlight.pack.js"></script>
+	<script>
+		hljs.tabReplace = '    ';
+		hljs.initHighlightingOnLoad();
+	</script>
 </body>
 </html>
