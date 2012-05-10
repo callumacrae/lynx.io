@@ -25,6 +25,6 @@ Curabitur *rhoncus eleifend libero*, eu viverra dui rhoncus sed.
 
 ### Code block:
 
-    <?php
+	<?php
 	// This is a code sample
 	echo 'This is a test script';
