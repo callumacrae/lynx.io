@@ -1,10 +1,26 @@
 [
 	{
-		"title": "This is a demo article!",
-		"slug": "demo-article",
+		"title": "Sleeping in PHP",
+		"slug": "sleeping-php",
 		"author": "callumacrae",
-		"date": 1336539600,
-		"tags": ["php", "demo"],
-		"summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend porta lectus sit amet consequat. Cras dictum elit eu lectus tincidunt volutpat molestie nibh dictum. Suspendisse potenti. Nullam hendrerit urna sed mauris mattis vulputate. Nullam eu massa lacinia quam malesuada consectetur at nec augue. Duis at quam eu tellus tempor aliquam nec sit amet nunc."
+		"date": 1293865262,
+		"tags": ["functions", "PHP", "sleep()"],
+		"summary": "I've seen a few people asking how they can sleep or pause their PHP script, so in this article I am going to do two things - I am going to explain how you can sleep your script in PHP, and I am also going to ask this question: Why would you want to?"
+	},
+	{
+		"title": "PHP Data Objects (PDO) - The Basics",
+		"slug": "pdo-basics",
+		"author": "callumacrae",
+		"date": 1293865261,
+		"tags": ["php", "database", "mysql", "pdo", "sql"],
+		"summary": "PHP Data Objects (PDO) is an extension for PHP that provides the developer with yet another way to access databases using SQL in PHP. This is the first half of a two-part tutorial. In this part, I will explain how to connect to, select rows from, and insert data into a database; in the next part, I will cover some more advanced stuff."
+	},
+	{
+		"title": "Hello world!",
+		"slug": "hello-world",
+		"author": "callumacrae",
+		"date": 1293865260,
+		"tags": ["news"],
+		"summary": "Welcome to lynxphp! I’m Callum Macrae, administrator of lynxphp and a PHP developer. I’ve been around for a while, but I’ve never actually contributed anything to the developer community, so I thought I would start this website to share my knowledge (and to help myself learn new stuff)!"
 	}
 ]
