@@ -1,0 +1,10 @@
+[
+	{
+		"title": "This is a demo article!",
+		"slug": "demo-article",
+		"author": "callumacrae",
+		"date": 1336539600,
+		"tags": ["php", "demo"],
+		"summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend porta lectus sit amet consequat. Cras dictum elit eu lectus tincidunt volutpat molestie nibh dictum. Suspendisse potenti. Nullam hendrerit urna sed mauris mattis vulputate. Nullam eu massa lacinia quam malesuada consectetur at nec augue. Duis at quam eu tellus tempor aliquam nec sit amet nunc."
+	}
+]

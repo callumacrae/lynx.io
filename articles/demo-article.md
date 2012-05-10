@@ -1,6 +1,7 @@
 <info>
 title: This is a demo article!
 author: callumacrae
+date: 1336539600
 tags: php, demo
 </info>
 

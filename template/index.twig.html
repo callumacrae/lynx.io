@@ -4,17 +4,25 @@
 	{% for article in articles %}
 	<article>
 		<header>
-			<h1>{{ article.title }}</h1>
-			<p>Published: <time pubdate="pubdate">{{ article.date|date("m/d/y") }}</time></p>
+			<h2>{{ article.title }}</h2>
+			<time pubdate="pubdate">{{ article.date|date("m/d/y") }}</time>
 		</header>
 
+		<div class="body">
 		{% autoescape false %}
-			{{ article.text }}
+			{{ article.summary }}
 		{% endautoescape %}
 
+			<a class="readmore" href="{{ site_url }}/article/{{ article.slug }}">Read more</a>
+		</div>
+
 		<footer>
-			<span class="comments">{{ article.comments }}</span>
-			<a class="readmore" href="{{ article.url }}">Read more</a>
+			<span class="comments">0 comments</span>
+			{% if article.tags %}
+			<div class="tags index">
+				Tags:{% for tag in article.tags %} <a href="{{ site_url }}/tag/{{ tag }}">{{ tag }}</a>{% endfor %}
+			</div>
+			{% endif %}
 		</footer>
 	</article>
 	{% endfor %}

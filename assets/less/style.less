@@ -115,6 +115,7 @@ article:not(.comment) {
 		line-height: 1.5;
 		border-bottom: 1px gray dotted;
 		margin-bottom: 20px;
+		padding-bottom: 20px;
 
 		a {
 			color: @orange;
@@ -126,11 +127,18 @@ article:not(.comment) {
 		pre code {
 			margin-left: 30px;
 		}
+
+		.readmore {
+			display: block;
+			font-size: 10pt;
+			padding-top: 10px;
+		}
 	}
 
 	.tags {
 		font-size: 10pt;
 		color: #333;
+		padding-bottom: 20px;
 
 		a {
 			color: white;
@@ -138,6 +146,20 @@ article:not(.comment) {
 			background-color: @orange;
 			border: 1px darken(@orange, 10%) solid;
 			padding: 0 3px;
+		}
+
+		&.index {
+			float: right;
+		}
+	}
+
+	footer {
+		font-size: 10pt;
+		color: #333;
+		overflow: auto;
+
+		.comments {
+			float: left;
 		}
 	}
 }

@@ -15,7 +15,7 @@
 
 		{% if article.tags %}
 		<div class="tags">
-			Tags:{% for tag in article.tags %} <a href="{{ tags_link }}/{{ tag }}">{{ tag }}</a>{% endfor %}
+			Tags:{% for tag in article.tags %} <a href="{{ site_url }}/tag/{{ tag }}">{{ tag }}</a>{% endfor %}
 		</div>
 		{% endif %}
 
