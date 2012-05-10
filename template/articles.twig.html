@@ -13,14 +13,14 @@
 			{{ article.summary }}
 		{% endautoescape %}
 
-			<a class="readmore" href="{{ site_url }}/article/{{ article.slug }}">Read more</a>
+			<a class="readmore" href="{{ site.url }}/article/{{ article.slug }}">Read more</a>
 		</div>
 
 		<footer>
 			<span class="comments">0 comments</span>
 			{% if article.tags %}
 			<div class="tags index">
-				Tags:{% for tag in article.tags %} <a href="{{ site_url }}/tag/{{ tag }}">{{ tag }}</a>{% endfor %}
+				Tags:{% for tag in article.tags %} <a href="{{ site.url }}/tag/{{ tag }}">{{ tag }}</a>{% endfor %}
 			</div>
 			{% endif %}
 		</footer>
