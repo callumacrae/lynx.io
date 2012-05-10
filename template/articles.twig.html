@@ -4,7 +4,7 @@
 	{% for article in articles %}
 	<article>
 		<header>
-			<h2>{{ article.title }}</h2>
+			<a href="{{ site.url }}/article/{{ article.slug }}"><h2>{{ article.title }}</h2></a>
 			<time pubdate="pubdate">{{ article.date|date("m/d/y") }}</time>
 		</header>
 
