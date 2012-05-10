@@ -42,6 +42,14 @@ if (empty($_SERVER['PATH_INFO'])) {
 } else if (preg_match('/\/([a-z]+)\/([a-z0-9-_]+)\/?/i', $_SERVER['PATH_INFO'], $matches)
 		&& is_readable('lib/' . $matches[1] . '.php')) {
 	include('lib/' . $matches[1] . '.php');
+} else if (preg_match('/\/([a-z]+)\/?/i', $_SERVER['PATH_INFO'], $matches)) {
+	if (is_readable('pages/' . $matches[1] . '.php')) {
+		include('pages/' . $matches[1] . '.php');
+	} else if (is_readable('pages/' . $matches[1] . '.md')) {
+		include('lib/page.php');
+	} else {
+		throw404();
+	}
 } else {
 	throw404();
 }

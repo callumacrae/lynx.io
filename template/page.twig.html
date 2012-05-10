@@ -1,0 +1,15 @@
+{% extends "base.twig.html" %}
+
+{% block content %}
+	<article>
+		<header>
+			<h1>{{ page.title }}</h1>
+		</header>
+
+		<div class="body">
+		{% autoescape false %}
+			{{ page.body }}
+		{% endautoescape %}
+		</div>
+	</article>
+{% endblock %}
