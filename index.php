@@ -37,12 +37,15 @@ $tmpl_vars = array(
 	),
 );
 
-if (empty($_SERVER['PATH_INFO'])) {
+$path = str_replace('index.php', '', $_SERVER['SCRIPT_NAME']);
+$path = str_replace($path, '', $_SERVER['REQUEST_URI']);
+
+if (empty($path)) {
 	include('lib/index.php');
-} else if (preg_match('/\/([a-z]+)\/([a-z0-9-_]+)\/?/i', $_SERVER['PATH_INFO'], $matches)
+} else if (preg_match('/([a-z]+)\/([a-z0-9-_]+)\/?/i', $path, $matches)
 		&& is_readable('lib/' . $matches[1] . '.php')) {
 	include('lib/' . $matches[1] . '.php');
-} else if (preg_match('/\/([a-z]+)\/?/i', $_SERVER['PATH_INFO'], $matches)) {
+} else if (preg_match('/([a-z]+)\/?/i', $path, $matches)) {
 	if (is_readable('pages/' . $matches[1] . '.php')) {
 		include('pages/' . $matches[1] . '.php');
 	} else if (is_readable('pages/' . $matches[1] . '.md')) {
