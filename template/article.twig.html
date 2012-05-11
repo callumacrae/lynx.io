@@ -13,6 +13,14 @@
 		{% endautoescape %}
 		</div>
 
+		{% if article.author %}
+		<div class="author">
+			<h2>About {% if article.author.website %}<a href="{{ article.author.website }}">{{ article.author.name }}</a>{% else %}{{ article.author.name }}{% endif %}:</h2>
+			<p>{{ article.author.description }}</p>
+			<p class="more">You can view more articles by this author <a href="{{ site.url }}/author/{{ article.author.username }}">here</a>.</p>
+		</div>
+		{% endif %}
+
 		{% if article.tags %}
 		<div class="tags">
 			Tags:{% for tag in article.tags %} <a href="{{ site.url }}/tag/{{ tag }}">{{ tag }}</a>{% endfor %}

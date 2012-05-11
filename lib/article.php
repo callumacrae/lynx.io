@@ -18,6 +18,13 @@ if (is_readable('articles/' . $slug . '.md')) {
 	$info['body'] = $markdownParser->transformMarkdown($body[1]);
 	$info['tags'] = explode(', ', $info['tags']);
 
+	if (is_readable('authors/' . $info['author'] . '.json')) {
+		$author = file_get_contents('authors/' . $info['author'] . '.json');
+		$info['author'] = json_decode($author);
+	} else {
+		unset($info['author']);
+	}
+
 	$tmpl_vars['article'] = $info;
 	$tmpl_vars['page_title'] = $info['title'];
 	$twig->display('article.twig.html', $tmpl_vars);

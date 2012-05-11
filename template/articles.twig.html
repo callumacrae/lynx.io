@@ -2,6 +2,16 @@
 {% set sidebar = true %}
 
 {% block content %}
+	{% if author_info %}
+	<article>
+		<header>
+			<h1>About {% if author_info.website %}<a href="{{ author_info.website }}">{{ author_info.name }}</a>{% else %}{{ author_info.name }}{% endif %}:</h1>
+		</header>
+
+		<p>{{ author_info.description }}</p>
+	</article>
+	{% endif %}
+
 	{% for article in articles %}
 	<article>
 		<header>
