@@ -1,6 +1,5 @@
 <?php
 
-$all_articles = json_decode(file_get_contents('articles/articles.json'));
 $articles = array();
 
 foreach ($all_articles as $article) {

@@ -28,15 +28,23 @@ if (!DEBUG) {
 }
 $twig = new Twig_Environment($loader, $twig_config);
 
+// Latest articles
+$all_articles = json_decode(file_get_contents('articles/articles.json'));
+for ($i = 0; $i < min(5, count($all_articles)); $i++) {
+	$latest_articles[] = $all_articles[$i];
+}
+
 // Global template stuff
 $tmpl_vars = array(
 	'assets_path'	=> $config['site_url'] . '/assets',
+	'latest_articles'	=> $latest_articles,
 	'site'			=> array(
 		'name'	=> 'lynxphp',
 		'url'	=> $config['site_url'],
 	),
 );
 
+// Path
 $path = str_replace('index.php', '', $_SERVER['SCRIPT_NAME']);
 $path = str_replace($path, '', $_SERVER['REQUEST_URI']);
 
