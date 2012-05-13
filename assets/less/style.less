@@ -147,7 +147,7 @@ article:not(.comment) {
 			text-decoration: none;
 		}
 
-		time {
+		time.articletime {
 			text-transform: uppercase;
 			font-size: 9pt;
 			font-weight: 100;
@@ -233,6 +233,74 @@ article:not(.comment) {
 
 		.comments {
 			float: left;
+			color: #333;
+			text-decoration: none;
+		}
+	}
+}
+
+.comments {
+	article {
+		.author {
+			padding-left: 0;
+		}
+
+		time {
+			font-size: 9pt;
+			color: darkgray;
+			display: block;
+			padding-top: 5px;
+		}
+
+		.body {
+			margin-top: 5px;
+			border-bottom: 0;
+			padding-bottom: 10px;
+			margin-bottom: 15px;
+			border-bottom: 1px lightgray dotted;
+		}
+	}
+
+	#newcomment {
+		display: none;
+	}
+
+	form {
+		tr {
+			padding: 5px 0;
+		}
+
+		td:first-child {
+			width: 100px;
+		}
+
+		.error {
+			display: none;
+			padding-left: 10px;
+			font-size: 10pt;
+		}
+
+		input {
+			padding: 4px;
+			width: 200px;
+			border: 1px darkgray solid;
+		}
+
+		textarea {
+			border: 1px darkgray solid;
+			width: 600px;
+		}
+
+		p {
+			margin-top: 0;
+			font-size: 10pt;
+		}
+
+		button {
+			background-color: @orange;
+			border: 1px darken(@orange, 10%) solid;
+			padding: 5px;
+			font-size: 10pt;
 		}
 	}
 }

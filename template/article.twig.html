@@ -4,7 +4,7 @@
 	<article>
 		<header>
 			<h1>{{ article.title }}</h1>
-			<time pubdate="pubdate">{{ article.date|date("jS M Y") }}</time>
+			<time pubdate="pubdate" class="articletime">{{ article.date|date("jS M Y") }}</time>
 		</header>
 
 		<div class="body">
@@ -27,19 +27,61 @@
 		</div>
 		{% endif %}
 
-		{#<section class="comments">
+		<section class="comments">
+			<a name="comments"></a>
 			<h3>Comments</h3>
 			{% for comm in comments %}
 			<article class="comment">
 				<header>
-					<h3>Posted by: {{ comm.author }}</h3>
-					<p><time pubdate="pubdate">{{ comm.date|date("m/y/d") }}</time></p>
+					<span class="author"><strong>{{ comm.author }}</strong> says:</span>
+					<time pubdate="pubdate">{{ comm.date|date("jS M Y \\a\\t h:i:s A") }}</time>
 				</header>
+
+				<div class="body">
 				{% autoescape false %}
 					{{ comm.text }}
 				{% endautoescape %}
+				</div>
 			</article>
+			{% else %}
+				<p class="nocomments">No comments; leave one below.</p>
 			{% endfor %}
-		</section>#}
+
+
+			<article class="comment" id="newcomment">
+				<header>
+					<span class="author"><strong></strong> says:</span>
+					<time pubdate="pubdate"></time>
+				</header>
+
+				<div class="body"></div>
+			</article>
+
+			<form action="{{ site.url }}" method="post" id="comment_post">
+				<h3>Add comment</h3>
+				<table> <!-- tabular data; go away! -->
+					<tr>
+						<td><label for="name">Name:</label></td>
+						<td><input type="text" name="name" id="name" placeholder="Your name"></td>
+						<td id="nameerror" class="error"></td>
+					</tr>
+					<tr>
+						<td><label for="email">Email:</label></td>
+						<td><input type="text" name="email" id="email" placeholder="Your email address"></td>
+						<td id="emailerror" class="error"></td>
+					</tr>
+					<tr>
+						<td><label for="website">Website:</label></td>
+						<td><input type="text" name="website" id="website" placeholder="Your website (optional)"></td>
+					</tr>
+				</table>
+				<textarea rows="10" name="text"></textarea>
+				<p>You can use <a href="http://daringfireball.net/projects/markdown/syntax">markdown</a> in comments.</p>
+				<button type="submit">Post comment</button> <span class="error" id="texterror"></span>
+				<noscript>Enable JavaScript to post a comment</noscript>
+
+				<input type="hidden" name="slug" value="{{ article.slug }}">
+			</form>
+		</section>
 	</article>
 {% endblock %}

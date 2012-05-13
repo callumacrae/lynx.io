@@ -16,7 +16,7 @@
 	<article>
 		<header>
 			<a href="{{ site.url }}/article/{{ article.slug }}"><h2>{{ article.title }}</h2></a>
-			<time pubdate="pubdate">{{ article.date|date("jS M Y") }}</time>
+			<time pubdate="pubdate" class="articletime">{{ article.date|date("jS M Y") }}</time>
 		</header>
 
 		<div class="body">
@@ -28,7 +28,7 @@
 		</div>
 
 		<footer>
-			<span class="comments">0 comments</span>
+			<a href="{{ site.url }}/article/{{ article.slug }}#comments" class="comments">{{ article.comments }} comment{% if article.comments != 1 %}s{% endif %}</a>
 			{% if article.tags %}
 			<div class="tags index">
 				Tags:{% for tag in article.tags %} <a href="{{ site.url }}/tag/{{ tag }}">{{ tag }}</a>{% endfor %}

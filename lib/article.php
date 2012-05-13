@@ -16,6 +16,8 @@ if (is_readable('cache/articles/' . $slug . '.json')) {
 		}
 
 		$tmpl_vars['article'] = $info;
+		$tmpl_vars['comments'] = get_comments($slug);
+
 		$tmpl_vars['page_title'] = $info['title'];
 		$twig->display('article.twig.html', $tmpl_vars);
 		$slug = false;
@@ -39,6 +41,7 @@ if ($slug && is_readable('articles/' . $slug . '.md')) {
 	$info['raw_body'] = $raw_body;
 	$info['body'] = $markdownParser->transformMarkdown($body[1]);
 	$info['tags'] = explode(', ', $info['tags']);
+	$info['slug'] = $slug;
 
 	if (is_readable('authors/' . $info['author'] . '.json')) {
 		$author = file_get_contents('authors/' . $info['author'] . '.json');
@@ -51,8 +54,27 @@ if ($slug && is_readable('articles/' . $slug . '.md')) {
 	file_put_contents('cache/articles/' . $slug . '.json', json_encode($info));
 
 	$tmpl_vars['article'] = $info;
+	$tmpl_vars['comments'] = get_comments($slug);
+
 	$tmpl_vars['page_title'] = $info['title'];
 	$twig->display('article.twig.html', $tmpl_vars);
 } else if ($slug) {
 	throw404();
+}
+
+function get_comments($slug) {
+	global $markdownParser;
+
+	if (is_readable('articles/comments/' . $slug . '.json')) {
+		$comments = file_get_contents('articles/comments/' . $slug . '.json');
+		$comments = json_decode($comments);
+
+		foreach ($comments as $comment) {
+			$comment->text = $markdownParser->transformMarkdown(htmlspecialchars($comment->text));
+		}
+
+		return $comments;
+	}
+
+	return array();
 }

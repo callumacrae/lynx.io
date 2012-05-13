@@ -8,6 +8,9 @@
 if (!is_writable('./cache')) {
 	die('./cache is not writable');
 }
+if (!is_writable('./articles/comments')) {
+	die('./articles/comments is not writable');
+}
 
 if (DEBUG) {
 	error_reporting(E_ALL);
@@ -30,7 +33,10 @@ $twig = new Twig_Environment($loader, $twig_config);
 
 // Latest articles
 $all_articles = json_decode(file_get_contents('articles/articles.json'));
+$comments = json_decode(file_get_contents('articles/comments/comments.json'), true);
 for ($i = 0; $i < min(5, count($all_articles)); $i++) {
+	$article = $all_articles[$i];
+	$article->comments = isset($comments[$article->slug]) ? $comments[$article->slug] : 0;
 	$latest_articles[] = $all_articles[$i];
 }
 
