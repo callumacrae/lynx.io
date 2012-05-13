@@ -33,7 +33,7 @@
 			{% for comm in comments %}
 			<article class="comment">
 				<header>
-					<span class="author"><strong>{{ comm.author }}</strong> says:</span>
+					<span class="author"><strong>{% if comm.website %}<a href="{{ comm.website }}">{{ comm.author }}</a>{% else %}{{ comm.author }}{% endif %}</strong> says:</span>
 					<time pubdate="pubdate">{{ comm.date|date("jS M Y \\a\\t h:i:s A") }}</time>
 				</header>
 
