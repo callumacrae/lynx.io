@@ -34,10 +34,13 @@ $twig = new Twig_Environment($loader, $twig_config);
 // Latest articles
 $all_articles = json_decode(file_get_contents('articles/articles.json'));
 $comments = json_decode(file_get_contents('articles/comments/comments.json'), true);
-for ($i = 0; $i < min(5, count($all_articles)); $i++) {
+for ($i = 0; $i < count($all_articles); $i++) {
 	$article = $all_articles[$i];
 	$article->comments = isset($comments[$article->slug]) ? $comments[$article->slug] : 0;
-	$latest_articles[] = $all_articles[$i];
+
+	if ($i < 5) {
+		$latest_articles[] = $all_articles[$i];
+	}
 }
 
 // Global template stuff

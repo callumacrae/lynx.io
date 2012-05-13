@@ -4,7 +4,7 @@
 	<article>
 		<header>
 			<h1>{{ article.title }}</h1>
-			<time pubdate="pubdate" class="articletime">{{ article.date|date("jS M Y") }}</time>
+			<time datetime="{{ article.date|date("Y-m-d") }}" class="articletime">{{ article.date|date("jS M Y") }}</time>
 		</header>
 
 		<div class="body">
@@ -17,13 +17,13 @@
 		<div class="author">
 			<h2>About {% if article.author.website %}<a href="{{ article.author.website }}">{{ article.author.name }}</a>{% else %}{{ article.author.name }}{% endif %}:</h2>
 			<p>{{ article.author.description }}</p>
-			<p class="more">You can view more articles by this author <a href="{{ site.url }}/author/{{ article.author.username }}">here</a>.</p>
+			<p class="more">You can view more articles by this author <a href="{{ site.url }}/author/{{ article.author.username|url_encode() }}">here</a>.</p>
 		</div>
 		{% endif %}
 
 		{% if article.tags %}
 		<div class="tags">
-			Tags:{% for tag in article.tags %} <a href="{{ site.url }}/tag/{{ tag }}">{{ tag }}</a>{% endfor %}
+			Tags:{% for tag in article.tags %} <a href="{{ site.url }}/tag/{{ tag|url_encode() }}">{{ tag }}</a>{% endfor %}
 		</div>
 		{% endif %}
 
@@ -34,7 +34,7 @@
 			<article class="comment">
 				<header>
 					<span class="author"><strong>{% if comm.website %}<a href="{{ comm.website }}">{{ comm.author }}</a>{% else %}{{ comm.author }}{% endif %}</strong> says:</span>
-					<time pubdate="pubdate">{{ comm.date|date("jS M Y \\a\\t h:i:s A") }}</time>
+					<time datetime="{{ comm.date|date("Y-m-d") }}">{{ comm.date|date("jS M Y \\a\\t h:i:s A") }}</time>
 				</header>
 
 				<div class="body">
@@ -51,7 +51,7 @@
 			<article class="comment" id="newcomment">
 				<header>
 					<span class="author"><strong></strong> says:</span>
-					<time pubdate="pubdate"></time>
+					<time datetime="2011-01-01"></time>
 				</header>
 
 				<div class="body"></div>
@@ -73,6 +73,7 @@
 					<tr>
 						<td><label for="website">Website:</label></td>
 						<td><input type="text" name="website" id="website" placeholder="Your website (optional)"></td>
+						<td>&nbsp;</td>
 					</tr>
 				</table>
 				<textarea rows="10" name="text"></textarea>

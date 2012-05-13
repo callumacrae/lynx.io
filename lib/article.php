@@ -43,15 +43,15 @@ if ($slug && is_readable('articles/' . $slug . '.md')) {
 	$info['tags'] = explode(', ', $info['tags']);
 	$info['slug'] = $slug;
 
+	// Cache
+	file_put_contents('cache/articles/' . $slug . '.json', json_encode($info));
+
 	if (is_readable('authors/' . $info['author'] . '.json')) {
 		$author = file_get_contents('authors/' . $info['author'] . '.json');
 		$info['author'] = json_decode($author);
 	} else {
 		unset($info['author']);
 	}
-
-	// Cache
-	file_put_contents('cache/articles/' . $slug . '.json', json_encode($info));
 
 	$tmpl_vars['article'] = $info;
 	$tmpl_vars['comments'] = get_comments($slug);
