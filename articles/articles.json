@@ -1,5 +1,13 @@
 [
 	{
+		"title": "What are regular expressions?",
+		"slug": "regular-expressions",
+		"author": "samhaines",
+		"date": 1294207200,
+		"tags": ["php", "regex"],
+		"summary": "Regular expressions are a way for programs to search for a  particular pattern in a string. For example, they can be used to find strings starting with \"www.\", or to see if some user input is a valid email. Regular expressions are incredibly useful for validating user input and also for the mod_rewrite function of the Apache server."
+	},
+	{
 		"title": "Preventing DDoS",
 		"slug": "preventing-ddos",
 		"author": "callumacrae",
