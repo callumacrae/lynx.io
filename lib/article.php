@@ -39,7 +39,11 @@ if ($slug && is_readable('articles/' . $slug . '.md')) {
 	}
 
 	$info['raw_body'] = $raw_body;
+	
+	$articleimages = $config['site_url'] . '/assets/imgs/' . $slug;
 	$info['body'] = $markdownParser->transformMarkdown($body[1]);
+	$info['body'] = str_replace('{{ articleimages }}', $articleimages, $info['body']);
+	
 	$info['tags'] = explode(', ', $info['tags']);
 	$info['slug'] = $slug;
 
