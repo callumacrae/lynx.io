@@ -2,7 +2,7 @@
 title: Preventing DDoS
 author: callumacrae
 date: 1294120800
-tags: server, attack, DDoS, security
+tags: server, attack, ddos, security
 summary: Following the recent (largely successful) attacks by Anonymous Operation on more than a few websites including Paypal, Mastercard and Visa, a few people asked me if they were at risk of being attacked and how they could prevent it. In this article, I will explain various ways of stopping DDoS, and whether they actually work or not.
 </info>
 

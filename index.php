@@ -59,7 +59,7 @@ $path = str_replace($path, '', $_SERVER['REQUEST_URI']);
 
 if (empty($path)) {
 	include('lib/index.php');
-} else if (preg_match('/([a-z]+)\/([a-z0-9-_]+)\/?/i', $path, $matches)
+} else if (preg_match('/([a-z]+)\/([^\/]+)\/?/i', $path, $matches)
 		&& is_readable('lib/' . $matches[1] . '.php')) {
 	include('lib/' . $matches[1] . '.php');
 } else if (preg_match('/([a-z]+)\/?/i', $path, $matches)) {

@@ -2,7 +2,7 @@
 title: Preventing and dealing with spam in phpBB
 author: callumacrae
 date: 1294466400
-tags: phpBB, spam
+tags: phpbb, spam
 summary: A couple days ago, the amount of spam being posted to my phpBB forum increased dramatically. I turned to the phpBB.com community forums and made my thread, and it looks like it's happening to many other people using the Q&A CAPTCHA. The Q&A CAPTCHA was added to phpBB in 3.0.6, and it allowed the board administrator to specify a question that the user had to answer on sign-up. In this article, I will explain how you can attempt to prevent them from damaging your board or hacking into your users' accounts.
 </info>
 

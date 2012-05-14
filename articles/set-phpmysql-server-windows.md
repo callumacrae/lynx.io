@@ -2,7 +2,7 @@
 title: How to set up a PHP/MySQL Server on Windows
 author: samhaines
 date: 1294639200
-tags: server, PHP, MySQL, install
+tags: server, php, mysql, install
 summary: In this tutorial I will describe the process of configuring a PHP and MySQL server on a Windows computer with running the Apache Web Server version 2.2. This configuration is ideal for developing websites on your own computer, without the need for a server.
 </info>
 

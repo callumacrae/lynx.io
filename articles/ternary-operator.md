@@ -2,7 +2,7 @@
 title: The If Shortcut: The Ternary Operator
 author: callumacrae
 date: 1294293600
-tags: PHP, shortcuts
+tags: php, shortcuts
 summary: The ternary operator is a shortcut comparison operator that replaces an if-else statement in a PHP script. If you use a lot of if-else statements in your scripts, using the ternary operator can shorten your code hugely. The ternary operator is very simple to use, but it does tend to confuse new PHP programmers.
 </info>
 

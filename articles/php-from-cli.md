@@ -2,7 +2,7 @@
 title: Running PHP applications from the command line
 author: callumacrae
 date: 1294725600
-tags: PHP, CLI
+tags: php, cli
 summary: I've always found it useful to be able to run PHP applications from the command line: not only does it allow me to quickly view the output of my code from the command line - where I do the majority of my developing - but it also allows me to make proper command line applications from within PHP. Okay, quite a lot of stuff is not possible, but it's still fun. This applies to Unix only, I believe.
 </info>
 

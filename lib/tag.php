@@ -3,7 +3,7 @@
 $articles = array();
 
 foreach ($all_articles as $article) {
-	if (in_array($matches[2], $article->tags)) {
+	if (in_array(urldecode($matches[2]), $article->tags)) {
 		$articles[] = $article;
 	}
 }

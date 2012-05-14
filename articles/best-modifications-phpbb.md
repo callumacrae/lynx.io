@@ -2,7 +2,7 @@
 title: The five best modifications for phpBB
 author: callumacrae
 date: 1294380000
-tags: phpBB, modifications
+tags: phpbb, modifications
 summary: Modifications are a way of customising your phpBB board. They can do anything, from adding a new feature, to changing an already existing feature, to completely removing a feature! "Modifications" is often shortened to "MODs". In this article I will be explaining what I think the best modifications for phpBB are and why.
 </info>
 

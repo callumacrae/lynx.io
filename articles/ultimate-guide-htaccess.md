@@ -2,7 +2,7 @@
 title: Ultimate Guide to .htaccess
 author: callumacrae
 date: 1293865263
-tags: Apache, blocking, error documents, htaccess, redirect
+tags: apache, blocking, error documents, htaccess, redirect
 summary: The .htaccess file is a text file that contains Apache directives. Any directives you place in it will apply to the directory that contains the htaccess and also any directories below it. htaccess is extremely powerful, and has many functions. Some of the main functions include custom error pages, password protection of directories and files, rewriting of URLs, and more, and in this article I will explain how to use htaccess.
 </info>
 

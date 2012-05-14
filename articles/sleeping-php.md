@@ -2,7 +2,7 @@
 title: Sleeping in PHP
 author: callumacrae
 date: 1293865262
-tags: functions, PHP, sleep()
+tags: functions, php, sleep
 summary: I've seen a few people asking how they can sleep or pause their PHP script, so in this article I am going to do two things - I am going to explain how you can sleep your script in PHP, and I am also going to ask this question: Why would you want to?
 </info>
 

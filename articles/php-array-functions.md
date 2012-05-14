@@ -2,7 +2,7 @@
 title: PHP array functions
 author: callumacrae
 date: 1294552800
-tags: PHP, functions, array
+tags: php, functions, array
 summary: There are a huge amount of functions to deal with arrays in PHP, but I will be going through just a few of the most useful or interesting ones. If you would like me to add a function or two to this list, just tell me and I'll do my best.
 </info>
 

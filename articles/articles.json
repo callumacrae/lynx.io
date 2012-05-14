@@ -4,7 +4,7 @@
 		"slug": "php-from-cli",
 		"author": "callumacrae",
 		"date": 1294725600,
-		"tags": ["PHP", "CLI"],
+		"tags": ["php", "cli"],
 		"summary": "I've always found it useful to be able to run PHP applications from the command line: not only does it allow me to quickly view the output of my code from the command line - where I do the majority of my developing - but it also allows me to make proper command line applications from within PHP. Okay, quite a lot of stuff is not possible, but it's still fun. This applies to Unix only, I believe."
 	},
 	{
@@ -12,7 +12,7 @@
 		"slug": "set-phpmysql-server-windows",
 		"author": "samhaines",
 		"date": 1294639200,
-		"tags": ["server", "PHP", "MySQL", "install"],
+		"tags": ["server", "php", "mysql", "install"],
 		"summary": "In this tutorial I will describe the process of configuring a PHP and MySQL server on a Windows computer with running the Apache Web Server version 2.2. This configuration is ideal for developing websites on your own computer, without the need for a server."
 	},
 	{
@@ -20,7 +20,7 @@
 		"slug": "php-array-functions",
 		"author": "callumacrae",
 		"date": 1294552800,
-		"tags": ["PHP", "functions", "array"],
+		"tags": ["php", "functions", "array"],
 		"summary": "There are a huge amount of functions to deal with arrays in PHP, but I will be going through just a few of the most useful or interesting ones. If you would like me to add a function or two to this list, just tell me and I'll do my best."
 	},
 	{
@@ -28,7 +28,7 @@
 		"slug": "preventing-and-dealing-with-spam-in-phpbb",
 		"author": "callumacrae",
 		"date": 1294466400,
-		"tags": ["phpBB", "spam"],
+		"tags": ["phpbb", "spam"],
 		"summary": "A couple days ago, the amount of spam being posted to my phpBB forum increased dramatically. I turned to the phpBB.com community forums and made my thread, and it looks like it's happening to many other people using the Q&A CAPTCHA. The Q&A CAPTCHA was added to phpBB in 3.0.6, and it allowed the board administrator to specify a question that the user had to answer on sign-up. In this article, I will explain how you can attempt to prevent them from damaging your board or hacking into your users' accounts."
 	},
 	{
@@ -60,7 +60,7 @@
 		"slug": "preventing-ddos",
 		"author": "callumacrae",
 		"date": 1294120800,
-		"tags": ["server", "attack", "DDoS", "security"],
+		"tags": ["server", "attack", "ddos", "security"],
 		"summary": "Following the recent (largely successful) attacks by Anonymous Operation on more than a few websites including Paypal, Mastercard and Visa, a few people asked me if they were at risk of being attacked and how they could prevent it. In this article, I will explain various ways of stopping DDoS, and whether they actually work or not."
 	},
 	{
@@ -68,7 +68,7 @@
 		"slug": "preg_replace-word-censor-smilies",
 		"author": "callumacrae",
 		"date": 1294034400,
-		"tags": ["PHP", "scripts", "preg_replace", "regex"],
+		"tags": ["php", "scripts", "preg_replace", "regex"],
 		"summary": "In this article I will be demonstrating a basic word censor / smilie parser that you can use on your website. Firstly I will give you the code, then I will explain how to use it, then I will tell you how it works."
 	},
 	{
@@ -76,7 +76,7 @@
 		"slug": "working-with-date-and-time",
 		"author": "callumacrae",
 		"date": 1293948000,
-		"tags": ["functions", "PHP", "date", "time"],
+		"tags": ["functions", "php", "date", "time"],
 		"summary": "There are many function in PHP for working with date and time. In this article, I will be explaining the most commonly used ones."
 	},
 	{
@@ -84,7 +84,7 @@
 		"slug": "ultimate-guide-htaccess",
 		"author": "callumacrae",
 		"date": 1293865263,
-		"tags": ["Apache", "blocking", "error documents", "htaccess", "redirect"],
+		"tags": ["apache", "blocking", "error documents", "htaccess", "redirect"],
 		"summary": "The .htaccess file is a text file that contains Apache directives. Any directives you place in it will apply to the directory that contains the htaccess and also any directories below it. htaccess is extremely powerful, and has many functions. Some of the main functions include custom error pages, password protection of directories and files, rewriting of URLs, and more, and in this article I will explain how to use htaccess."
 	},
 	{
@@ -92,7 +92,7 @@
 		"slug": "sleeping-php",
 		"author": "callumacrae",
 		"date": 1293865262,
-		"tags": ["functions", "PHP", "sleep()"],
+		"tags": ["functions", "php", "sleep"],
 		"summary": "I've seen a few people asking how they can sleep or pause their PHP script, so in this article I am going to do two things - I am going to explain how you can sleep your script in PHP, and I am also going to ask this question: Why would you want to?"
 	},
 	{
