@@ -70,7 +70,21 @@ function get_comments($slug) {
 		$comments = json_decode($comments);
 
 		foreach ($comments as $comment) {
-			$comment->text = $markdownParser->transformMarkdown(htmlspecialchars($comment->text));
+			$comment->text = htmlspecialchars($comment->text);
+			
+			// Unescape quotes
+			$comment->text = preg_replace('/(^|\n)&gt;/', "\n>", $comment->text);
+			
+			// Unescape URLs
+			$comment->text = preg_replace_callback('/&lt;(http:\/\/[^ ]+)&gt;/', function ($matches) {
+				if (filter_var($matches[1], FILTER_VALIDATE_URL)) {
+					return '<' . $matches[1] . '>';
+				} else {
+					return '&lt;' . $matches[1] . '&gt;';
+				}
+			}, $comment->text);
+			
+			$comment->text = $markdownParser->transformMarkdown($comment->text);
 		}
 
 		return $comments;
