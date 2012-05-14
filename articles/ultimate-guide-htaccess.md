@@ -104,7 +104,7 @@ The files tag specifies that the enclosed commands should only be applied to the
 
 ## Rewriting URLs
 
-This section is so big that I decided it was worth an entire article to itself - coming in the next couple days.
+This section is so big that I decided it was worth an entire article to itself, which you can find [here](mod_rewrite-create-friendlier-urls).
 
 ## Blocking people (or robots)
 

@@ -1,5 +1,13 @@
 [
 	{
+		"title": "Using mod_rewrite to create friendlier URLs",
+		"slug": "mod_rewrite-create-friendlier-urls",
+		"author": "callumacrae",
+		"date": 1294898400,
+		"tags": ["php", "seo", "mod_rewrite"],
+		"summary": "mod_rewrite is an Apache module used for rewriting a URL at the server level, making the URL a lot friendlier. For example, if a user goes to example.com/article/421 they will in fact be shown example.com/article.php?id=421, but they still think they're accessing /article/421. This is a different to redirect, as a redirect completely changes the page the user is on, telling them that they're on article.php, but mod_rewrite does not - this makes the URL look a lot friendlier, while not requiring millions of pages."
+	},
+	{
 		"title": "Bad Coding Practices to Avoid",
 		"slug": "bad-coding-practices-to-avoid",
 		"author": "callumacrae",
