@@ -51,4 +51,4 @@ There should be two levels of error messages: The error message that is displaye
 
 <br>
 
-Of course, sometimes you will struggle to stick to all of these, but attempting to do so will help you. Also, check out <http://www.strauss.za.com/sla/code_std.html> (but remember that it is a _joke_!)
+Of course, sometimes you will struggle to stick to all of these, but attempting to do so will help you. Also, check out <http://www.strauss.za.com/sla/code_std.asp> (but remember that it is a _joke_!)
