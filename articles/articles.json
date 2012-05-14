@@ -1,5 +1,13 @@
 [
 	{
+		"title": "Using eval() properly",
+		"slug": "eval-properly",
+		"author": "callumacrae",
+		"date": 1295071200,
+		"tags": ["php", "eval", "security"],
+		"summary": "eval() is a PHP function that allows the user to execute a string as PHP code. In this function I will explore when the right and wrong times to use eval are."
+	},
+	{
 		"title": "What software should I use for my website?",
 		"slug": "software-website",
 		"author": "callumacrae",
