@@ -1,5 +1,13 @@
 [
 	{
+		"title": "What software should I use for my website?",
+		"slug": "software-website",
+		"author": "callumacrae",
+		"date": 1294984800,
+		"tags": ["scripts", "phpbb", "html", "smf", "wordpress"],
+		"summary": "That is one question which I often hear asked more than once a day, along with \"What's the best CMS\" and \"What's the best forum software?\". The answer for all three is the same (they are, after all, basically the same question); it depends on what you need. What's good for me might not be good for you, and what's good for a professional web developer will usually not be good for a 14 year old with no development experience."
+	},
+	{
 		"title": "Using mod_rewrite to create friendlier URLs",
 		"slug": "mod_rewrite-create-friendlier-urls",
 		"author": "callumacrae",
