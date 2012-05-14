@@ -46,3 +46,49 @@ $('#comment_post').submit(function () {
 	}
 	return false;
 });
+
+
+// Tabs in textarea
+$('textarea').keydown(function (e) {
+	if (e.keyCode === 9) {
+		e.preventDefault();
+		var start = this.selectionStart;
+		var end = this.selectionEnd;
+		if (e.shiftKey) {
+			// If shift key pressed, remove tabs from beginning of lines
+			var nl = end, tabs = 0, last = false;
+			while (true) {
+				nl = this.value.lastIndexOf('\n', nl - 1);
+				if (this.value.slice(nl + 1, nl + 2) === '\t') {
+					tabs++;
+					this.value = this.value.slice(0, nl + 1) + this.value.slice(nl + 2);
+					last = true;
+				}
+				last = false;
+				if (nl < start) {
+					this.selectionStart = start - (last ? 1 : 0);
+					this.selectionEnd = end - tabs;
+					break;
+				}
+			}
+		} else if (start === end) {
+			// If no selection, insert tab
+			this.value = this.value.slice(0, start) + '\t' + this.value.slice(start);
+			this.selectionStart = end + 1;
+			this.selectionEnd = end + 1;
+		} else {
+			// If selection, insert tab at beginning of every line
+			var nl = end, tabs = 0;
+			while (true) {
+				tabs++;
+				nl = this.value.lastIndexOf('\n', nl - 1);
+				this.value = this.value.slice(0, nl + 1) + '\t' + this.value.slice(nl + 1);
+				if (nl < start) {
+					this.selectionStart = start + 1;
+					this.selectionEnd = end + tabs;
+					break;
+				}
+			}
+		}
+	}
+});
