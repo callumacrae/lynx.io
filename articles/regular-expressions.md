@@ -3,6 +3,7 @@ title: What are regular expressions?
 author: samhaines
 date: 1294207200
 tags: php, regex
+summary: Regular expressions are a way for programs to search for a  particular pattern in a string. For example, they can be used to find strings starting with "www.", or to see if some user input is a valid email. Regular expressions are incredibly useful for validating user input and also for the mod_rewrite function of the Apache server.
 </info>
 
 Regular expressions are a way for programs to search for a  particular pattern in a string. For example, they can be used to find strings starting with "www.", or to see if some user input is a valid email. Regular expressions are incredibly useful for validating user input and also for the mod\_rewrite function of the Apache server.
@@ -13,7 +14,7 @@ It is worth noting that the phrase "regular expression" is often shortened to "r
 
 Regular expressions, and close variants of this, are used in  many different environments, including, but not limited to:
 
-* Apache's mod_rewrite
+* Apache's mod\_rewrite
 * PHP's preg functions
 * Microsoft Windows
 * Java
@@ -146,7 +147,7 @@ Again, let's split it into several parts:
 * `(([0-9]{2})|((19|20) [0-9]{2}))` matches a 2 or 4 digit year. If the year is 4 digit it requires it to be in the form 19xx or  20xx.
 
 **Matches**: 03/03/2010, 3/3/10, 03-03-1994, 3-3-94<br>
-Does not match**: 34/02/2010, 02/25/2010, 30.10.2010
+**Does not match**: 34/02/2010, 02/25/2010, 30.10.2010
 
 Note: For use with American dates (MM/DD/YYYY general format), the following regex will work:
 

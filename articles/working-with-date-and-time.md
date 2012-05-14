@@ -3,6 +3,7 @@ title: Working with date and time
 author: callumacrae
 date: 1293948000
 tags: functions, PHP, date, time
+summary: There are many function in PHP for working with date and time. In this article, I will be explaining the most commonly used ones.
 </info>
 
 There are many function in PHP for working with date and time. In this article, I will be explaining the most commonly used ones. Please note that the dates are in DD/MM/YYYY format, eg 31/12/2012

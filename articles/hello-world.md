@@ -3,6 +3,7 @@ title: Hello world!
 author: callumacrae
 date: 1293865260
 tags: news
+summary: Welcome to lynxphp! I’m Callum Macrae, administrator of lynxphp and a PHP developer. I’ve been around for a while, but I’ve never actually contributed anything to the developer community, so I thought I would start this website to share my knowledge (and to help myself learn new stuff)!
 </info>
 
 Welcome to lynxphp! I’m Callum Macrae, administrator of lynxphp and a PHP developer. I’ve been around for a while, but I’ve never actually contributed anything to the developer community, so I thought I would start this website to share my knowledge (and to help myself learn new stuff)! I will attempt to provide useful information and tutorials about PHP, in addition to other generic web topics like server management and third-party scripts. I probably won’t be writing any articles about front end development (HTML, CSS, Javascript, etc.) because I much prefer backend development. (Sorry!)

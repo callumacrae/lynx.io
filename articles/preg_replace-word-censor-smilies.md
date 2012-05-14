@@ -3,6 +3,7 @@ title: Using preg_replace as a word censor or for smilies
 author: callumacrae
 date: 1294034400
 tags: PHP, scripts, preg_replace, regex
+summary: In this article I will be demonstrating a basic word censor / smilie parser that you can use on your website. Firstly I will give you the code, then I will explain how to use it, then I will tell you how it works.
 </info>
 
 In this article I will be demonstrating a basic word censor / smilie parser that you can use on your website. First I will give you the code, then I will explain how to use it, and finally I will tell you how it works.

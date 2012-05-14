@@ -3,6 +3,7 @@ title: PHP Data Objects (PDO) - The Basics
 author: callumacrae
 date: 1293865261
 tags: php, database, mysql, pdo, sql
+summary: PHP Data Objects (PDO) is an extension for PHP that provides the developer with yet another way to access databases using SQL in PHP. This is the first half of a two-part tutorial. In this part, I will explain how to connect to, select rows from, and insert data into a database; in the next part, I will cover some more advanced stuff.
 </info>
 
 This is the first half of a two-part tutorial. In this part, I will explain how to connect to, select rows from, and insert data into a database; in the next part, I will cover some more advanced stuff.
