@@ -1,5 +1,13 @@
 [
 	{
+		"title": "Bad Coding Practices to Avoid",
+		"slug": "bad-coding-practices-to-avoid",
+		"author": "callumacrae",
+		"date": 1294812000,
+		"tags": ["php", "coding practice", "comments", "spacing", "rant"],
+		"summary": "One of most annoying things I have to face when coding is other people's bad code. I consider my own coding standard to be fairly good, but sometimes I have to work with code that hasn’t been coded well at all. Messy code is difficult to read, difficult to work with, and it can also slow your code down."
+	},
+	{
 		"title": "Running PHP applications from the command line",
 		"slug": "php-from-cli",
 		"author": "callumacrae",
