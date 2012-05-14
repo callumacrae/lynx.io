@@ -11,6 +11,7 @@ $output = shell_exec('git pull origin master 2>&1');
 
 preg_match_all('/create mode \d+ articles\/([a-z0-9_-]+)\.md/i', $output, $matches);
 $articles = json_decode(file_get_contents('articles/articles.json'));
+$files = array();
 
 foreach ($matches[1] as $file) {
 	$body = file_get_contents('articles/' . $file . '.md');
@@ -49,6 +50,11 @@ foreach ($matches[1] as $file) {
 	array_unshift($articles, $article);
 
 	echo "Added $file." . PHP_EOL;
+	$files[] = $file;
 }
 
 file_put_contents('articles/articles.json', json_encode($articles));
+
+echo PHP_EOL . shell_exec('git commit -am "Deployed articles:
+
+' . implode(PHP_EOL, $files) . '" && git push origin master');
