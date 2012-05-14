@@ -320,3 +320,45 @@ article:not(.comment) {
 		float: right;
 	}
 }
+
+#markdowncheat {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	text-align: center;
+
+	display: none;
+
+	div {
+		background-color: white;
+		margin: 0 auto;
+		top: 40px;
+		width: 75%;
+		padding: 0 5px 1px 5px;
+	}
+
+	h2 {
+		padding: 5px 0;
+		margin-bottom: 0;
+		border-bottom: 1px @orange dotted;
+	}
+
+	pre {
+		text-align: left;
+	}
+
+	p {
+		font-size: 10pt;
+	}
+
+	a {
+		color: @orange;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}

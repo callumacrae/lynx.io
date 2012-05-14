@@ -92,3 +92,26 @@ $('textarea').keydown(function (e) {
 		}
 	}
 });
+
+
+// MD cheatsheet
+$(document).keydown(function (e) {
+	var cheatsheet = $('#markdowncheat');
+	if (e.keyCode === 77 && !$(':focus').length) {
+		if (cheatsheet.is(':hidden')) {
+			cheatsheet.fadeIn(200);
+		} else {
+			cheatsheet.click();
+		}
+		e.preventDefault();
+	} else if (e.keyCode === 27 && cheatsheet.is(':visible')) {
+		cheatsheet.click();
+	}
+});
+
+$('#markdowncheat, #markdowncheat .close').click(function () {
+	$('#markdowncheat').fadeOut(200);
+});
+$('#markdowncheat div').click(function (e) {
+	e.stopPropagation();
+});
