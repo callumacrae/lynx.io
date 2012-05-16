@@ -3,7 +3,7 @@
 
 {% block content %}
 	{% if author_info %}
-	<article>
+	<article class="articles">
 		<header>
 			<h1>About {% if author_info.website %}<a href="{{ author_info.website }}">{{ author_info.name }}</a>{% else %}{{ author_info.name }}{% endif %}:</h1>
 		</header>
@@ -13,7 +13,7 @@
 	{% endif %}
 
 	{% for article in articles %}
-	<article>
+	<article class="articles">
 		<header>
 			<a href="{{ site.url }}/article/{{ article.slug }}"><h2>{{ article.title }}</h2></a>
 			<time datetime="{{ article.date|date("Y-m-d") }}" class="articletime">{{ article.date|date("jS M Y") }}</time>

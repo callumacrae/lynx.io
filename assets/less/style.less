@@ -69,7 +69,8 @@ body {
 }
 
 #contentwrapper {
-	width: 100%;
+	width: 87%;
+	margin: 0 auto;
 	overflow: auto;
 
 	#content {
@@ -78,7 +79,7 @@ body {
 	}
 
 	#sidebar {
-		width: 25%;
+		width: 24%;
 		float: right;
 
 		h2 {
@@ -114,9 +115,11 @@ body {
 		}
 	}
 }
+article:not(.articles) {
+	width: 85%;
+}
 
 article:not(.comment) {
-	width: 85%;
 	background-color: white;
 	margin: 0 auto;
 	margin-top: 30px;
