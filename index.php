@@ -55,7 +55,11 @@ $tmpl_vars = array(
 
 // Path
 $path = str_replace('index.php', '', $_SERVER['SCRIPT_NAME']);
-$path = str_replace($path, '', $_SERVER['REQUEST_URI']);
+
+$pos = strpos($path, $_SERVER['REQUEST_URI']);
+$path = substr($_SERVER['REQUEST_URI'], $pos + strlen($path));
+
+//$path = str_replace($path, '', $_SERVER['REQUEST_URI']);
 
 if (empty($path)) {
 	include('lib/index.php');
