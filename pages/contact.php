@@ -18,7 +18,7 @@ Reply-To: {$_POST['email']}
 EOF;
 
 	if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-		mail($config['email'], 'Contact via lynxphp contact form', $message, $headers);
+		mail($config['email'], 'Contact via lynx.io contact form', $message, $headers);
 		$tmpl_vars['contact_success'] = true;
 	} else {
 		$tmpl_vars['contact_failure'] = true;

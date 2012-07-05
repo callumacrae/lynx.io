@@ -1,6 +1,6 @@
 <?php
 /**
- * lynxphp site
+ * lynx.io site
  *
  * Everything should go through this file: index.php/article/article-slug
  */
@@ -48,7 +48,7 @@ $tmpl_vars = array(
 	'assets_path'	=> $config['site_url'] . '/assets',
 	'latest_articles'	=> $latest_articles,
 	'site'			=> array(
-		'name'	=> 'lynxphp',
+		'name'	=> 'lynx.io',
 		'url'	=> $config['site_url'],
 	),
 );

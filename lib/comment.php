@@ -64,9 +64,9 @@ if (DEBUG) {
 	exit;
 }
 
-$subject = 'New comment on lynxphp';
+$subject = 'New comment on lynx.io';
 $message = <<<EOF
-New comment left on lynxphp:
+New comment left on lynx.io:
 
 Author: {$_POST['name']}
 Email: {$_POST['email']}

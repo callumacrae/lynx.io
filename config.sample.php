@@ -1,7 +1,7 @@
 <?php
 
 $config = array(
-	'site_url'	=> 'http://localhost/lynxphp',
+	'site_url'	=> 'http://localhost/lynx.io',
 	'email'		=> 'callum@macr.ae',
 );
 
