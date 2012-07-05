@@ -12,12 +12,12 @@ if (!is_writable('./articles/comments')) {
 	die('./articles/comments is not writable');
 }
 
+require('config.php');
 if (DEBUG) {
 	error_reporting(E_ALL);
 	ini_set('display_errors', '1');
 }
 
-require('config.php');
 require('vendor/autoload.php');
 Twig_Autoloader::register();
 
