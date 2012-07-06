@@ -153,3 +153,9 @@ $('.tags a, .more a').on({
 	gravity: 's',
 	trigger: 'manual'
 });
+
+$('input[name="email"]').tipsy({
+	fade: true,
+	gravity: 'w',
+	trigger: 'focus'
+});
