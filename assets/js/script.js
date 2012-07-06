@@ -15,47 +15,77 @@ $('input[name="email"]').tipsy({
 	trigger: 'focus'
 });
 
-// Handle comment form submit
-$('#comment_post').submit(function () {
+/**
+ * Handles the contact and comment post forms, both of which are
+ * extremely similar - this is DRYer.
+ *
+ * @param string url The URL to send the data to.
+ * @param function callback Well... a callback to be called.
+ */
+function genericFormHandler(url, callback) {
 	"use strict";
 
-	var $this = $(this);
-	$this.find('.error').hide();
+	return function () {
+		var $this = $(this),
+			that = this;
+		$this.find('.error').hide();
 
-	var url = this.action + '/comment/' + this.slug.value;
-	var data = $this.serialize();
-	var error = false;
+		var data = $this.serialize();
+		var error = false;
 
-	if (!this.name.value) {
-		$this.find('#nameerror').text('Please specify a name').show();
-		error = true;
-	}
-	if (!this.email.value) {
-		$this.find('#emailerror').text('Please specify an email address').show();
-		error = true;
-	}
-	if (!this.text.value) {
-		$this.find('#texterror').text('Please write a comment').show();
-		error = true;
-	}
+		var callback2 = callback;
 
-	if (!error) {
-		$.post(url, data, function (body) {
-			if (typeof body === 'object') {
-				var newComment = $('#newcomment');
-				newComment.find('.author strong').text(body.author);
-				newComment.find('time').text(body.date);
-				newComment.find('.body').html(body.text);
-				newComment.show();
-				$this.hide();
-				$('.nocomments').hide();
-			} else {
+		if (!this.name.value) {
+			$this.find('#nameerror').text('Please specify a name').show();
+			error = true;
+		}
+		if (!this.email.value) {
+			$this.find('#emailerror').text('Please specify an email address').show();
+			error = true;
+		}
+		if (!this.text.value) {
+			$this.find('#texterror').text('Please enter a message').show();
+			error = true;
+		}
+
+		if (!error) {
+			$.post(url, $this.serialize(), function (body) {
+				callback.call(that, body)
 				$this.find('#texterror').text('Error: ' + body).show();
-			}
-		});
-	}
-	return false;
-});
+			});
+		}
+
+		return false;
+	};
+}
+
+// Handle contact form submit
+$('#contact').submit(genericFormHandler('contact', function (body) {
+	"use strict";
+
+	$(this).find('#texterror').text(body).show();
+}));
+
+// Handle comment form submit
+var comment_post = $('#comment_post')[0];
+if (comment_post) {
+	var url = comment_post.action + '/comment/' + comment_post.slug.value;
+	$('#comment_post').submit(genericFormHandler(url, function (body) {
+		"use strict";
+
+		if (typeof body === 'object') {
+			var newComment = $('#newcomment');
+			newComment.find('.author strong').text(body.author);
+			newComment.find('time').text(body.date);
+			newComment.find('.body').html(body.text);
+			newComment.show();
+			$(this).hide();
+			$('.nocomments').hide();
+		} else {
+			$(this).find('#texterror').text('Error: ' + body).show();
+		}
+	}));
+}
 
 
 // Tabs in textarea

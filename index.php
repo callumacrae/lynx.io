@@ -96,7 +96,8 @@ function throw404() {
  * @return boolean True if request is boolean.
  */
 function is_xhr($json = false) {
-	$is_xhr = strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+	$is_xhr = isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+		strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
 
 	if ($is_xhr) {
 		header('Content-type: application/json');
