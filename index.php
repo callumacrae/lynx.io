@@ -77,6 +77,9 @@ if (empty($path)) {
 	throw404();
 }
 
+/**
+ * Throws a 404 error and displays the 404 page.
+ */
 function throw404() {
 	global $tmpl_vars, $twig;
 

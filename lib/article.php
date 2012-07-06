@@ -66,6 +66,12 @@ if ($slug && is_readable('articles/' . $slug . '.md')) {
 	throw404();
 }
 
+/**
+ * Gets all of an article's comments.
+ *
+ * @param string $slug The slug of the article to get the comments for.
+ * @return array The comments
+ */
 function get_comments($slug) {
 	global $markdownParser;
 
