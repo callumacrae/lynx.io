@@ -13,5 +13,9 @@ foreach ($all_articles as $article) {
 	}
 }
 
-$tmpl_vars['articles'] = $articles;
-$twig->display('articles.twig.html', $tmpl_vars);
+if (is_xhr(true)) {
+	echo count($articles);
+} else {
+	$tmpl_vars['articles'] = $articles;
+	$twig->display('articles.twig.html', $tmpl_vars);
+}

@@ -127,7 +127,7 @@ $('#markdowncheat div').click(function (e) {
 	e.stopPropagation();
 });
 
-$('.tags a').on({
+$('.tags a, .more a').on({
 	mouseover: function () {
 		"use strict";
 
