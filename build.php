@@ -10,55 +10,60 @@ $markdownParser = new MarkdownParser();
 $output = shell_exec('git pull origin master 2>&1');
 
 preg_match_all('/create mode \d+ articles\/([a-z0-9_-]+)\.md/i', $output, $matches);
-$articles = json_decode(file_get_contents('articles/articles.json'));
-$files = array();
 
-foreach ($matches[1] as $file) {
-	$body = file_get_contents('articles/' . $file . '.md');
-	$body = str_replace('%date%', time(), $body);
-	file_put_contents('articles/' . $file . '.md', $body);
+if (count($matches)) {
+	$articles = json_decode(file_get_contents('articles/articles.json'));
+	$files = array();
 
-	$raw_body = $body;
+	foreach ($matches[1] as $file) {
+		$body = file_get_contents('articles/' . $file . '.md');
+		$body = str_replace('%date%', time(), $body);
+		file_put_contents('articles/' . $file . '.md', $body);
 
-	$body = explode("\n</info>\n", $body);
-	$info = explode("\n", $body[0]);
-	unset($info[0]);
+		$raw_body = $body;
 
-	foreach ($info as $key => $value) {
-		$value = explode(': ', $value, 2);
-		$info[$value[0]] = $value[1];
-		unset($info[$key]);
+		$body = explode("\n</info>\n", $body);
+		$info = explode("\n", $body[0]);
+		unset($info[0]);
+
+		foreach ($info as $key => $value) {
+			$value = explode(': ', $value, 2);
+			$info[$value[0]] = $value[1];
+			unset($info[$key]);
+		}
+
+		$info['raw_body'] = $raw_body;
+		$info['body'] = $markdownParser->transformMarkdown($body[1]);
+		$info['tags'] = explode(', ', $info['tags']);
+		$info['slug'] = $file;
+
+		// Cache
+		file_put_contents('cache/articles/' . $file . '.json', json_encode($info));
+
+		$article = array(
+			'title'		=> $info['title'],
+			'slug'		=> $info['slug'],
+			'author'	=> $info['author'],
+			'date'		=> $info['date'],
+			'tags'		=> $info['tags'],
+			'summary'	=> $info['summary'],
+		);
+
+		array_unshift($articles, $article);
+
+		echo "Added $file." . PHP_EOL;
+		$files[] = $file;
 	}
 
-	$info['raw_body'] = $raw_body;
-	$info['body'] = $markdownParser->transformMarkdown($body[1]);
-	$info['tags'] = explode(', ', $info['tags']);
-	$info['slug'] = $file;
+	file_put_contents('articles/articles.json', json_encode($articles));
 
-	// Cache
-	file_put_contents('cache/articles/' . $file . '.json', json_encode($info));
-
-	$article = array(
-		'title'		=> $info['title'],
-		'slug'		=> $info['slug'],
-		'author'	=> $info['author'],
-		'date'		=> $info['date'],
-		'tags'		=> $info['tags'],
-		'summary'	=> $info['summary'],
-	);
-
-	array_unshift($articles, $article);
-
-	echo "Added $file." . PHP_EOL;
-	$files[] = $file;
-}
-
-file_put_contents('articles/articles.json', json_encode($articles));
-
-echo PHP_EOL . shell_exec('git commit -am "Deployed articles:
+	echo PHP_EOL . shell_exec('git commit -am "Deployed articles:
 
 ' . implode(PHP_EOL, $files) . '"');
 
-sleep(1); // Give it time to catch up
+	sleep(1); // Give it time to catch up
 
-echo PHP_EOL . shell_exec('git push origin master');
+	echo PHP_EOL . shell_exec('git push origin master');
+} else {
+	echo PHP_EOL . 'No new articles.';
+}
