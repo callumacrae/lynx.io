@@ -126,3 +126,30 @@ $('#markdowncheat div').click(function (e) {
 
 	e.stopPropagation();
 });
+
+$('.tags a').on({
+	mouseover: function () {
+		"use strict";
+
+		var $this = $(this);
+
+		if ($this.data('titled')) {
+			$this.tipsy('show');
+		} else {
+			$.get($(this).attr('href'), function (title) {
+				title += ' article' + (title === 1 ? '' : 's');
+				$this.attr('title', title)
+					.data('titled', true)
+					.tipsy('show');
+			});
+		}
+	}, mouseout: function () {
+		"use strict";
+
+		$(this).tipsy('hide');
+	}
+}).tipsy({
+	fade: true,
+	gravity: 's',
+	trigger: 'manual'
+});

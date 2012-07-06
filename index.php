@@ -86,3 +86,21 @@ function throw404() {
 	header('HTTP/1.0 404 Not Found');
 	$twig->display('404.twig.html', $tmpl_vars);
 }
+
+/**
+ * Detect whether the request is an AJAX request or not, and marks the request
+ * as JSON if required.
+ *
+ * @param boolean $json Mark the request as JSON?
+ *
+ * @return boolean True if request is boolean.
+ */
+function is_xhr($json = false) {
+	$is_xhr = strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+
+	if ($is_xhr) {
+		header('Content-type: application/json');
+	}
+
+	return $is_xhr;
+}

@@ -31,7 +31,7 @@
 			<a href="{{ site.url }}/article/{{ article.slug }}#comments" class="comments">{{ article.comments }} comment{% if article.comments != 1 %}s{% endif %}</a>
 			{% if article.tags %}
 			<div class="tags index">
-				Tags:{% for tag in article.tags %} <a href="{{ site.url }}/tag/{{ tag|url_encode() }}">{{ tag }}</a>{% endfor %}
+				Tags:{% for tag in article.tags %} <a href="{{ site.url }}/tag/{{ tag|url_encode() }}" title="test">{{ tag }}</a>{% endfor %}
 			</div>
 			{% endif %}
 		</footer>
