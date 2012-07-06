@@ -7,6 +7,8 @@ require('vendor/autoload.php');
 use dflydev\markdown\MarkdownParser;
 $markdownParser = new MarkdownParser();
 
+echo shell_exec('git commit -am "[auto] Added comments." && git push origin master');
+
 $output = shell_exec('git pull origin master 2>&1');
 
 preg_match_all('/create mode \d+ articles\/([a-z0-9_-]+)\.md/i', $output, $matches);
@@ -57,13 +59,9 @@ if (count($matches)) {
 
 	file_put_contents('articles/articles.json', json_encode($articles));
 
-	echo PHP_EOL . shell_exec('git commit -am "Deployed articles:
+	echo PHP_EOL . shell_exec('git commit -am "[auto] Deployed articles.
 
-' . implode(PHP_EOL, $files) . '"');
-
-	sleep(1); // Give it time to catch up
-
-	echo PHP_EOL . shell_exec('git push origin master');
+' . implode(PHP_EOL, $files) . '" && git push origin master');
 } else {
 	echo PHP_EOL . 'No new articles.';
 }
