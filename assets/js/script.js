@@ -163,28 +163,26 @@ $('#markdowncheat div').click(function (e) {
 	e.stopPropagation();
 });
 
-$('.tags a, .more a').on({
-	mouseover: function () {
-		"use strict";
+$('.tags').on('mouseover', 'a', function () {
+	"use strict";
 
-		var $this = $(this);
+	var $this = $(this);
 
-		if ($this.data('titled')) {
-			$this.tipsy('show');
-		} else {
-			$.get($(this).attr('href'), function (title) {
-				title += ' article' + (title === 1 ? '' : 's');
-				$this.attr('title', title)
-					.data('titled', true)
-					.tipsy('show');
-			});
-		}
-	}, mouseout: function () {
-		"use strict";
-
-		$(this).tipsy('hide');
+	if ($this.data('titled')) {
+		$this.tipsy('show');
+	} else {
+		$.get($(this).attr('href'), function (title) {
+			title += ' article' + (title === 1 ? '' : 's');
+			$this.attr('title', title)
+				.data('titled', true)
+				.tipsy('show');
+		});
 	}
-}).tipsy({
+}).on('mouseout', 'a', function () {
+	"use strict";
+
+	$(this).tipsy('hide');
+}).children('a').tipsy({
 	fade: true,
 	gravity: 's',
 	trigger: 'manual'
