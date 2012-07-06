@@ -27,13 +27,11 @@ function genericFormHandler(url, callback) {
 
 	return function () {
 		var $this = $(this),
-			that = this;
+			that = this,
+			data = $this.serialize(),
+			error = false;
+
 		$this.find('.error').hide();
-
-		var data = $this.serialize();
-		var error = false;
-
-		var callback2 = callback;
 
 		if (!this.name.value) {
 			$this.find('#nameerror').text('Please specify a name').show();
@@ -67,25 +65,26 @@ $('#contact').submit(genericFormHandler('contact', function (body) {
 }));
 
 // Handle comment form submit
-var comment_post = $('#comment_post')[0];
-if (comment_post) {
-	var url = comment_post.action + '/comment/' + comment_post.slug.value;
-	$('#comment_post').submit(genericFormHandler(url, function (body) {
-		"use strict";
+(function (comment_post) {
+	"use strict";
 
-		if (typeof body === 'object') {
-			var newComment = $('#newcomment');
-			newComment.find('.author strong').text(body.author);
-			newComment.find('time').text(body.date);
-			newComment.find('.body').html(body.text);
-			newComment.show();
-			$(this).hide();
-			$('.nocomments').hide();
-		} else {
-			$(this).find('#texterror').text('Error: ' + body).show();
-		}
-	}));
-}
+	if (comment_post) {
+		var url = comment_post.action + '/comment/' + comment_post.slug.value;
+		$('#comment_post').submit(genericFormHandler(url, function (body) {
+			if (typeof body === 'object') {
+				var newComment = $('#newcomment');
+				newComment.find('.author strong').text(body.author);
+				newComment.find('time').text(body.date);
+				newComment.find('.body').html(body.text);
+				newComment.show();
+				$(this).hide();
+				$('.nocomments').hide();
+			} else {
+				$(this).find('#texterror').text('Error: ' + body).show();
+			}
+		}));
+	}
+})($('#comment_post')[0]);=
 
 
 // Tabs in textarea
@@ -104,7 +103,7 @@ $('textarea').keydown(function (e) {
 			while (true) {
 				nl = this.value.lastIndexOf('\n', nl - 1);
 				if (this.value.slice(nl + 1, nl + 2) === '\t') {
-					tabs++;
+					tabs += 1;
 					this.value = this.value.slice(0, nl + 1) + this.value.slice(nl + 2);
 				}
 				if (nl < start) {
@@ -116,12 +115,11 @@ $('textarea').keydown(function (e) {
 		} else if (start === end) {
 			// If no selection, insert tab
 			this.value = this.value.slice(0, start) + '\t' + this.value.slice(start);
-			this.selectionStart = end + 1;
-			this.selectionEnd = end + 1;
+			this.selectionStart = this.selectionEnd = end + 1;
 		} else {
 			// If selection, insert tab at beginning of every line
 			while (true) {
-				tabs++;
+				tabs += 1;
 				nl = this.value.lastIndexOf('\n', nl - 1);
 				this.value = this.value.slice(0, nl + 1) + '\t' + this.value.slice(nl + 1);
 				if (nl < start) {
@@ -156,8 +154,8 @@ $('#markdowncheat, #markdowncheat .close').click(function () {
 	"use strict";
 
 	$('#markdowncheat').fadeOut(200);
-});
-$('#markdowncheat div').click(function (e) {
+	return false;
+}).children('div').click(function (e) {
 	"use strict";
 
 	e.stopPropagation();
