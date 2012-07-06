@@ -1,6 +1,6 @@
-# lynxphp
+# lynx.io
 
-The source code for the [lynxphp](http://lynxphp.com/) website.
+The source code for the [lynx.io](http://lynx.io/) website.
 
 ## Installation
 
