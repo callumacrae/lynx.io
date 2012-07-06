@@ -9,6 +9,12 @@ $('article.comment .body pre code').each(function () {
 		.replace(/&amp;/g, '&');
 });
 
+$('input[name="email"]').tipsy({
+	fade: true,
+	gravity: 'w',
+	trigger: 'focus'
+});
+
 // Handle comment form submit
 $('#comment_post').submit(function () {
 	"use strict";
@@ -152,10 +158,4 @@ $('.tags a, .more a').on({
 	fade: true,
 	gravity: 's',
 	trigger: 'manual'
-});
-
-$('input[name="email"]').tipsy({
-	fade: true,
-	gravity: 'w',
-	trigger: 'focus'
 });
