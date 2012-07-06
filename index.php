@@ -34,6 +34,7 @@ $twig = new Twig_Environment($loader, $twig_config);
 // Latest articles
 $all_articles = json_decode(file_get_contents('articles/articles.json'));
 $comments = json_decode(file_get_contents('articles/comments/comments.json'), true);
+$latest_articles = array();
 for ($i = 0; $i < count($all_articles); $i++) {
 	$article = $all_articles[$i];
 	$article->comments = isset($comments[$article->slug]) ? $comments[$article->slug] : 0;
@@ -58,8 +59,6 @@ $path = str_replace('index.php', '', $_SERVER['SCRIPT_NAME']);
 
 $pos = strpos($path, $_SERVER['REQUEST_URI']);
 $path = substr($_SERVER['REQUEST_URI'], $pos + strlen($path));
-
-//$path = str_replace($path, '', $_SERVER['REQUEST_URI']);
 
 if (empty($path)) {
 	include('lib/index.php');
