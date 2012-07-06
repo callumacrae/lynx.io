@@ -1,5 +1,10 @@
 <?php
 
+if (!is_xhr(true) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
+	echo 'Please don\'t access this page directly.';
+	exit;
+}
+
 if (empty($_POST['slug']) || !is_readable('articles/' . $_POST['slug'] . '.md')) {
 	echo 'Article not found.';
 	exit;
@@ -48,7 +53,6 @@ $count = count($comments);
 $comments = json_encode($comments);
 file_put_contents('articles/comments/' . $slug . '.json', $comments);
 
-header('Content-type: application/json');
 $comment['text'] = $markdownParser->transformMarkdown(htmlspecialchars($comment['text']));
 $comment['date'] = date('jS M Y \a\t h:i:s A', $comment['date']);
 echo json_encode($comment);
