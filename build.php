@@ -57,4 +57,8 @@ file_put_contents('articles/articles.json', json_encode($articles));
 
 echo PHP_EOL . shell_exec('git commit -am "Deployed articles:
 
-' . implode(PHP_EOL, $files) . '" && git push origin master');
+' . implode(PHP_EOL, $files) . '"');
+
+sleep(1); // Give it time to catch up
+
+echo PHP_EOL . shell_exec('git push origin master');
