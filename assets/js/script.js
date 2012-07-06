@@ -1,6 +1,8 @@
 // Unescape automatically escaped data in code samples. It's better
 // to do this client-side to avoid parsing the DOM server-side.
 $('article.comment .body pre code').each(function () {
+	"use strict";
+
 	this.innerHTML = this.innerHTML.replace(/&quot;/g, "'")
 		.replace(/&lt;/g, '<')
 		.replace(/&gt;/g, '>')
@@ -9,6 +11,8 @@ $('article.comment .body pre code').each(function () {
 
 // Handle comment form submit
 $('#comment_post').submit(function () {
+	"use strict";
+
 	var $this = $(this);
 	$this.find('.error').hide();
 
@@ -50,23 +54,25 @@ $('#comment_post').submit(function () {
 
 // Tabs in textarea
 $('textarea').keydown(function (e) {
+	"use strict";
+
+	var start, end, nl,
+		tabs = 0;
+
 	if (e.keyCode === 9) {
 		e.preventDefault();
-		var start = this.selectionStart;
-		var end = this.selectionEnd;
+		start = this.selectionStart;
+		nl = end = this.selectionEnd;
 		if (e.shiftKey) {
 			// If shift key pressed, remove tabs from beginning of lines
-			var nl = end, tabs = 0, last = false;
 			while (true) {
 				nl = this.value.lastIndexOf('\n', nl - 1);
 				if (this.value.slice(nl + 1, nl + 2) === '\t') {
 					tabs++;
 					this.value = this.value.slice(0, nl + 1) + this.value.slice(nl + 2);
-					last = true;
 				}
-				last = false;
 				if (nl < start) {
-					this.selectionStart = start - (last ? 1 : 0);
+					this.selectionStart = start;
 					this.selectionEnd = end - tabs;
 					break;
 				}
@@ -78,7 +84,6 @@ $('textarea').keydown(function (e) {
 			this.selectionEnd = end + 1;
 		} else {
 			// If selection, insert tab at beginning of every line
-			var nl = end, tabs = 0;
 			while (true) {
 				tabs++;
 				nl = this.value.lastIndexOf('\n', nl - 1);
@@ -96,6 +101,8 @@ $('textarea').keydown(function (e) {
 
 // MD cheatsheet
 $(document).keydown(function (e) {
+	"use strict";
+
 	var cheatsheet = $('#markdowncheat');
 	if (e.keyCode === 77 && !$(':focus').length) {
 		if (cheatsheet.is(':hidden')) {
@@ -110,8 +117,12 @@ $(document).keydown(function (e) {
 });
 
 $('#markdowncheat, #markdowncheat .close').click(function () {
+	"use strict";
+
 	$('#markdowncheat').fadeOut(200);
 });
 $('#markdowncheat div').click(function (e) {
+	"use strict";
+
 	e.stopPropagation();
 });
