@@ -48,7 +48,7 @@ function genericFormHandler(url, callback) {
 
 		if (!error) {
 			$.post(url, $this.serialize(), function (body) {
-				callback.call(that, body)
+				callback.call(that, body);
 				$this.find('#texterror').text('Error: ' + body).show();
 			});
 		}
@@ -195,3 +195,85 @@ $('.tags, .more').on('mouseover', 'a', function () {
 	gravity: 's',
 	trigger: 'manual'
 });
+
+
+(function () {
+	"use strict";
+
+	if (!$('.articles').length) {
+		return; // Not on a listing
+	}
+
+	var articles = [],
+		time = Date.now(),
+		link = $('.newarticle'),
+		refreshInterval = 20000;
+
+	setInterval(function () {
+		var url = location.origin + location.pathname,
+			data = {timestamp: Math.round(time / 1000)};
+
+		$.get(url, data, function (newArticles) {
+			if ($.isArray(newArticles) && newArticles.length) {
+				articles = articles.concat(newArticles);
+
+				link.find('p').text(articles.length + ' new articles available');
+
+				if (link.is(':hidden')) {
+					link.slideDown();
+				}
+			}
+
+			time = Date.now();
+		});
+	}, refreshInterval);
+
+	link.click(function () {
+		var i, footer, header, newArticle, tag;
+		for (i = 0; i < articles.length; i++) {
+			newArticle = $('<article class="articles"></article>');
+
+			header = $('<header></header>').appendTo(newArticle);
+			var a = $('<a></a>').appendTo(header)
+				.attr('href', articles[i].href)
+				.html('<h2>' + articles[i].title + '</h2>');
+
+			$('<time></time>').appendTo(header)
+				.addClass('articletime')
+				.attr('datetime', articles[i].date[0])
+				.text(articles[i].date[1]);
+
+			$('<div></div>').appendTo(newArticle)
+				.addClass('body')
+				.html(articles[i].summary + ' ')
+				.append('<a>Read more</a>')
+				.children('a:last-child')
+					.addClass('readmore')
+					.attr('href', articles[i].href);
+
+			footer = $('<footer></footer>').appendTo(newArticle);
+			$('<a></a>').appendTo(footer)
+				.addClass('comments')
+				.attr('href', articles[i].href + '#comments')
+				.text('0 comments');
+
+			tags = $('<div></div>').appendTo(footer)
+				.addClass('tags index')
+				.text('Tags:');
+
+			for (tag in articles[i].tags) {
+				if (articles[i].tags.hasOwnProperty(tag)) {
+					tags.append(' <a></a>')
+						.children('a:last-child')
+							.attr('href', articles[i].tags[tag])
+							.text(tag);
+				}
+			}
+
+			newArticle.insertAfter(link);
+		}
+
+		articles = [];
+		link.slideUp();
+	});
+})();
