@@ -2,7 +2,7 @@
 title: Updates
 author: callumacrae
 date: 129507120
-tags: php, eval, security
+tags: news
 summary: Two weeks ago, on the 1st of January '11 at 01:01:01, lynxphp opened. As lynxphp has been more successful than I first hoped, I've made a few changes.
 </info>
 
