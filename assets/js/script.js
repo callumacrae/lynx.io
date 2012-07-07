@@ -208,9 +208,9 @@ $('.tags, .more').on('mouseover', 'a', function () {
 	var articles = [],
 		time = Date.now(),
 		link = $('.newarticle'),
-		refreshInterval = 20000;
+		refreshInterval = 30000;
 
-	// Check for new articles (every 20 seconds, by default)
+	// Check for new articles (every 30 seconds, by default)
 	setInterval(function () {
 		var url = location.origin + location.pathname,
 
