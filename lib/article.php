@@ -7,8 +7,8 @@ if (!empty($_GET['timestamp']) || is_xhr(true)) {
 	$timestamp = (int) $_GET['timestamp'];
 
 	if ($timestamp < time() - 68400) {
-//		echo '"Invalid time"';
-//		exit;
+		echo '"Invalid time"';
+		exit;
 	}
 
 	$newComments = array();
