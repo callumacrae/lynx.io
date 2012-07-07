@@ -161,6 +161,7 @@ $('#markdowncheat, #markdowncheat .close').click(function () {
 	e.stopPropagation();
 });
 
+var tags = {};
 $('.tags').on('mouseover', 'a', function () {
 	"use strict";
 
@@ -168,9 +169,14 @@ $('.tags').on('mouseover', 'a', function () {
 
 	if ($this.data('titled')) {
 		$this.tipsy('show');
+	} else if (tags[$this.text()]) {
+		$this.attr('title', tags[$this.text()])
+			.data('titled', true)
+			.tipsy('show');
 	} else {
 		$.get($(this).attr('href'), function (title) {
 			title += ' article' + (title === 1 ? '' : 's');
+			tags[$this.text()] = title;
 			$this.attr('title', title)
 				.data('titled', true)
 				.tipsy('show');
