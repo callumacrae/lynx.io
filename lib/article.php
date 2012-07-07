@@ -2,6 +2,31 @@
 
 $slug = $matches[2];
 
+// Get comments
+if (!empty($_GET['timestamp']) || is_xhr(true)) {
+	$timestamp = (int) $_GET['timestamp'];
+
+	if ($timestamp < time() - 68400) {
+		echo '"Invalid time"';
+		exit;
+	}
+
+	$newComments = array();
+	foreach (get_comments($slug) as $comment) {
+		if ($comment->date > $timestamp) {
+			$newComments[] = array(
+				'author'	=> $comment->author,
+				'website'	=> $comment->website,
+				'date'		=> date('jS M Y \\a\\t h:i:s A', $comment->date),
+				'text'		=> $comment->text
+			);
+		}
+	}
+
+	echo json_encode($newComments);
+	exit;
+}
+
 if (is_readable('cache/articles/' . $slug . '.json')) {
 	$info = file_get_contents('cache/articles/' . $slug . '.json');
 	$info = json_decode($info, true);

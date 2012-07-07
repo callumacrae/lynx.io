@@ -60,6 +60,9 @@ $path = str_replace('index.php', '', $_SERVER['SCRIPT_NAME']);
 $pos = strpos($path, $_SERVER['REQUEST_URI']);
 $path = substr($_SERVER['REQUEST_URI'], $pos + strlen($path));
 
+$path = explode('?', $path);
+$path = $path[0];
+
 if (empty($path)) {
 	include('lib/index.php');
 } else if (preg_match('/([a-z]+)\/([^\/]+)\/?/i', $path, $matches)
@@ -96,7 +99,8 @@ function throw404() {
  * @return boolean True if request is boolean.
  */
 function is_xhr($json = false) {
-	$is_xhr = strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+	$is_xhr = isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+		strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
 
 	if ($is_xhr) {
 		header('Content-type: application/json');

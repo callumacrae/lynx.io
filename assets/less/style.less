@@ -119,6 +119,18 @@ article:not(.articles) {
 	width: 85%;
 }
 
+.newarticle {
+	background-color: white;
+	margin: 0 auto;
+	margin-top: 30px;
+	padding: 1px 10px;
+
+	text-align: center;
+	cursor: pointer;
+
+	display: none;
+}
+
 article:not(.comment) {
 	background-color: white;
 	margin: 0 auto;
@@ -256,56 +268,44 @@ article:not(.comment) {
 	#newcomment {
 		display: none;
 	}
-
-	form {
-		tr {
-			padding: 5px 0;
-		}
-
-		td:first-child {
-			width: 100px;
-		}
-
-		.error {
-			display: none;
-			padding-left: 10px;
-			font-size: 10pt;
-		}
-
-		input {
-			padding: 4px;
-			width: 200px;
-			border: 1px darkgray solid;
-		}
-
-		textarea {
-			border: 1px darkgray solid;
-			width: 600px;
-		}
-
-		p {
-			margin-top: 0;
-			font-size: 10pt;
-		}
-
-		button {
-			background-color: @orange;
-			border: 1px darken(@orange, 10%) solid;
-			padding: 5px;
-			font-size: 10pt;
-		}
-	}
 }
 
-.contact form {
-	strong, input, textarea {
-		display: block;
+.comments form, .contact form {
+	tr {
+		padding: 5px 0;
 	}
 
-	input, textarea {
-		width: 300px;
+	td:first-child {
+		width: 100px;
+	}
+
+	.error {
+		display: none;
+		padding-left: 10px;
+		font-size: 10pt;
+	}
+
+	input {
 		padding: 4px;
-		margin-bottom: 20px;
+		width: 200px;
+		border: 1px darkgray solid;
+	}
+
+	textarea {
+		border: 1px darkgray solid;
+		width: 600px;
+	}
+
+	p {
+		margin-top: 0;
+		font-size: 10pt;
+	}
+
+	button {
+		background-color: @orange;
+		border: 1px darken(@orange, 10%) solid;
+		padding: 5px;
+		font-size: 10pt;
 	}
 }
 
