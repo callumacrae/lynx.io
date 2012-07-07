@@ -60,6 +60,9 @@ $path = str_replace('index.php', '', $_SERVER['SCRIPT_NAME']);
 $pos = strpos($path, $_SERVER['REQUEST_URI']);
 $path = substr($_SERVER['REQUEST_URI'], $pos + strlen($path));
 
+$path = explode('?', $path);
+$path = $path[0];
+
 if (empty($path)) {
 	include('lib/index.php');
 } else if (preg_match('/([a-z]+)\/([^\/]+)\/?/i', $path, $matches)
