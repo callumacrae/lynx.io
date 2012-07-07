@@ -68,22 +68,26 @@ $('#contact').submit(genericFormHandler('contact', function (body) {
 (function (comment_post) {
 	"use strict";
 
-	if (comment_post) {
-		var url = comment_post.action + '/comment/' + comment_post.slug.value;
-		$('#comment_post').submit(genericFormHandler(url, function (body) {
-			if (typeof body === 'object') {
-				var newComment = $('#newcomment');
-				newComment.find('.author strong').text(body.author);
-				newComment.find('time').text(body.date);
-				newComment.find('.body').html(body.text);
-				newComment.show();
-				$(this).hide();
-				$('.nocomments').hide();
-			} else {
-				$(this).find('#texterror').text('Error: ' + body).show();
-			}
-		}));
+	var newComment, url;
+
+	if (!comment_post) {
+		return;
 	}
+
+	url = comment_post.action + '/comment/' + comment_post.slug.value;
+	$('#comment_post').submit(genericFormHandler(url, function (body) {
+		if (typeof body === 'object') {
+			newComment = $('#newcomment');
+			newComment.find('.author strong').text(body.author);
+			newComment.find('time').text(body.date);
+			newComment.find('.body').html(body.text);
+			newComment.show();
+			$(this).hide();
+			$('.nocomments').hide();
+		} else {
+			$(this).find('#texterror').text('Error: ' + body).show();
+		}
+	}));
 })($('#comment_post')[0]);
 
 
@@ -162,7 +166,7 @@ $('#markdowncheat, #markdowncheat .close').click(function () {
 });
 
 var tags = {};
-$('.tags').on('mouseover', 'a', function () {
+$('.tags, .more').on('mouseover', 'a', function () {
 	"use strict";
 
 	var $this = $(this);
