@@ -84,7 +84,7 @@ $('#contact').submit(genericFormHandler('contact', function (body) {
 			}
 		}));
 	}
-})($('#comment_post')[0]);=
+})($('#comment_post')[0]);
 
 
 // Tabs in textarea
