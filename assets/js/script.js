@@ -197,6 +197,7 @@ $('.tags, .more').on('mouseover', 'a', function () {
 });
 
 
+// Check for and handle new articles
 (function () {
 	"use strict";
 
@@ -209,11 +210,15 @@ $('.tags, .more').on('mouseover', 'a', function () {
 		link = $('.newarticle'),
 		refreshInterval = 20000;
 
+	// Check for new articles (every 20 seconds, by default)
 	setInterval(function () {
 		var url = location.origin + location.pathname,
+
+		// Timestamp needs / 1000 as it is in ns, while server wants ms
 			data = {timestamp: Math.round(time / 1000)};
 
 		$.get(url, data, function (newArticles) {
+			// newArticles can equal "Invalid time", check for that
 			if ($.isArray(newArticles) && newArticles.length) {
 				articles = articles.concat(newArticles);
 
@@ -228,9 +233,11 @@ $('.tags, .more').on('mouseover', 'a', function () {
 		});
 	}, refreshInterval);
 
+	// Handle "x new articles available" thingy being clicked
 	link.click(function () {
 		var i, footer, header, newArticle, tag;
 		for (i = 0; i < articles.length; i++) {
+			// Generate new article
 			newArticle = $('<article class="articles"></article>');
 
 			header = $('<header></header>').appendTo(newArticle);
@@ -255,7 +262,7 @@ $('.tags, .more').on('mouseover', 'a', function () {
 			$('<a></a>').appendTo(footer)
 				.addClass('comments')
 				.attr('href', articles[i].href + '#comments')
-				.text('0 comments');
+				.text('0 comments'); // Assume zero comments, posted in last 20s
 
 			tags = $('<div></div>').appendTo(footer)
 				.addClass('tags index')
