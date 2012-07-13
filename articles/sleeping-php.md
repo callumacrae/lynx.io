@@ -44,21 +44,21 @@ That code outputs the time twice, two seconds apart.
 	time_nanosleep(0, 500000000)
 	echo date('h:i:s');
 
-<br />
+<p>&nbsp;</p>
 
 `time_nanosleep()` doesn't exist on some older windows systems. To get around this, check whether the function exists and add it if it doesn't:
 
 	<?php
 
-	if (!function_exists('time_nanosleep'))
-	{
-		function time_nanosleep($seconds, $nanoseconds)
-		{
+	if (!function_exists('time_nanosleep')) {
+		function time_nanosleep($seconds, $nanoseconds) {
 			sleep($seconds);
 			usleep(round($nanoseconds / 100));
 			return true;
 		}
 	}
+
+It isn't as precise, but it will probably do.
 
 ## `time_sleep_until($timestamp)`
 
@@ -72,6 +72,6 @@ The `time_sleep_until()` function allows you to specify a timestamp when the scr
 
 That would sleep the script for 5 seconds.
 
-<br />
+<p>&nbsp;</p>
 
 When using any of these functions, you should keep in mind that most servers have the maximum execution time set to 30 seconds, so be careful! If you see any 500 errors, it usually means that your script has slept for too long, so you need to make it sleep less.

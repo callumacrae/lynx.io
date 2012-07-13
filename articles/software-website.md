@@ -6,7 +6,7 @@ tags: scripts, phpbb, html, smf, wordpress
 summary: That is one question which I often hear asked more than once a day, along with "What's the best CMS" and "What's the best forum software?". The answer for all three is the same (they are, after all, basically the same question); it depends on what you need. What's good for me might not be good for you, and what's good for a professional web developer will usually not be good for a 14 year old with no development experience.
 </info>
 
-That is one question which I often hear asked more than once a day, along with "What's the best CMS" and "What's the best forum software?". The answer for all three is the same (they are, after all, basically the same question); it depends on what you need. What's good for me might not be good for you, and what's good for a professional web developer will usually not be good for a 14 year old with no development experience.
+That is one question which I often hear asked more than once a day, along with "What's the best CMS?" and "What's the best forum software?". The answer for all three is the same (they are, after all, basically the same question); it depends on what you need. What's good for me might not be good for you, and what's good for a professional web developer will usually not be good for a 14 year old with no development experience.
 
 I am going to recommend a few to try, but my best advice for you is to experiment with whatever you can find. Some people will tell you that something is awful, but then you might find it works well for you. If you have the time, try out every piece of software you can find, and just use whatever you found best for you.
 

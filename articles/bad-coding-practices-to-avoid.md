@@ -1,6 +1,5 @@
 <info>
 title: Bad Coding Practices to Avoid
-slug": "bad-coding-practices-to-avoid
 author: callumacrae
 date: 1294812000
 tags: php, coding practice, comments, spacing, rant

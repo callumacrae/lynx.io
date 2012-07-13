@@ -12,7 +12,7 @@ If you hadn't heard about the attacks, PandaLabs have a very good article about 
 
 ## What is DDoS?
 
-A Distributed Denial of Service attack is a method of attacking a server so that genuine users cannot access it. Usually, the attacker has what is known as a "botnet" - several thousand computers that have been infected with malware without their users consent. The attacker then gets his botnet to send thousands of requests to one server, which either slows it down drastically or takes it completely offline.
+A Distributed Denial of Service attack is a method of attacking a server so that genuine users cannot access it. Usually, the attacker has what is known as a "botnet" - several thousand computers that have been infected with malware without the consent of the owner. The attacker then gets his botnet to send thousands of requests to one server, which either slows it down drastically or takes it completely offline.
 
 Another common method of attack, known as distributed reflected denial of service attack (DRDoS), involves spoofing the IP of the server that is going to be attacked, and then sending requests of some type to many servers. They will reply to the IP that was spoofed, in this case the server that's being attacked. It will seem to the victim's server that the entire internet is attacking them, but it will not have much of an effect on the servers that are having the requests sent to them by the attacker.
 
@@ -29,13 +29,13 @@ Realistically, it's not really possible to protect yourself for sure from a DDoS
 
 There are 7 layers to the OSI model (Open Systems Interconnect) for networking.
 
-Layer 1 (Physical) - Network card, cable
-Layer 2 (Data Link) - ARP (tells what IP address has which MAC address), PPP, etc.
-Layer 3 (Network) - IPv4, IPv6, ICMP (ping, traceroute)
-Layer 4 (Transport) - TCP, UDP
-Layer 5 (Session) - SSH
-Layer 6 (Presentation) - X.25, AFP, ASCII
-Layer 7 (Application) - HTTP, SMTP
+1. Layer 1 (Physical) - Network card, cable
+2. Layer 2 (Data Link) - ARP (tells what IP address has which MAC address), PPP, etc.
+3. Layer 3 (Network) - IPv4, IPv6, ICMP (ping, traceroute)
+4. Layer 4 (Transport) - TCP, UDP
+5. Layer 5 (Session) - SSH
+6. Layer 6 (Presentation) - X.25, AFP, ASCII
+7. Layer 7 (Application) - HTTP, SMTP
 
 When a connection is made, the requesting program tells the OS to open a socket, the data is sent to the network card, to the cable, to the switch/hub, to the router, to the ISP, to routers, to the receiving router, to the switch/hub, to the cable, to the network card, to the OS.
 

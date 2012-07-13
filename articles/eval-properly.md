@@ -11,7 +11,7 @@ summary: eval() is a PHP function that allows the user to execute a string as PH
 
 	eval('echo "Hello World!";');
 
-That will return "Hello World!" (obviously).
+That will output "Hello World!" (obviously).
 
 Pretty simple?
 
@@ -33,7 +33,7 @@ In all fairness to them, `eval()` can be a huge security problem if used wrong. 
 	
 	eval('echo "You asked for " . $food[\'' . $myfood . '\'];');
 
-That's a pretty stupid use of eval, but I have seen similar more than once. For example, if we go to:
+That's a pretty stupid use of eval, but I have seen similar more than once. That code is vulnerable; for example, if we go to:
 
 	thatfile.php?food=' . `rm -rf *` . '
 
@@ -47,7 +47,7 @@ Or you can stop using eval! It's not difficult to NOT use eval for this.
 
 Always be careful when using eval. If it is compromised, it can be extremely bad for you and your site (especially if you have stuff like exec() enabled).
 
-<br>
+<p>&nbsp;</p>
 
 So some people will be saying: where SHOULD eval be used? Here are a couple examples:
 

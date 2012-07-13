@@ -14,22 +14,22 @@ In this article we will be using a two arrays:
 	
 	$colours_ary = array('blue', 'red', 'orange', 'green');
 	$database_ary = array(
-	   'username'	=> 'test_username',
-	   'database'	=> 'test_database',
-	   'password'	=> 'test_password',
-	   'rand_text'	=> 'Lorem ipsum sit amet',
+		'username'	=> 'test_username',
+		'database'	=> 'test_database',
+		'password'	=> 'test_password',
+		'rand_text'	=> 'Lorem ipsum sit amet',
 	);
 	
 ## Outputting arrays
 
-There are two functions to outputs arrays, `print_r` and `var_dump`. `print_r` just outputs the array, while `var_dump` displays a lot more information such as type:
+There are two functions to outputs arrays, `print_r` and `var_dump`. The first just outputs the array, while `var_dump` displays a lot more information such as data types:
 
 	<?php
 	
 	print_r($database_ary);
 	var_dump($database_ary);
 
-That would return:
+That would output:
 
 	Array
 	(
@@ -54,16 +54,16 @@ That would return:
 `foreach` is easily the most used function to deal with arrays. It cycles through the array, and for every item in the array it executes some specified code.
 
 	foreach ($colours_ary as $value)
-	   statement
+		statement
 	foreach ($database_ary as $key => $value)
-	   statement
+		statement
 
 So for example:
 
 	<?php
 	
 	foreach ($colours_ary as $colour) {
-	   $db->query('INSERT INTO table VALUES ("' . $colour . '")');
+		$db->query('INSERT INTO table VALUES ("' . $colour . '")');
 	}
 
 Or:
@@ -73,7 +73,7 @@ Or:
 	echo '<ul id="database">';
 	
 	foreach ($database_ary as $key => $value) {
-	   echo '<li id="' . $key . '">' . $value . '</li>';
+		echo '<li id="' . $key . '">' . $value . '</li>';
 	}
 	
 	echo '</ul>';

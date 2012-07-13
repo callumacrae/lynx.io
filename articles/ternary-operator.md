@@ -6,7 +6,7 @@ tags: php, shortcuts
 summary: The ternary operator is a shortcut comparison operator that replaces an if-else statement in a PHP script. If you use a lot of if-else statements in your scripts, using the ternary operator can shorten your code hugely. The ternary operator is very simple to use, but it does tend to confuse new PHP programmers.
 </info>
 
-Have you ever seen the following code and wondered what it does?
+Have you ever seen code using a similar syntax to the following and wondered what it does?
 
 	<?php
 
@@ -14,11 +14,9 @@ Have you ever seen the following code and wondered what it does?
 	$name = (isset($_GET['name'])) ? $_GET['name'] : 'Anonymous';
 	$email = (isset($_GET['email'])) ? $_GET['email'] : 0;
 
-This is known as the ternary operator.
+I am referring to the question marks and colons. This syntax is known as the ternary operator. The ternary operator is a shortcut comparison operator that replaces an if-else statement in a PHP script. If you use a lot of if-else statements in your scripts, using the ternary operator can shorten your code hugely. The ternary operator is very simple to use, but it does tend to confuse new PHP programmers.
 
-The ternary operator is a shortcut comparison operator that replaces an if-else statement in a PHP script. If you use a lot of if-else statements in your scripts, using the ternary operator can shorten your code hugely. The ternary operator is very simple to use, but it does tend to confuse new PHP programmers.
-
-Basically, it's a short way of writing:
+Basically, the previous code sample is a short way of writing:
 
 	<?php
 
@@ -49,9 +47,9 @@ As you can see, it is significantly shorter (and often far easier to read). Letâ
 
 Fairly obvious?
 
-**statement** - the statement to test. For example, could test a variable to see whether it matches some regex.  
-**truecode** - the code to execute if the statement returns true.  
-**falsecode** - the code to execute if the statement returns false
+* `statement` - the statement to test. For example, could test a variable to see whether it matches some regex.
+* `truecode` - the code to execute if the statement returns true.
+* `falsecode` - the code to execute if the statement returns false
 
 ## What can this be used for?
 
@@ -61,7 +59,9 @@ It is very good for displaying different text to different people, for example:
 	
 	echo ($country === 'UK') ? 'Welcome!' : 'This website is UK only, sorry';
 
-<br>
+<p>&nbsp;</p>
+
+## Optional adaptation
 
 In PHP 5.3, the optional adaptation was introduced:
 
@@ -69,7 +69,15 @@ In PHP 5.3, the optional adaptation was introduced:
 	
 	$notset = $_GET['var'] ?: 'Variable not set';
 
-If `$_GET['var']` is set, `$notset` will be set to that. If it isn't, it will be set to "Variable not set".
+If `$_GET['var']` is set, `$notset` will be set to that. If it isn't, it will be set to "Variable not set". This is the equivilant of:
+
+	<?php
+
+	if ($_GET['var']) {
+		$notset = $_GET['var'];
+	} else {
+		$notset = 'Variable not set';
+	}
 
 
 ## A couple examples
