@@ -39,7 +39,7 @@ That's a pretty stupid use of eval, but I have seen similar more than once. That
 
 I've just deleted all your files. Okay, it's not that easy, but you can kind of see how it works. Two ways of stopping this: You can either insert some validation on line 10 like this:
 
-	if (!isset($food[$myfood]) {
+	if (!isset($food[$myfood])) {
 		die('Sorry, we do not have this food');
 	}
 
