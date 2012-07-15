@@ -34,15 +34,21 @@ function genericFormHandler(url, callback) {
 		$this.find('.error').hide();
 
 		if (!this.name.value) {
-			$this.find('#nameerror').text('Please specify a name').show();
+			$this.find('#nameerror')
+				.text('Please specify a name')
+				.show();
 			error = true;
 		}
 		if (!this.email.value) {
-			$this.find('#emailerror').text('Please specify an email address').show();
+			$this.find('#emailerror')
+				.text('Please specify an email address')
+				.show();
 			error = true;
 		}
 		if (!this.text.value) {
-			$this.find('#texterror').text('Please enter a message').show();
+			$this.find('#texterror')
+				.text('Please enter a message')
+				.show();
 			error = true;
 		}
 
@@ -95,7 +101,7 @@ $('#contact').submit(genericFormHandler('contact', function (body) {
 $('textarea').keydown(function (e) {
 	"use strict";
 
-	var start, end, nl,
+	var start, end, nl, value,
 		tabs = 0;
 
 	if (e.keyCode === 9) {
@@ -105,10 +111,11 @@ $('textarea').keydown(function (e) {
 		if (e.shiftKey) {
 			// If shift key pressed, remove tabs from beginning of lines
 			while (true) {
-				nl = this.value.lastIndexOf('\n', nl - 1);
-				if (this.value.slice(nl + 1, nl + 2) === '\t') {
+				value = this.value;
+				nl = value.lastIndexOf('\n', nl - 1);
+				if (value.slice(nl + 1, nl + 2) === '\t') {
 					tabs += 1;
-					this.value = this.value.slice(0, nl + 1) + this.value.slice(nl + 2);
+					this.value = value.slice(0, nl + 1) + value.slice(nl + 2);
 				}
 				if (nl < start) {
 					this.selectionStart = start;
@@ -118,15 +125,17 @@ $('textarea').keydown(function (e) {
 			}
 		} else if (start === end) {
 			// If no selection, insert tab
-			this.value = this.value.slice(0, start) + '\t' + this.value.slice(start);
+			value = this.value;
+			this.value = value.slice(0, start) + '\t' + value.slice(start);
 			this.selectionStart = this.selectionEnd = end + 1;
 		} else {
 			// If selection, insert tab at beginning of every line
 			while (true) {
+				value = this.value;
 				tabs += 1;
-				nl = this.value.lastIndexOf('\n', nl - 1);
-				this.value = this.value.slice(0, nl + 1) + '\t' + this.value.slice(nl + 1);
-				if (nl < start) {
+				nl = value.lastIndexOf('\n', nl - 1) + 1;
+				this.value = value.slice(0, nl) + '\t' + value.slice(nl);
+				if (nl <= start) {
 					this.selectionStart = start + 1;
 					this.selectionEnd = end + tabs;
 					break;
@@ -222,7 +231,8 @@ $('.tags, .more').on('mouseover', 'a', function () {
 			if ($.isArray(newArticles) && newArticles.length) {
 				articles = articles.concat(newArticles);
 
-				link.find('p').text(articles.length + ' new articles available');
+				link.find('p')
+					.text(articles.length + ' new articles available');
 
 				if (link.is(':hidden')) {
 					link.slideDown();
@@ -314,7 +324,8 @@ $('.tags, .more').on('mouseover', 'a', function () {
 								.attr('href', comments[i].website)
 								.text(comments[i].author);
 					} else {
-						newComment.find('.author strong').text(comments[i].author);
+						newComment.find('.author strong')
+							.text(comments[i].author);
 					}
 
 					newComment.find('time').text(comments[i].date);
