@@ -74,7 +74,7 @@ $('#contact').submit(genericFormHandler('contact', function (body) {
 		return;
 	}
 
-	url = comment_post.action + '/comment/' + comment_post.slug.value;
+	url = comment_post.action + 'comment/' + comment_post.slug.value;
 	$('#comment_post').submit(genericFormHandler(url, function (body) {
 		if (typeof body === 'object') {
 			newComment = $('#newcomment');
