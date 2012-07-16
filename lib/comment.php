@@ -5,12 +5,12 @@ if (!is_xhr(true) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
 	exit;
 }
 
-if (empty($_POST['slug']) || !is_readable('articles/' . $_POST['slug'] . '.md')) {
+$slug = $matches[2];
+
+if (empty($slug) || !is_readable('articles/' . $slug . '.md')) {
 	echo 'Article not found.';
 	exit;
 }
-
-$slug = $matches[2];
 
 if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['text'])) {
 	echo 'Please specify all required forms.';
