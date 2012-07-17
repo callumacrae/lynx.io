@@ -55,7 +55,6 @@ function genericFormHandler(url, callback) {
 		if (!error) {
 			$.post(url, $this.serialize(), function (body) {
 				callback.call(that, body);
-				$this.find('#texterror').text('Error: ' + body).show();
 			});
 		}
 
