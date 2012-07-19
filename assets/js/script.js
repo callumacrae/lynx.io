@@ -28,7 +28,6 @@ function genericFormHandler(url, callback) {
 	return function () {
 		var $this = $(this),
 			that = this,
-			data = $this.serialize(),
 			error = false;
 
 		$this.find('.error').hide();
