@@ -27,7 +27,6 @@ function genericFormHandler(url, callback) {
 
 	return function () {
 		var $this = $(this),
-			that = this,
 			error = false;
 
 		$this.find('.error').hide();
@@ -53,7 +52,7 @@ function genericFormHandler(url, callback) {
 
 		if (!error) {
 			$.post(url, $this.serialize(), function (body) {
-				callback.call(that, body);
+				callback.call($this, body);
 			});
 		}
 
@@ -65,14 +64,15 @@ function genericFormHandler(url, callback) {
 $('#contact').submit(genericFormHandler('contact', function (body) {
 	"use strict";
 
-	$(this).find('#texterror').text(body).show();
+	this.find('#texterror').text(body).show();
 }));
 
 // Handle comment form submit
-(function (comment_post) {
+(function () {
 	"use strict";
 
-	var newComment, url;
+	var comment_post = $('#comment_post')[0],
+		newComment, url;
 
 	if (!comment_post) {
 		return;
@@ -86,13 +86,13 @@ $('#contact').submit(genericFormHandler('contact', function (body) {
 			newComment.find('time').text(body.date);
 			newComment.find('.body').html(body.text);
 			newComment.show();
-			$(this).hide();
+			this.hide();
 			$('.nocomments').hide();
 		} else {
-			$(this).find('#texterror').text('Error: ' + body).show();
+			this.find('#texterror').text('Error: ' + body).show();
 		}
 	}));
-})($('#comment_post')[0]);
+})();
 
 
 // Tabs in textarea
