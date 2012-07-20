@@ -110,13 +110,13 @@ $('textarea').keydown(function (e) {
 			// If shift key pressed, remove tabs from beginning of lines
 			while (true) {
 				value = this.value;
-				nl = value.lastIndexOf('\n', nl - 1) + 1;
+				nl = value.lastIndexOf('\n', nl - 2) + 1;
 				if (value.slice(nl, nl + 1) === '\t') {
 					tabs += 1;
 					this.value = value.slice(0, nl) + value.slice(nl + 1);
 				}
 				if (nl <= start) {
-					this.selectionStart = start;
+					this.selectionStart = start - 1;
 					this.selectionEnd = end - tabs;
 					break;
 				}
@@ -131,7 +131,7 @@ $('textarea').keydown(function (e) {
 			while (true) {
 				value = this.value;
 				tabs += 1;
-				nl = value.lastIndexOf('\n', nl - 1) + 1;
+				nl = value.lastIndexOf('\n', nl - 2) + 1;
 				this.value = value.slice(0, nl) + '\t' + value.slice(nl);
 				if (nl <= start) {
 					this.selectionStart = start + 1;
