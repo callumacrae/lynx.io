@@ -71,14 +71,14 @@ $('#contact').submit(genericFormHandler('contact', function (body) {
 (function () {
 	"use strict";
 
-	var comment_post = $('#comment_post')[0],
+	var commentPost = $('#comment_post')[0],
 		newComment, url;
 
-	if (!comment_post) {
+	if (!commentPost) {
 		return;
 	}
 
-	url = comment_post.action + 'comment/' + comment_post.slug.value;
+	url = commentPost.action + 'comment/' + commentPost.slug.value;
 	$('#comment_post').submit(genericFormHandler(url, function (body) {
 		if (typeof body === 'object') {
 			newComment = $('#newcomment');
@@ -172,37 +172,36 @@ $('#markdowncheat, #markdowncheat .close').click(function () {
 	e.stopPropagation();
 });
 
-var tags = {};
-$('.tags, .more').on('mouseover', 'a', function () {
+(function () {
 	"use strict";
 
-	var $this = $(this);
+	var tags = {};
+	$('.tags, .more').on('mouseover', 'a', function () {
+		var $this = $(this);
 
-	if ($this.data('titled')) {
-		$this.tipsy('show');
-	} else if (tags[$this.text()]) {
-		$this.attr('title', tags[$this.text()])
-			.data('titled', true)
-			.tipsy('show');
-	} else {
-		$.get($(this).attr('href'), function (title) {
-			title += ' article' + (title === 1 ? '' : 's');
-			tags[$this.text()] = title;
-			$this.attr('title', title)
+		if ($this.data('titled')) {
+			$this.tipsy('show');
+		} else if (tags[$this.text()]) {
+			$this.attr('title', tags[$this.text()])
 				.data('titled', true)
 				.tipsy('show');
-		});
-	}
-}).on('mouseout', 'a', function () {
-	"use strict";
-
-	$(this).tipsy('hide');
-}).children('a').tipsy({
-	fade: true,
-	gravity: 's',
-	trigger: 'manual'
-});
-
+		} else {
+			$.get($(this).attr('href'), function (title) {
+				title += ' article' + (title === 1 ? '' : 's');
+				tags[$this.text()] = title;
+				$this.attr('title', title)
+					.data('titled', true)
+					.tipsy('show');
+			});
+		}
+	}).on('mouseout', 'a', function () {
+		$(this).tipsy('hide');
+	}).children('a').tipsy({
+		fade: true,
+		gravity: 's',
+		trigger: 'manual'
+	});
+})();
 
 // Check for and handle new articles
 (function () {
@@ -243,13 +242,14 @@ $('.tags, .more').on('mouseover', 'a', function () {
 
 	// Handle "x new articles available" thingy being clicked
 	link.click(function () {
-		var i, footer, header, newArticle, tag;
+		var a, i, footer, header, newArticle, tag, tags;
 		for (i = 0; i < articles.length; i++) {
 			// Generate new article
 			newArticle = $('<article class="articles"></article>');
 
 			header = $('<header></header>').appendTo(newArticle);
-			var a = $('<a></a>').appendTo(header)
+
+			a = $('<a></a>').appendTo(header)
 				.attr('href', articles[i].href)
 				.html('<h2>' + articles[i].title + '</h2>');
 
@@ -306,11 +306,12 @@ $('.tags, .more').on('mouseover', 'a', function () {
 		url = location.origin + location.pathname;
 
 	setInterval(function () {
-		var newComment,
+		var i, newComment,
 			data = {timestamp: Math.round(time / 1000)};
+
 		$.get(url, data, function (comments) {
 			if ($.isArray(comments) && comments.length) {
-				for (var i = 0; i < comments.length; i++) {
+				for (i = 0; i < comments.length; i++) {
 					newComment = $('#newcomment').clone()
 						.insertBefore('#comment_post')
 						.slideDown();
