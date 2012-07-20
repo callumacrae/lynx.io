@@ -143,7 +143,6 @@ $('textarea').keydown(function (e) {
 	}
 });
 
-
 // MD cheatsheet
 $(document).keydown(function (e) {
 	"use strict";
@@ -151,6 +150,8 @@ $(document).keydown(function (e) {
 	var cheatsheet = $('#markdowncheat');
 	if (e.keyCode === 77 && !$(':focus').length) {
 		if (cheatsheet.is(':hidden')) {
+			$('.markdown').show();
+			$('.parsedmarkdown').hide();
 			cheatsheet.fadeIn(200);
 		} else {
 			cheatsheet.click();
@@ -158,7 +159,16 @@ $(document).keydown(function (e) {
 		e.preventDefault();
 	} else if (e.keyCode === 27 && cheatsheet.is(':visible')) {
 		cheatsheet.click();
+	} else if (e.keyCode === 84 && cheatsheet.is(':visible')) {
+		$('#markdowncheat .toggle').click();
 	}
+});
+
+$('#markdowncheat .toggle').click(function (e) {
+	"use strict";
+	e.preventDefault();
+
+	$('.markdown, .parsedmarkdown').slideToggle();
 });
 
 $('#markdowncheat, #markdowncheat .close').click(function () {
