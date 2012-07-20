@@ -110,12 +110,12 @@ $('textarea').keydown(function (e) {
 			// If shift key pressed, remove tabs from beginning of lines
 			while (true) {
 				value = this.value;
-				nl = value.lastIndexOf('\n', nl - 1);
-				if (value.slice(nl + 1, nl + 2) === '\t') {
+				nl = value.lastIndexOf('\n', nl - 1) + 1;
+				if (value.slice(nl, nl + 1) === '\t') {
 					tabs += 1;
-					this.value = value.slice(0, nl + 1) + value.slice(nl + 2);
+					this.value = value.slice(0, nl) + value.slice(nl + 1);
 				}
-				if (nl < start) {
+				if (nl <= start) {
 					this.selectionStart = start;
 					this.selectionEnd = end - tabs;
 					break;
