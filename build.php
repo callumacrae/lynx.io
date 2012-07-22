@@ -9,7 +9,8 @@ $markdownParser = new MarkdownParser();
 
 $output = shell_exec('git pull origin master 2>&1');
 
-preg_match_all('/create mode \d+ articles\/([a-z0-9_-]+)\.md/i', $output, $matches);
+$regex = '/create mode \d+ articles\/([a-z0-9_-]+)\.md/i';
+preg_match_all($regex, $output, $matches);
 
 if (count($matches)) {
 	$articles = json_decode(file_get_contents('articles/articles.json'));
@@ -38,7 +39,8 @@ if (count($matches)) {
 		$info['slug'] = $file;
 
 		// Cache
-		file_put_contents('cache/articles/' . $file . '.json', json_encode($info));
+		$filename = 'cache/articles/' . $file . '.json';
+		file_put_contents($filename, json_encode($info));
 
 		$article = array(
 			'title'		=> $info['title'],

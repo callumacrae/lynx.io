@@ -33,11 +33,17 @@ $twig = new Twig_Environment($loader, $twig_config);
 
 // Latest articles
 $all_articles = json_decode(file_get_contents('articles/articles.json'));
-$comments = json_decode(file_get_contents('articles/comments/comments.json'), true);
+$comments = file_get_contents('articles/comments/comments.json');
+$comments = json_decode($comments, true);
 $latest_articles = array();
 for ($i = 0; $i < count($all_articles); $i++) {
 	$article = $all_articles[$i];
-	$article->comments = isset($comments[$article->slug]) ? $comments[$article->slug] : 0;
+
+	if (isset($comments[$article->slug])) {
+		$article->comments = $comments[$article->slug];
+	} else {
+		$article->comments = 0;
+	}
 
 	if ($i < 5) {
 		$latest_articles[] = $all_articles[$i];
@@ -46,9 +52,9 @@ for ($i = 0; $i < count($all_articles); $i++) {
 
 // Global template stuff
 $tmpl_vars = array(
-	'assets_path'	=> $config['site_url'] . '/assets',
+	'assets_path'		=> $config['site_url'] . '/assets',
 	'latest_articles'	=> $latest_articles,
-	'site'			=> array(
+	'site'				=> array(
 		'name'	=> 'lynx.io',
 		'url'	=> $config['site_url'],
 	),

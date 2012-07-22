@@ -11,7 +11,8 @@ if (is_xhr(true) && !empty($_GET['timestamp'])) {
 	}
 
 	foreach ($all_articles as $article) {
-		if (in_array(urldecode($matches[2]), $article->tags) && $article->date > $timestamp) {
+		$tag = urldecode($matches[2]);
+		if (in_array($tag, $article->tags) && $article->date > $timestamp) {
 			$root = $config['site_url'];
 
 			$newArticle = array(

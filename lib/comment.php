@@ -53,7 +53,8 @@ $count = count($comments);
 $comments = json_encode($comments);
 file_put_contents('articles/comments/' . $slug . '.json', $comments);
 
-$comment['text'] = $markdownParser->transformMarkdown(htmlspecialchars($comment['text']));
+$comment['text'] = htmlspecialchars($comment['text']);
+$comment['text'] = $markdownParser->transformMarkdown($comment['text']);
 $comment['date'] = date('jS M Y \a\t h:i:s A', $comment['date']);
 echo json_encode($comment);
 

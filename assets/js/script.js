@@ -282,7 +282,7 @@ $('#markdowncheat, #markdowncheat .close').click(function () {
 			$('<a></a>').appendTo(footer)
 				.addClass('comments')
 				.attr('href', articles[i].href + '#comments')
-				.text('0 comments'); // Assume zero comments, posted in last 20s
+				.text('0 comments'); // Assume zero comments
 
 			tags = $('<div></div>').appendTo(footer)
 				.addClass('tags index')
@@ -488,7 +488,7 @@ var changeHash = (function () {
 
 	return function (key, value) {
 		var currentHash = location.hash.slice(1).split('&'),
-			done = false, newHash;
+			done = false, newHash, seperator;
 
 		key = encodeURIComponent(key);
 		value = encodeURIComponent(value);
@@ -520,12 +520,13 @@ var changeHash = (function () {
 
 		if (!done) {
 			value = value ? key + '=' + value : '';
-			newHash = location.hash + (location.hash && value ? '&' : '') + value;
+			seperator = location.hash && value ? '&' : '';
+			newHash = location.hash + seperator + value;
 		}
 
 		if (newHash === '' || newHash === '#') {
 			try {
-				history.pushState('', document.title, window.location.pathname);
+				history.pushState('', document.title, location.pathname);
 			} catch(e) {
 				location.hash = '#';
 			}

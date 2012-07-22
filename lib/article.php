@@ -67,7 +67,10 @@ if ($slug && is_readable('articles/' . $slug . '.md')) {
 	
 	$articleimages = $config['site_url'] . '/assets/imgs/' . $slug;
 	$info['body'] = $markdownParser->transformMarkdown($body[1]);
-	$info['body'] = str_replace('{{ articleimages }}', $articleimages, $info['body']);
+
+	$find = $articleimages;
+	$replace = $info['body'];
+	$info['body'] = str_replace('{{ articleimages }}', $find, $replace);
 	
 	$info['tags'] = explode(', ', $info['tags']);
 	$info['slug'] = $slug;
@@ -108,14 +111,16 @@ function get_comments($slug) {
 			$comment->text = htmlspecialchars($comment->text);
 			
 			// Unescape quotes
-			$comment->text = preg_replace('/(^|\n)&gt;/', "\n>", $comment->text);
+			$regex = '/(^|\n)&gt;/';
+			$comment->text = preg_replace($regex, "\n>", $comment->text);
 			
 			// Unescape URLs
-			$comment->text = preg_replace_callback('/&lt;(http:\/\/[^ ]+)&gt;/', function ($matches) {
-				if (filter_var($matches[1], FILTER_VALIDATE_URL)) {
-					return '<' . $matches[1] . '>';
+			$regex = '/&lt;(http:\/\/[^ ]+)&gt;/';
+			$comment->text = preg_replace_callback($regex, function ($match) {
+				if (filter_var($match[1], FILTER_VALIDATE_URL)) {
+					return '<' . $match[1] . '>';
 				} else {
-					return '&lt;' . $matches[1] . '&gt;';
+					return '&lt;' . $match[1] . '&gt;';
 				}
 			}, $comment->text);
 			
