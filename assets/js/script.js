@@ -367,6 +367,8 @@ $('#search').keyup(function (e) {
 		$this.val('').keyup().blur();
 	}
 
+	changeHash('search', val);
+
 	$('.articles:not(.js, .author, .noarticles)').each(function () {
 		var $this = $(this),
 			text;
@@ -399,3 +401,59 @@ $(document).keydown(function (e) {
 		e.preventDefault();
 	}
 });
+
+var changeHash = (function () {
+	"use strict";
+
+	var hashchangeCallbacks = {
+		search: function (search) {
+			if ($('#search').val() !== search) {
+				$('#search').val(search).keyup();
+			}
+		}
+	};
+
+	window.onhashchange = function () {
+		var hash = location.hash.slice(1).split('&');
+		$.each(hash, function (index, value) {
+			value = value.split('=');
+			value[1] = decodeURIComponent(value[1]);
+
+			if (hashchangeCallbacks[value[0]]) {
+				hashchangeCallbacks[value[0]].call(null, value[1]);
+			}
+		});
+	};
+
+	return function (key, value) {
+		var currentHash = location.hash.slice(1).split('&'),
+			done = false, newHash;
+
+		key = encodeURIComponent(key);
+		value = encodeURIComponent(value);
+
+		$.each(currentHash, function (index, val) {
+			var find, replace;
+
+			val = val.split('=');
+			if (val[0] === key) {
+				find = key + '=' + val[1];
+				replace = value ? key + '=' + value : '';
+				newHash = location.hash.replace(find, replace);
+
+				done = true;
+			}
+		});
+
+		if (!done) {
+			value = value ? key + '=' + value : '';
+			newHash = location.hash + (location.hash ? '&' : '') + value;
+		}
+
+		if (newHash === '' || newHash === '#') {
+			history.pushState('', document.title, window.location.pathname);
+		} else {
+			location.hash = newHash;
+		}
+	};
+})();
