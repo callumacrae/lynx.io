@@ -11,7 +11,7 @@
 	</article>
 
 	{% if author_info %}
-	<article class="articles">
+	<article class="articles author">
 		<header>
 			<h1>About {% if author_info.website %}<a href="{{ author_info.website }}">{{ author_info.name }}</a>{% else %}{{ author_info.name }}{% endif %}:</h1>
 		</header>
@@ -19,6 +19,14 @@
 		<p>{{ author_info.description }}</p>
 	</article>
 	{% endif %}
+
+	<article class="articles noarticles">
+		<header>
+			<h2>No articles</h2>
+		</header>
+
+		<p>:-(</p>
+	</article>
 
 	<div class="newarticle"><p></p></div>
 

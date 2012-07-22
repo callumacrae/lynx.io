@@ -350,3 +350,52 @@ $('#markdowncheat, #markdowncheat .close').click(function () {
 		});
 	}, 15000);
 })();
+
+
+$('#search').keyup(function (e) {
+	"use strict";
+
+	if (!$('.articles').length) {
+		return; // Not on a listing
+	}
+
+	var $this = $(this),
+		val = $this.val();
+
+	if (e.keyCode === 27) {
+		// Escape has been pressed; clear input and blur
+		$this.val('').keyup().blur();
+	}
+
+	$('.articles:not(.js, .author, .noarticles)').each(function () {
+		var $this = $(this),
+			text;
+
+		text = $this.find('h2').text() +
+			$this.find('.body').text().slice(0, -12) +
+			$this.find('.tags').text().slice(11);
+
+		$this.removeHighlight();
+
+		if (text.toLowerCase().indexOf(val.toLowerCase()) === -1) {
+			$this.hide();
+		} else {
+			$this.highlight(val || 'qpwoei').show();
+		}
+	});
+
+	if (!$('.articles:not(.js, .author, .noarticles):visible').length) {
+		$('.noarticles').show();
+	} else {
+		$('.noarticles').hide();
+	}
+});
+
+$(document).keydown(function (e) {
+	"use strict";
+
+	if (e.keyCode === 70 && e.metaKey && $('.articles').length) {
+		$('#search').focus();
+		e.preventDefault();
+	}
+});
