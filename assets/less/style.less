@@ -81,6 +81,50 @@ body {
 	margin: 0 auto;
 	overflow: auto;
 
+	.holder {
+		margin-top: 10px;
+		margin-bottom: -23px;
+		text-align: center;
+
+		a {
+			font-size: 12px;
+			cursor: pointer;
+			margin: 0 5px;
+			color: #333333;
+			text-decoration: none;
+
+			&:hover {
+				background-color: @orange;
+				color: white;
+			}
+
+			&.jp-previous {
+				margin-right: 10px;
+			}
+
+			&.jp-next {
+				margin-left: 10px;
+			}
+
+			&.jp-current, &.jp-current:hover {
+				color: @orange;
+				font-weight: bold;
+				cursor: default;
+				background: none;
+			}
+
+			&.jp-disabled, &.jp-disabled:hover {
+				color: #BBBBBB;
+				cursor: default;
+				background: none;
+			}
+		}
+
+		span {
+			margin: 0 5px;
+		}
+	}
+
 	#content {
 		width: 75%;
 		float: left;
@@ -157,6 +201,10 @@ article:not(.comment) {
 	margin: 0 auto;
 	margin-top: 30px;
 	padding: 10px;
+
+	&.hidden {
+		display: none !important;
+	}
 
 	header {
 		h1, h2 {

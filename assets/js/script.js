@@ -360,6 +360,7 @@ $('#search').keyup(function (e) {
 	}
 
 	var $this = $(this),
+		change = false,
 		val = $this.val();
 
 	if (e.keyCode === 27) {
@@ -380,11 +381,21 @@ $('#search').keyup(function (e) {
 		$this.removeHighlight();
 
 		if (text.toLowerCase().indexOf(val.toLowerCase()) === -1) {
-			$this.hide();
+			if ($this.is(':visible')) {
+				change = true;
+			}
+			$this.addClass('hidden');
 		} else {
-			$this.highlight(val || 'qpwoei').show();
+			if (!$this.is(':visible')) {
+				change = true;
+			}
+			$this.highlight(val || 'qpwoei').removeClass('hidden');
 		}
 	});
+
+	if (change) {
+		refreshPages();
+	}
 
 	if (!$('.articles:not(.js, .author, .noarticles):visible').length) {
 		$('.noarticles').show();
@@ -399,8 +410,29 @@ $(document).keydown(function (e) {
 	if (e.keyCode === 70 && e.metaKey && $('.articles').length) {
 		$('#search').focus();
 		e.preventDefault();
+	} else if (e.keyCode === 37) {
+		$('.jp-previous').click();
+	} else if (e.keyCode === 39) {
+		$('.jp-next').click();
 	}
 });
+
+function getHash(key) {
+	"use strict";
+
+	var hash = location.hash.slice(1).split('&'),
+		end = false;
+
+	$.each(hash, function (index, value) {
+		value = value.split('=');
+
+		if (value[0] === key) {
+			end = decodeURIComponent(value[1]);
+		}
+	});
+
+	return end;
+}
 
 var changeHash = (function () {
 	"use strict";
@@ -409,6 +441,11 @@ var changeHash = (function () {
 		search: function (search) {
 			if ($('#search').val() !== search) {
 				$('#search').val(search).keyup();
+			}
+		},
+		page: function (page) {
+			if (currentPage !== page) {
+				$('.holder').jPages(Number(page));
 			}
 		}
 	};
@@ -425,6 +462,8 @@ var changeHash = (function () {
 		});
 	};
 
+	$(window.onhashchange);
+
 	return function (key, value) {
 		var currentHash = location.hash.slice(1).split('&'),
 			done = false, newHash;
@@ -437,9 +476,21 @@ var changeHash = (function () {
 
 			val = val.split('=');
 			if (val[0] === key) {
-				find = key + '=' + val[1];
-				replace = value ? key + '=' + value : '';
+				find = key + '=' + val[1] + '&';
+				replace = value ? key + '=' + value + '&' : '';
 				newHash = location.hash.replace(find, replace);
+
+				if (newHash === location.hash) {
+					find = '&' + key + '=' + val[1];
+					replace = value ? '&' + key + '=' + value : '';
+					newHash = newHash.replace(find, replace);
+
+					if (newHash === location.hash) {
+						find = key + '=' + val[1];
+						replace = value ? key + '=' + value : '';
+						newHash = newHash.replace(find, replace);
+					}
+				}
 
 				done = true;
 			}
@@ -447,7 +498,7 @@ var changeHash = (function () {
 
 		if (!done) {
 			value = value ? key + '=' + value : '';
-			newHash = location.hash + (location.hash ? '&' : '') + value;
+			newHash = location.hash + (location.hash && value ? '&' : '') + value;
 		}
 
 		if (newHash === '' || newHash === '#') {
@@ -457,6 +508,30 @@ var changeHash = (function () {
 		}
 	};
 })();
+
+if ($('.articles').length) {
+	refreshPages(false);
+}
+
+var currentPage = 1;
+function refreshPages(destroy) {
+	"use strict";
+
+	if (typeof destroy !== 'boolean' || destroy) {
+		$('.holder').jPages('destroy');
+		changeHash('page', '');
+	}
+
+	$('.holder').jPages({
+		containerID: 'jpagesarticles',
+		fallback: 0,
+		startPage: getHash('page') || 1,
+		callback: function (pages) {
+			currentPage = pages.current;
+			changeHash('page', currentPage === 1 ? '' : currentPage);
+		}
+	});
+}
 
 $(window).scroll(function (e, widthChange) {
 	"use strict";

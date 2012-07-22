@@ -20,6 +20,8 @@
 	</article>
 	{% endif %}
 
+	<div class="holder"></div>
+
 	<article class="articles noarticles">
 		<header>
 			<h2>No articles</h2>
@@ -28,31 +30,34 @@
 		<p>:-(</p>
 	</article>
 
-	<div class="newarticle"><p></p></div>
+	<div id="jpagesarticles">
 
-	{% for article in articles %}
-	<article class="articles">
-		<header>
-			<a href="{{ site.url }}/article/{{ article.slug }}"><h2>{{ article.title }}</h2></a>
-			<time datetime="{{ article.date|date("Y-m-d") }}" class="articletime">{{ article.date|date("jS M Y") }}</time>
-		</header>
+		<div class="newarticle"><p></p></div>
 
-		<div class="body">
-		{% autoescape false %}
-			{{ article.summary }}
-		{% endautoescape %}
+		{% for article in articles %}
+		<article class="articles">
+			<header>
+				<a href="{{ site.url }}/article/{{ article.slug }}"><h2>{{ article.title }}</h2></a>
+				<time datetime="{{ article.date|date("Y-m-d") }}" class="articletime">{{ article.date|date("jS M Y") }}</time>
+			</header>
 
-			<a class="readmore" href="{{ site.url }}/article/{{ article.slug }}">Read more</a>
-		</div>
+			<div class="body">
+			{% autoescape false %}
+				{{ article.summary }}
+			{% endautoescape %}
 
-		<footer>
-			<a href="{{ site.url }}/article/{{ article.slug }}#comments" class="comments">{{ article.comments }} comment{% if article.comments != 1 %}s{% endif %}</a>
-			{% if article.tags %}
-			<div class="tags index">
-				Tags:{% for tag in article.tags %} <a href="{{ site.url }}/tag/{{ tag|url_encode() }}">{{ tag }}</a>{% endfor %}
+				<a class="readmore" href="{{ site.url }}/article/{{ article.slug }}">Read more</a>
 			</div>
-			{% endif %}
-		</footer>
-	</article>
-	{% endfor %}
+
+			<footer>
+				<a href="{{ site.url }}/article/{{ article.slug }}#comments" class="comments">{{ article.comments }} comment{% if article.comments != 1 %}s{% endif %}</a>
+				{% if article.tags %}
+				<div class="tags index">
+					Tags:{% for tag in article.tags %} <a href="{{ site.url }}/tag/{{ tag|url_encode() }}">{{ tag }}</a>{% endfor %}
+				</div>
+				{% endif %}
+			</footer>
+		</article>
+		{% endfor %}
+	</div>
 {% endblock %}
