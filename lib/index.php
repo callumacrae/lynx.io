@@ -7,6 +7,7 @@ if (!empty($_GET['timestamp']) && is_xhr(true)) {
 		exit;
 	}
 
+	$articles = array();
 	foreach ($all_articles as $article) {
 		if ($article->date > $timestamp) {
 			$root = $config['site_url'];
