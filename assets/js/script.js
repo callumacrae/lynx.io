@@ -485,4 +485,4 @@ $(window).scroll(function (e, widthChange) {
 	"use strict";
 
 	$(this).trigger('scroll', true);
-}).trigger('scroll', true);
+}).trigger('scroll');
