@@ -1,6 +1,14 @@
 {% extends "base.twig.html" %}
 
 {% block content %}
+	<article class="nojs">
+		<header>
+			<h2>JavaScript disabled</h2>
+		</header>
+
+		<p>While it will still mostly work, a lot of this site's functionality relies on JavaScript - please enable it for the best experience.</p>
+	</article>
+
 	<article>
 		<header>
 			<h1>{{ article.title }}</h1>
@@ -79,7 +87,7 @@
 				<textarea rows="10" name="text"></textarea>
 				<p>You can use markdown in comments (press "m" for a cheatsheet).</p>
 				<button type="submit">Post comment</button> <span class="error" id="texterror"></span>
-				<noscript>Enable JavaScript to post a comment</noscript>
+				<span class="nojs">Enable JavaScript to post a comment</span>
 
 				<input type="hidden" name="slug" value="{{ article.slug }}">
 			</form>

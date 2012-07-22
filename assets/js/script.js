@@ -15,6 +15,8 @@ $('input[name="email"]').tipsy({
 	trigger: 'focus'
 });
 
+$('.nojs').removeClass('nojs').addClass('js');
+
 /**
  * Handles the contact and comment post forms, both of which are
  * extremely similar - this is DRYer.
