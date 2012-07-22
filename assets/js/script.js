@@ -457,3 +457,32 @@ var changeHash = (function () {
 		}
 	};
 })();
+
+$(window).scroll(function (e, widthChange) {
+	"use strict";
+
+	var content, contentWidth,
+		sidebar = $('#sidebar'),
+		top = $(window).scrollTop();
+
+	if (typeof widthChange !== 'boolean') {
+		widthChange = false;
+	}
+
+	if (top > 100) {
+		if (!sidebar.hasClass('sidebarfixed') || widthChange) {
+			content = $('#content');
+			contentWidth = parseInt(content.css('width'));
+
+			sidebar.addClass('sidebarfixed')
+				.css('width', contentWidth / 3 - 11)
+				.css('left', content.offset().left + contentWidth + 11);
+		}
+	} else {
+		sidebar.removeClass('sidebarfixed');
+	}
+}).resize(function () {
+	"use strict";
+
+	$(this).trigger('scroll', true);
+}).trigger('scroll', true);
