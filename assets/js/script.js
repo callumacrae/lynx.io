@@ -368,6 +368,10 @@ $('#search').keyup(function (e) {
 		$this.val('').keyup().blur();
 	}
 
+	if ((!getHash('search') && !val) || getHash('search') === val) {
+		return;
+	}
+
 	changeHash('search', val);
 
 	$('.articles:not(.js, .author, .noarticles)').each(function () {
@@ -408,13 +412,31 @@ $(document).keydown(function (e) {
 	"use strict";
 
 	if (e.keyCode === 70 && e.metaKey && $('.articles').length) {
-		$('#search').focus();
-		e.preventDefault();
+		var $search = $('#search');
+
+		if (!$('#search').is(':focus')) {
+			$search.focus();
+
+			if (!$search.data('tipsy').$tip) {
+				$search.tipsy('show');
+
+				setTimeout(function () {
+					$search.tipsy('hide');
+				}, 3000);
+			}
+			e.preventDefault();
+		}
 	} else if (e.keyCode === 37) {
 		$('.jp-previous').click();
 	} else if (e.keyCode === 39) {
 		$('.jp-next').click();
 	}
+});
+
+$('#search').tipsy({
+	gravity: 's',
+	fade: true,
+	trigger: 'manual'
 });
 
 function getHash(key) {
@@ -502,7 +524,11 @@ var changeHash = (function () {
 		}
 
 		if (newHash === '' || newHash === '#') {
-			history.pushState('', document.title, window.location.pathname);
+			try {
+				history.pushState('', document.title, window.location.pathname);
+			} catch(e) {
+				location.hash = '#';
+			}
 		} else {
 			location.hash = newHash;
 		}
