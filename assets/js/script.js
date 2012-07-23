@@ -561,8 +561,14 @@ function refreshPages(destroy) {
 }
 
 if ($('.articles').length) {
+	var fixSidebar = true;
+
 	$(window).scroll(function (e, widthChange) {
 		"use strict";
+
+		if (!fixSidebar) {
+			return;
+		}
 
 		var content, contentWidth,
 			sidebar = $('#sidebar'),
@@ -589,4 +595,11 @@ if ($('.articles').length) {
 
 		$(this).trigger('scroll', true);
 	}).trigger('scroll');
+
+	$(document).on('touchstart', function () {
+		"use strict";
+
+		fixSidebar = false;
+		$('#sidebar').removeClass('sidebarfixed');
+	});
 }
