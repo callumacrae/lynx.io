@@ -4,6 +4,8 @@
 	<meta charset="utf8">
 	<title>{{ site.name }}{% if page_title %} &bull; {{ page_title }}{% endif %}</title>
 
+	<meta name="description" content="{% if article %}{{ article.summary }}{% else %}{{ site.desc }}{% endif %}">
+
 	<link rel="stylesheet" href="{{ assets_path }}/css/tipsy.css">
 	<link rel="stylesheet" href="{{ assets_path }}/css/highlight-github.css">
 	<link rel="stylesheet" href="{{ assets_path }}/css/style.css">

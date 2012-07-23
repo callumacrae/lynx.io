@@ -57,6 +57,7 @@ $tmpl_vars = array(
 	'site'				=> array(
 		'name'	=> 'lynx.io',
 		'url'	=> $config['site_url'],
+		'desc'	=> 'lynx.io was founded by Callum Macrae in 2011 with the aim of providing web developers with a good and reliable source of information, tutorials and tips.',
 	),
 );
 

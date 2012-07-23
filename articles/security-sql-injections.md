@@ -58,6 +58,36 @@ If you cannot stop using the mysql\_* library, then there are a few functions av
 
 That code is secure.
 
+If you're using integers, then simply calling `mysql_real_escape_string()` won't do the trick - as `0 OR 0=0` doesn't contain any quotes, nothing will be changed; the following code is still vulnerable:
+
+	<?php
+
+	include('database_connect.php'); // Connect to the database
+
+	$userid = mysql_real_escape_string($_POST['id']);
+	$sql = "SELECT *
+		FROM app_users
+		WHERE user_id=$userid";
+	$query = mysql_query($sql);
+
+Passing `0 OR 0=0` to it will generate the following SQL:
+
+	SELECT *
+	FROM app_users
+	WHERE user_id=0 OR 0=0
+
+In order to combat this, we must cast the variable to integer, like this:
+
+	<?php
+
+	include('database_connect.php'); // Connect to the database
+
+	$userid = (int) $_POST['id'];
+	$sql = "SELECT *
+		FROM app_users
+		WHERE user_id=$userid";
+	$query = mysql_query($sql);
+
 <p>&nbsp;</p>
 
 In summary, SQL injections are a very real and potentially very dangerous type of exploit, that could lead to a lot of damage being caused, such as data being deleted or a table containing sensitive user information such as passwords, emails or credit card information being released. They are moderately easily prevented by using prepared statements in a better library such as PDO, or using a function like `mysql_real_escape_string()` to escape input.

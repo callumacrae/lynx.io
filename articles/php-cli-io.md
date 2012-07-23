@@ -34,7 +34,7 @@ In this article we will be following an extremely simple script. To begin with, 
 	}
 
 
-It doesn't do much. First, it clears the command line so that anything echoed will display at the top of the screen. This will only work in unix-like systems, but most servers use Unix or Linux anyway. Then, it echos a welcome to the user, and a couple new lines. If you use HTML line breaks (`<br />`), they will not display correctly – as it is outputting plain text and not HTML, it will be displayed as-is. For this reason, you should use the EOL constant – `PHP_EOL`. This is equivalent to `\n` or `\r\b` on Windows systems.
+It doesn't do much. First, it clears the command line so that anything echoed will display at the top of the screen. This will only work in unix-like systems, but most servers use Unix or Linux anyway. Then, it echos a welcome to the user, and a couple new lines. If you use HTML line breaks (`<br />`), they will not display correctly – as it is outputting plain text and not HTML, it will be displayed as-is. For this reason, you should use the EOL constant – `PHP_EOL`. This is equivalent to `\n` or `\r\n` on Windows systems.
 
 Then, we have the following code:
 

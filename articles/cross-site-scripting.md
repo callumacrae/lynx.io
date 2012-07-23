@@ -14,7 +14,7 @@ There are two main types of XSS vulnerability: persistent and non-persistent. Th
 
 ## Persistent
 
-A persistent XSS vulnerability allows the attacker to save malicious code on the server, where it will be served to other people. An example of this would be allowing unfiltered HTML in comments on this blog - someone could enter `&lt;script src="http://example.com/bad.js"&gt;&lt;/script&gt;` and run their script on my site - for example, they could steal / modify cookies or redirect users to their own site.
+A persistent XSS vulnerability allows the attacker to save malicious code on the server, where it will be served to other people. An example of this would be allowing unfiltered HTML in comments on this blog - someone could enter `<script src="http://example.com/bad.js"></script>` and run their script on my site - for example, they could steal / modify cookies or redirect users to their own site.
 
 ## Non-persistent
 
@@ -27,14 +27,14 @@ That would execute the contents of bad.js.
 
 ## Prevention
 
-It's pretty easy to prevent cross-site scripting. In general, there are two methods of doing it: you can either remove the HTML, or replace the HTML tags with code like `&amp;lt;script&amp;gt;`.
+It's pretty easy to prevent cross-site scripting. In general, there are two methods of doing it: you can either remove the HTML, or replace the HTML tags with code like `<script>`.
 
-In PHP, we can remove HTML using the `strip_tags` function. This removes all HTML (including comments). It also allows us to keep some tags using a second parameter - for example, we might want to keep the basic formatting tags such as `&lt;strong&gt;`. This doesn't, however, remove attributes like onmouseover, so that would have to be filtered separately.
+In PHP, we can remove HTML using the `strip_tags` function. This removes all HTML (including comments). It also allows us to keep some tags using a second parameter - for example, we might want to keep the basic formatting tags such as `<strong>`. This doesn't, however, remove attributes like onmouseover, so that would have to be filtered separately.
 
 	echo strip_tags('<p>Hello world!</p><script src="http://example.com/bad.js"></script>'); // Hello world!
 	echo strip_tags('<p>Hello world!</p><script src="http://example.com/bad.js"></script>', '>p>'); // <p>Hello world!</p>
 
-The other option we have in PHP is to use the `htmlspecialchars` function to escape all HTML characters. This means that `&lt;` would be replaced with `&amp;lt;` - when it is outputted, you would be able to see exactly what the user typed as text.
+The other option we have in PHP is to use the `htmlspecialchars` function to escape all HTML characters. This means that `<` would be replaced with `&lt;` - when it is outputted, you would be able to see exactly what the user typed as text.
 
 	echo htmlspecialchars('<p>Hello world!</p>'); // &lt;p&gt;Hello world!&lt;/p&gt;
 

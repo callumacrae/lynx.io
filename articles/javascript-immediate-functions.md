@@ -8,7 +8,7 @@ summary: In JavaScript, the immediate function pattern is a way of executing a f
 
 In JavaScript, the immediate function pattern is a way of executing a function as soon as it is defined. In this article, I will explain the syntax and explore some of the advantages of using it. This syntax can also be referred to as a closure.
 
-An example:
+An example of an immediate function:
 
 	(function () {
 		console.log('test');
@@ -40,7 +40,7 @@ This is to avoid conflicts with other libraries that use the `$` variable. When 
 
 While nothing seems obviously wrong with it, it doesn't function at all as expected. Check out the code here: <http://jsfiddle.net/UwxS5/>. Whenever you click a link, "Anchor number 4 has been clicked.". Obviously, this is not what we expected - we expected "Anchor number 0 has been clicked" if you clicked the first link, etc. The problem is caused by the fact that `i` has increased to the highest it possibly can by the time the element is clicked - hence "Last one only".
 
-This can be solved by using an immediate function. If we pass i to the function and then add the event listener in the function, i will be in a different scope to the loop, and so will not be modified:
+This can be solved by using an immediate function. If we pass `i` to the function and then add the event listener in the function, `i` will be in a different scope to the loop, and so will not be modified:
 
 	var anchors = document.getElementsByTagName('a');
 
@@ -99,7 +99,7 @@ The solution? An immediate function! The following code will do what we expected
 		}
 	})();
 
-That works fine, but is not hoisted, as it is a function expression, not a function declaration.
+That works fine, but is not hoisted, as it is a function expression, not a function declaration. We also don't need the else statement; as the if statement always returns something, the second function will only be returned if `isIE()` doesn't return truthy anyway. I've left the else statement in for readability reasons, though.
 
 <p>&nbsp;</p>
 

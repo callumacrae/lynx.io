@@ -36,7 +36,8 @@ As you can see, the code is a lot cleaner with method chaining. Method chaining 
 
 Method chaining! It's clearer when displayed without the parameters:
 
-	http.createServer(function).listen(port, ip);
+	http.createServer(function)
+		.listen(port, ip);
 
 <p>&nbsp;</p>
 
