@@ -80,7 +80,7 @@ $('#contact').submit(genericFormHandler('contact', function (body) {
 		return;
 	}
 
-	url = commentPost.action + 'comment/' + commentPost.slug.value;
+	url = commentPost.action + '/comment/' + commentPost.slug.value;
 	$('#comment_post').submit(genericFormHandler(url, function (body) {
 		if (typeof body === 'object') {
 			newComment = $('#newcomment');
