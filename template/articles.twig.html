@@ -9,6 +9,10 @@
 
 		<p>lynx.io is loading, it shouldn't take long. If JavaScript is disabled, please enable it - the site will work better with it enabled.</p>
 	</article>
+	<script>
+		// Remove inline for nicer page load
+		document.getElementsByClassName('nojs')[0].className = 'js';
+	</script>
 
 	{% if author_info %}
 	<article class="articles author">
@@ -20,7 +24,7 @@
 	</article>
 	{% endif %}
 
-	<div class="holder"></div>
+	<div class="holder">&nbsp;</div>
 
 	<div id="jpagesarticles">
 		<article class="articles noarticles">
