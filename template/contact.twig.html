@@ -12,7 +12,7 @@
 		{% elseif contact_failure %}
 			<p>Failed to send; please go back and check your input.</p>
 		{% else %}
-			<p>Contact lynx.io using the following form or by emailing <span id="email">me</span>.</p>
+			<p>Contact lynx.io using the following form or by emailing <span id="emailaddr">me</span>.</p>
 
 			<form action="contact" method="post" id="contact">
 				<table> <!-- tabular data; go away! -->
@@ -35,6 +35,6 @@
 	</article>
 	<script>
 		var email = 'callum' + String.fromCharCode(64) + 'macr.ae';
-		document.getElementById('email').innerHTML = '<a href="mail&#116;o' + String.fromCharCode(58) + email + '">' + email + '</a>';
+		document.getElementById('emailaddr').innerHTML = '<a href="mail&#116;o' + String.fromCharCode(58) + email + '">' + email + '</a>';
 	</script>
 {% endblock %}
