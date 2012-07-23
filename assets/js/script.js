@@ -1,8 +1,9 @@
+(function () { // WRAPPER TO PREVENT GLOBALS
+"use strict";
+
 // Unescape automatically escaped data in code samples. It's better
 // to do this client-side to avoid parsing the DOM server-side.
 $('article.comment .body pre code').each(function () {
-	"use strict";
-
 	this.innerHTML = this.innerHTML.replace(/&quot;/g, "'")
 		.replace(/&lt;/g, '<')
 		.replace(/&gt;/g, '>')
@@ -25,8 +26,6 @@ $('.nojs').removeClass('nojs').addClass('js');
  * @param function callback Well... a callback to be called.
  */
 function genericFormHandler(url, callback) {
-	"use strict";
-
 	return function () {
 		var $this = $(this),
 			error = false;
@@ -64,22 +63,14 @@ function genericFormHandler(url, callback) {
 
 // Handle contact form submit
 $('#contact').submit(genericFormHandler('contact', function (body) {
-	"use strict";
-
 	this.find('#texterror').text(body).show();
 }));
 
 // Handle comment form submit
-(function () {
-	"use strict";
+var commentPost = $('#comment_post')[0],
+	newComment, url;
 
-	var commentPost = $('#comment_post')[0],
-		newComment, url;
-
-	if (!commentPost) {
-		return;
-	}
-
+if (commentPost) {
 	url = commentPost.action + '/comment/' + commentPost.slug.value;
 	$('#comment_post').submit(genericFormHandler(url, function (body) {
 		if (typeof body === 'object') {
@@ -94,13 +85,11 @@ $('#contact').submit(genericFormHandler('contact', function (body) {
 			this.find('#texterror').text('Error: ' + body).show();
 		}
 	}));
-})();
+}
 
 
 // Tabs in textarea
 $('textarea').keydown(function (e) {
-	"use strict";
-
 	var start, end, nl, value,
 		tabs = 0;
 
@@ -147,8 +136,6 @@ $('textarea').keydown(function (e) {
 
 // MD cheatsheet
 $(document).keydown(function (e) {
-	"use strict";
-
 	var cheatsheet = $('#markdowncheat');
 	if (e.keyCode === 77 && !$(':focus').length) {
 		if (cheatsheet.is(':hidden')) {
@@ -167,62 +154,50 @@ $(document).keydown(function (e) {
 });
 
 $('#markdowncheat .toggle').click(function (e) {
-	"use strict";
 	e.preventDefault();
 
 	$('.markdown, .parsedmarkdown').slideToggle();
 });
 
 $('#markdowncheat, #markdowncheat .close').click(function () {
-	"use strict";
-
 	$('#markdowncheat').fadeOut(200);
 	return false;
 }).children('div').click(function (e) {
-	"use strict";
-
 	e.stopPropagation();
 });
 
-(function () {
-	"use strict";
 
-	var tags = {};
-	$('.tags, .more').on('mouseover', 'a', function () {
-		var $this = $(this);
+// Tag mouseovers
+var tags = {};
+$('.tags, .more').on('mouseover', 'a', function () {
+	var $this = $(this);
 
-		if ($this.data('titled')) {
-			$this.tipsy('show');
-		} else if (tags[$this.text()]) {
-			$this.attr('title', tags[$this.text()])
+	if ($this.data('titled')) {
+		$this.tipsy('show');
+	} else if (tags[$this.text()]) {
+		$this.attr('title', tags[$this.text()])
+			.data('titled', true)
+			.tipsy('show');
+	} else {
+		$.get($(this).attr('href'), function (title) {
+			title += ' article' + (title === 1 ? '' : 's');
+			tags[$this.text()] = title;
+			$this.attr('title', title)
 				.data('titled', true)
 				.tipsy('show');
-		} else {
-			$.get($(this).attr('href'), function (title) {
-				title += ' article' + (title === 1 ? '' : 's');
-				tags[$this.text()] = title;
-				$this.attr('title', title)
-					.data('titled', true)
-					.tipsy('show');
-			});
-		}
-	}).on('mouseout', 'a', function () {
-		$(this).tipsy('hide');
-	}).children('a').tipsy({
-		fade: true,
-		gravity: 's',
-		trigger: 'manual'
-	});
-})();
+		});
+	}
+}).on('mouseout', 'a', function () {
+	$(this).tipsy('hide');
+}).children('a').tipsy({
+	fade: true,
+	gravity: 's',
+	trigger: 'manual'
+});
+
 
 // Check for and handle new articles
-(function () {
-	"use strict";
-
-	if (!$('.articles').length) {
-		return; // Not on a listing
-	}
-
+if ($('.articles').length) {
 	var articles = [],
 		time = Date.now(),
 		link = $('.newarticle'),
@@ -230,12 +205,10 @@ $('#markdowncheat, #markdowncheat .close').click(function () {
 
 	// Check for new articles (every 30 seconds, by default)
 	setInterval(function () {
-		var url = location.pathname,
-
 		// Timestamp needs / 1000 as it is in ns, while server wants ms
-			data = {timestamp: Math.round(time / 1000)};
+		var data = {timestamp: Math.round(time / 1000)};
 
-		$.get(url, data, function (newArticles) {
+		$.get(location.pathname, data, function (newArticles) {
 			// newArticles can equal "Invalid time", check for that
 			if ($.isArray(newArticles) && newArticles.length) {
 				articles = articles.concat(newArticles);
@@ -275,8 +248,8 @@ $('#markdowncheat, #markdowncheat .close').click(function () {
 				.html(articles[i].summary + ' ')
 				.append('<a>Read more</a>')
 				.children('a:last-child')
-					.addClass('readmore')
-					.attr('href', articles[i].href);
+				.addClass('readmore')
+				.attr('href', articles[i].href);
 
 			footer = $('<footer></footer>').appendTo(newArticle);
 			$('<a></a>').appendTo(footer)
@@ -292,8 +265,8 @@ $('#markdowncheat, #markdowncheat .close').click(function () {
 				if (articles[i].tags.hasOwnProperty(tag)) {
 					tags.append(' <a></a>')
 						.children('a:last-child')
-							.attr('href', articles[i].tags[tag])
-							.text(tag);
+						.attr('href', articles[i].tags[tag])
+						.text(tag);
 				}
 			}
 
@@ -303,25 +276,17 @@ $('#markdowncheat, #markdowncheat .close').click(function () {
 		articles = [];
 		link.slideUp();
 	});
-})();
+}
 
 
 // Check for new comments
-(function () {
-	"use strict";
-
-	if (!$('section.comments').length) {
-		return; // No comments
-	}
-
-	var time = Date.now(),
-		url = location.pathname;
-
+if ($('section.comments').length) {
+	var commentsTime = Date.now();
 	setInterval(function () {
 		var i, newComment,
-			data = {timestamp: Math.round(time / 1000)};
+			data = {timestamp: Math.round(commentsTime / 1000)};
 
-		$.get(url, data, function (comments) {
+		$.get(location.pathname, data, function (comments) {
 			if ($.isArray(comments) && comments.length) {
 				for (i = 0; i < comments.length; i++) {
 					newComment = $('#newcomment').clone()
@@ -332,8 +297,8 @@ $('#markdowncheat, #markdowncheat .close').click(function () {
 						newComment.find('.author strong')
 							.html('<a></a>')
 							.find('a')
-								.attr('href', comments[i].website)
-								.text(comments[i].author);
+							.attr('href', comments[i].website)
+							.text(comments[i].author);
 					} else {
 						newComment.find('.author strong')
 							.text(comments[i].author);
@@ -346,15 +311,14 @@ $('#markdowncheat, #markdowncheat .close').click(function () {
 				$('.nocomments').hide();
 			}
 
-			time = Date.now();
+			commentsTime = Date.now();
 		});
 	}, 15000);
-})();
+}
 
 
+// Search
 $('#search').keyup(function (e) {
-	"use strict";
-
 	if (!$('.articles').length) {
 		return; // Not on a listing
 	}
@@ -408,15 +372,18 @@ $('#search').keyup(function (e) {
 	}
 });
 
-$(document).keydown(function (e) {
-	"use strict";
 
+// Various keydown functions
+$(document).keydown(function (e) {
+
+	// meta+f to search
 	if (e.keyCode === 70 && e.metaKey && $('.articles').length) {
 		var $search = $('#search');
 
 		if (!$search.is(':focus')) {
 			$search.focus();
 
+			// Display tooltip only once
 			if (!$search.data('tipsy').$tip) {
 				$search.tipsy('show');
 
@@ -426,10 +393,16 @@ $(document).keydown(function (e) {
 			}
 			e.preventDefault();
 		}
+
+	// Left to page left
 	} else if (e.keyCode === 37) {
 		$('.jp-previous').click();
+
+	// Right to page right
 	} else if (e.keyCode === 39) {
 		$('.jp-next').click();
+
+	// Numbers to page number
 	} else if (e.keyCode > 48 && e.keyCode < 58 && $('.articles').length) {
 		$('.holder').jPages(e.keyCode - 48);
 	}
@@ -441,9 +414,13 @@ $('#search').tipsy({
 	trigger: 'manual'
 });
 
+/**
+ * Gets data from hash using given key.
+ *
+ * @param string key The key to use.
+ * @return string The data from the URL or false.
+ */
 function getHash(key) {
-	"use strict";
-
 	var hash = location.hash.slice(1).split('&'),
 		end = false;
 
@@ -458,9 +435,15 @@ function getHash(key) {
 	return end;
 }
 
+/**
+ * Function is in a closure. Changes data in hash by given key to given value.
+ *
+ * @param string key The key to use.
+ * @param string value The value to store.
+ */
 var changeHash = (function () {
-	"use strict";
 
+	// Callbacks to be called when hash changes.
 	var hashchangeCallbacks = {
 		search: function (search) {
 			if ($('#search').val() !== search) {
@@ -474,6 +457,7 @@ var changeHash = (function () {
 		}
 	};
 
+	// When hash changes
 	window.onhashchange = function () {
 		var hash = location.hash.slice(1).split('&');
 		$.each(hash, function (index, value) {
@@ -486,8 +470,9 @@ var changeHash = (function () {
 		});
 	};
 
-	$(window.onhashchange);
+	$(window.onhashchange); // Run all on page load
 
+	// See docblock at start of closure.
 	return function (key, value) {
 		var currentHash = location.hash.slice(1).split('&'),
 			done = false, newHash, seperator;
@@ -538,14 +523,23 @@ var changeHash = (function () {
 	};
 })();
 
+// Initiate pages
 if ($('.articles').length) {
 	refreshPages(false);
 }
 
 var currentPage = 1;
-function refreshPages(destroy) {
-	"use strict";
 
+/**
+ * "Refresh" the pages - destroy the old instance and create a new one. Should
+ * be used whenever the data changes.
+ *
+ * @todo Stop the annoying blink.
+ *
+ * @param boolean destroy If false, will not destroy pages. Useful for
+ *		initialising pages.
+ */
+function refreshPages(destroy) {
 	if (typeof destroy !== 'boolean' || destroy) {
 		$('.holder').jPages('destroy');
 		changeHash('page', '');
@@ -562,12 +556,12 @@ function refreshPages(destroy) {
 	});
 }
 
+
+// Fix sidebar in place
 if ($('.articles').length) {
 	var fixSidebar = true;
 
 	$(window).scroll(function (e, widthChange) {
-		"use strict";
-
 		if (!fixSidebar) {
 			return;
 		}
@@ -583,7 +577,7 @@ if ($('.articles').length) {
 		if (top > 100) {
 			if (!sidebar.hasClass('sidebarfixed') || widthChange) {
 				content = $('#content');
-				contentWidth = parseInt(content.css('width'));
+				contentWidth = parseInt(content.css('width'), 10);
 
 				sidebar.addClass('sidebarfixed')
 					.css('width', contentWidth / 3 - 11)
@@ -593,15 +587,14 @@ if ($('.articles').length) {
 			sidebar.removeClass('sidebarfixed');
 		}
 	}).resize(function () {
-		"use strict";
-
 		$(this).trigger('scroll', true);
 	}).trigger('scroll');
 
 	$(document).on('touchstart', function () {
-		"use strict";
-
 		fixSidebar = false;
 		$('#sidebar').removeClass('sidebarfixed');
 	});
 }
+
+
+})(); // WRAPPER TO PREVENT GLOBALS
