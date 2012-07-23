@@ -230,7 +230,7 @@ $('#markdowncheat, #markdowncheat .close').click(function () {
 
 	// Check for new articles (every 30 seconds, by default)
 	setInterval(function () {
-		var url = location.origin + location.pathname,
+		var url = location.pathname,
 
 		// Timestamp needs / 1000 as it is in ns, while server wants ms
 			data = {timestamp: Math.round(time / 1000)};
