@@ -315,7 +315,7 @@ $('#markdowncheat, #markdowncheat .close').click(function () {
 	}
 
 	var time = Date.now(),
-		url = location.origin + location.pathname;
+		url = location.pathname;
 
 	setInterval(function () {
 		var i, newComment,
