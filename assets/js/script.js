@@ -414,7 +414,7 @@ $(document).keydown(function (e) {
 	if (e.keyCode === 70 && e.metaKey && $('.articles').length) {
 		var $search = $('#search');
 
-		if (!$('#search').is(':focus')) {
+		if (!$search.is(':focus')) {
 			$search.focus();
 
 			if (!$search.data('tipsy').$tip) {
@@ -430,6 +430,8 @@ $(document).keydown(function (e) {
 		$('.jp-previous').click();
 	} else if (e.keyCode === 39) {
 		$('.jp-next').click();
+	} else if (e.keyCode > 48 && e.keyCode < 58 && $('.articles').length) {
+		$('.holder').jPages(e.keyCode - 48);
 	}
 });
 
