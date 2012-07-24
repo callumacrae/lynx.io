@@ -389,8 +389,8 @@ $('#search').keyup(function (e) {
 }).focus(function () {
 	// If mobile device, give user info about search
 	if (mobileDevice) {
-		var $this = $(this),
-			text = 'Search is automatic; just zoom out again to see the result';
+		var $this = $(this), text;
+		text = 'Search is automatic; just zoom out again to see the result';
 
 		$this.attr('title', text).tipsy('show');
 
