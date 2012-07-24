@@ -238,9 +238,12 @@ article:not(.comment) {
 	.body {
 		margin-top: 30px;
 		line-height: 1.5;
-		border-bottom: 1px gray dotted;
-		margin-bottom: 20px;
-		padding-bottom: 20px;
+
+		&:not(:last-child) {
+			border-bottom: 1px gray dotted;
+			padding-bottom: 20px;
+			margin-bottom: 20px;
+		}
 
 		a {
 			color: @orange;

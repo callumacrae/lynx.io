@@ -386,6 +386,18 @@ $('#search').keyup(function (e) {
 	} else {
 		$('.noarticles').hide();
 	}
+}).focus(function () {
+	// If mobile device, give user info about search
+	if (mobileDevice) {
+		var $this = $(this),
+			text = 'Search is automatic; just zoom out again to see the result';
+
+		$this.attr('title', text).tipsy('show');
+
+		setTimeout(function () {
+			$this.tipsy('hide');
+		}, 3000);
+	}
 });
 
 
@@ -575,10 +587,10 @@ function refreshPages(destroy) {
 
 // Fix sidebar in place
 if ($('.articles').length) {
-	var fixSidebar = true;
+	var mobileDevice = false;
 
 	$(window).scroll(function (e, widthChange) {
-		if (!fixSidebar) {
+		if (mobileDevice) {
 			return;
 		}
 
@@ -607,7 +619,7 @@ if ($('.articles').length) {
 	}).trigger('scroll');
 
 	$(document).on('touchstart', function () {
-		fixSidebar = false;
+		mobileDevice = true;
 		$('#sidebar').removeClass('sidebarfixed');
 	});
 }
