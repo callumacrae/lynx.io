@@ -1,7 +1,7 @@
 <info>
 title: lynx.io opened
 author: callumacrae
-date: %date%
+date: 1343166189
 tags: news
 summary: I'm happy to announce that after a few weeks of work, lynx.io is finally open. It has a better design, is on a different server, and is far faster than the old site. It also features a lot more client-side logic, as opposed to the old website where everything was server-side.
 </info>
