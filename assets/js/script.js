@@ -196,6 +196,14 @@ $('.tags, .more').on('mouseover', 'a', function () {
 });
 
 
+var pageFocused = true;
+$(window).focus(function () {
+	pageFocused = true;
+}).blur(function () {
+	pageFocused = false;
+});
+
+
 // Check for and handle new articles
 if ($('.articles').length) {
 	var articles = [],
@@ -205,6 +213,10 @@ if ($('.articles').length) {
 
 	// Check for new articles (every 30 seconds, by default)
 	setInterval(function () {
+		if (!pageFocused) {
+			return;
+		}
+
 		// Timestamp needs / 1000 as it is in ns, while server wants ms
 		var data = {timestamp: Math.round(time / 1000)};
 
@@ -283,6 +295,10 @@ if ($('.articles').length) {
 if ($('section.comments').length) {
 	var commentsTime = Date.now();
 	setInterval(function () {
+		if (!pageFocused) {
+			return;
+		}
+
 		var i, newComment,
 			data = {timestamp: Math.round(commentsTime / 1000)};
 
