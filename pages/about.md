@@ -13,3 +13,5 @@ lynx.io was not named after a certain text-based web browser, it was named after
 If you wish to write for lynx.io, fork the project on GitHub. Add your article in MarkDown to the articles directory, and send a pull request. Callum will then review your article, and let you know what else to do with it. If you've found a bug in the website, either open an issue on GitHub, or send a pull request containing a fix.
 
 For more information on writing for lynx.io, check out the README on GitHub: <https://github.com/callumacrae/lynx.io/blob/master/README.md>
+
+Topics we are currently looking for include articles on design (all areas), PHP frameworks (especially CodeIgniter), and phpBB.
