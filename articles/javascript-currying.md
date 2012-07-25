@@ -1,7 +1,7 @@
 <info>
 title: Currying in JavaScript
 author: callumacrae
-date: %date%
+date: 1343233415
 tags: currying, functions, javascript
 summary: Currying is a technique for transforming a function which accepts multiple parameters into multiple functions that accept a lower number of arguments. In this article, I will explain how you can curry functions in JavaScript, and I will also explain how to curry by length and uncurry functions.
 </info>
