@@ -7,12 +7,12 @@ require('vendor/autoload.php');
 use dflydev\markdown\MarkdownParser;
 $markdownParser = new MarkdownParser();
 
-$output = shell_exec('git pull origin master 2>&1');
+$output = shell_exec('/usr/local/git/bin/git pull origin master 2>&1');
 
 $regex = '/create mode \d+ articles\/([a-z0-9_-]+)\.md/i';
-preg_match_all($regex, $output, $matches);
+$match = preg_match_all($regex, $output, $matches);
 
-if (count($matches)) {
+if ($match) {
 	$articles = json_decode(file_get_contents('articles/articles.json'));
 	$files = array();
 
