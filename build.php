@@ -7,7 +7,9 @@ require('vendor/autoload.php');
 use dflydev\markdown\MarkdownParser;
 $markdownParser = new MarkdownParser();
 
-$output = shell_exec('git pull origin master 2>&1');
+$repo = 'https://github.com/callumacrae/lynx.io.git';
+$output = shell_exec("git pull $repo master 2>&1");
+echo $output;
 
 $regex = '/create mode \d+ articles\/([a-z0-9_-]+)\.md/i';
 $match = preg_match_all($regex, $output, $matches);
