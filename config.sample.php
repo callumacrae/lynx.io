@@ -6,6 +6,4 @@ $config = array(
 	'email'		=> 'callum@macr.ae',
 );
 
-if (!defined('DEBUG')) {
-	define('DEBUG', true);
-}
+define('DEBUG', true);

@@ -19,9 +19,7 @@ if (DEBUG) {
 }
 
 if (!empty($_GET['build_key']) && $_GET['build_key'] === $config['build_key']) {
-	echo '<pre>';
-	include('build.php');
-	echo '</pre>';
+	echo '<pre>' . `php build.php` . '</pre>';
 	exit;
 }
 
