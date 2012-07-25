@@ -18,6 +18,13 @@ if (DEBUG) {
 	ini_set('display_errors', '1');
 }
 
+if (!empty($_GET['build_key']) && $_GET['build_key'] === $config['build_key']) {
+	echo '<pre>';
+	include('build.php');
+	echo '</pre>';
+	exit;
+}
+
 require('vendor/autoload.php');
 Twig_Autoloader::register();
 
