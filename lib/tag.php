@@ -2,7 +2,6 @@
 
 $articles = array();
 
-
 if (is_xhr(true) && !empty($_GET['timestamp'])) {
 	$timestamp = (int) $_GET['timestamp'];
 	if ($timestamp < time() - 68400) {
