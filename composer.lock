@@ -8,11 +8,6 @@
             "alias": "1.0.9999999.9999999-dev"
         },
         {
-            "package": "tedeh/pingback",
-            "version": "dev-master",
-            "source-reference": "1.3.0"
-        },
-        {
             "package": "twig/twig",
             "version": "1.6.0"
         }
