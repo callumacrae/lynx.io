@@ -31,5 +31,6 @@ if (is_xhr(true)) {
 	$success = $tmpl_vars['contact_success'];
 	echo $success ? '"Successfully sent"' : '"Failed to send"';
 } else {
+	$tmpl_vars['page_title'] = 'Contact';
 	$twig->display('contact.twig.html', $tmpl_vars);
 }
