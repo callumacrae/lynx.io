@@ -18,10 +18,10 @@ if (!empty($_GET['timestamp']) && is_xhr(true)) {
 				'date'		=> array(
 					date('Y-m-d', $article->date),
 					date('jS M Y', $article->date),
-					$article->date
+					$article->date,
 				),
 				'summary'	=> $article->summary,
-				'tags'		=> array()
+				'tags'		=> array(),
 			);
 
 			foreach($article->tags as $tag) {
