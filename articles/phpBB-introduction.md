@@ -5,6 +5,7 @@ date: %date%
 tags: phpbb, introduction, themes, style, installation, administration
 summary: In this guide, I will introduce the reader into the core features of phpBB and guide him through the installation.
 </info>
+
 ##Contents:
 - <a href="#1">Introduction to phpBB</a>
 	- <a href="#1-1">Quotations</a>
