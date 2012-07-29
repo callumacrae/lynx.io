@@ -35,7 +35,7 @@ Source: [phpBB.com](http://phpbb.com/about/history) and [Wikipedia.com](http://e
 
 #### Future
 
-[http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=75126](Nils Aderman) (naderman) assumed the role of Development Team Leader in January 2010 and the future is bright for phpBB with an open, community-focused method of development. In addition to the continued development of phpBB 3.0 "Olympus" and phpBB 3.1 "Ascraeus", planning has also begun for future releases 3.2 "Arsia" and 4.0 "Rhea".
+[Nils Aderman](http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=75126) (naderman) assumed the role of Development Team Leader in January 2010 and the future is bright for phpBB with an open, community-focused method of development. In addition to the continued development of phpBB 3.0 "Olympus" and phpBB 3.1 "Ascraeus", planning has also begun for future releases 3.2 "Arsia" and 4.0 "Rhea".
 
 ## Features
 
