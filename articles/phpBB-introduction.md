@@ -120,7 +120,7 @@ phpBB offers a wide variety of free modifications made mainly by the users, to e
 Most of the plugins include a how-to guide, they should look like the one in this guide: <http://www.phpbb.com/mods/installing/>
 
 Plugin installation is made even easier, with a tool called AutoMOD. This tool is designed to  parse and automatically install MODX MODifications for phpBB3. It also has the ability to uninstall MODs.
-All the MODs listed in the MOD Database (see below) do support AutoMOD. If you are interested in using AutoMOD, see [http://www.phpbb.com/mods/automod/](this page).
+All the MODs listed in the MOD Database (see below) do support AutoMOD. If you are interested in using AutoMOD, see [this page](http://www.phpbb.com/mods/automod/).
 
 Plugins can be downloaded from several sources, the official one can be found here: <http://www.phpbb.com/customise/db/modifications-1/>; but of course Google will help you find even more.
 
