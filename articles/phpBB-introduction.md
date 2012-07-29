@@ -97,7 +97,7 @@ Pretty much everything is covered on the usage of the ACP in the documentation, 
 1. General tab
 	- Board settings: configure the site name, site description and other core settings
 	- Board features: enable/disable core features
-	- User registration settings: everything related registration (e.g.:account activation)
+	- User registration settings: everything related to registration (e.g.:account activation)
 	- Server configuration: definitely visit all of the pages under this category and make sure everything looks like you want it to look like
 2. Forums
 	- Manage forums: add/remove forums/categories
@@ -116,23 +116,23 @@ Pretty much everything is covered on the usage of the ACP in the documentation, 
 	- Module management: enable/disable certain parts of the control panels and add new modules to the system
 
 
-### Installing styles:
+### Installing styles
 
 Please see [http://www.phpbb.com/kb/article/how-to-install-styles-on-phpbb3/](http://www.phpbb.com/kb/article/how-to-install-styles-on-phpbb3/) as a reference/tutorial
 
 ![phpBB style database]({{ articleimages }}/styles.png)
 
 
-### Customizing styles:
+### Customizing styles
 
 As a basic guide, see the official tutorial at: [http://www.phpbb.com/kb/article/how-to-create-a-style-basics/](http://www.phpbb.com/kb/article/how-to-create-a-style-basics/)
 
 To install a custom theme and to be able to freely modify it, see: [http://www.phpbb.com/kb/article/how-to-create-a-new-phpbb3-style/](http://www.phpbb.com/kb/article/how-to-create-a-new-phpbb3-style/)
 
-Obviously, you need to go through every css file to customize all the small parts you want to.
+Obviously, you need to go through every CSS file to customize all the small parts you want to.
 
 
-### Mods:
+### Mods
 
 phpBB offers a wide variety of modifications - for free - mainly made by the users to enhance user experience. These modifications are easy to install, easy to maintain and easy to customize.
 Most of the plugins include a how-to guide, they should look like the one in this guide: [http://www.phpbb.com/mods/installing/](http://www.phpbb.com/mods/installing/)
