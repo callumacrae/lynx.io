@@ -26,10 +26,10 @@ summary: In this article, I will introduce you to the core features of phpBB and
 
 ### Quotations
 
-- phpBB.com: 
+- phpbb.com: 
 > phpBB is a free flat-forum bulletin board software solution that can be used to stay in touch with a group of people or can power your entire website. With an extensive database of user-created modifications and styles database containing hundreds of style and image packages to customise your board, you can create a very unique forum in minutes
 
-- Wikipedia.com: 
+- wikipedia.com: 
 > phpBB is a popular Internet forum package written in the PHP scripting language. The name "phpBB" is an abbreviation of PHP Bulletin Board. Available under the GNU General Public License, phpBB is free and open source software.
 
 
@@ -50,7 +50,7 @@ Source: [phpBB.com](http://phpbb.com/about/history) and [Wikipedia.com](http://w
 
 #### Future
 
-> Nils Adermann (naderman) assumed the role of Development Team Leader in January 2010 and the future is bright for phpBB with an open, community-focused method of development. In addition to the continued development of phpBB 3.0 “Olympus” and phpBB 3.1 “Ascraeus”, planning has also begun for future releases 3.2 “Arsia” and 4.0 “Rhea”.
+Nils Adermann (naderman) assumed the role of Development Team Leader in January 2010 and the future is bright for phpBB with an open, community-focused method of development. In addition to the continued development of phpBB 3.0 “Olympus” and phpBB 3.1 “Ascraeus”, planning has also begun for future releases 3.2 “Arsia” and 4.0 “Rhea”.
 <br />
 
 ## Features
@@ -83,7 +83,7 @@ __________
 After installing phpBB (3.0.x), you will find yourself on the index of your brand new forum:
 ![phpBB index page]({{ articleimages }}/bindex.png)
 
-<center>***Note: you can test every feature mentioned in this guide at [the demo page](http://phpbb.com/demo)***</center>
+***Note: you can test every feature mentioned in this guide at [the demo page](http://phpbb.com/demo)***
 
 
 ### Administration
@@ -132,9 +132,9 @@ To install a custom theme and to be able to freely modify it, see: [http://www.p
 Obviously, you need to go through every CSS file to customize all the small parts you want to.
 
 
-### Mods
+### Modifications
 
-phpBB offers a wide variety of modifications - for free - mainly made by the users to enhance user experience. These modifications are easy to install, easy to maintain and easy to customize.
+phpBB offers a wide variety of free modifications made mainly by the users, to enhance user experience. These modifications are easy to install, easy to maintain and easy to customize.
 Most of the plugins include a how-to guide, they should look like the one in this guide: [http://www.phpbb.com/mods/installing/](http://www.phpbb.com/mods/installing/)
 
 Plugin installation is made even easier, with a tool called AutoMOD. This tool is designed to  parse and automatically install MODX MODifications for phpBB3. It also has the ability to uninstall MODs.
@@ -147,5 +147,6 @@ Plugins can be downloaded from several sources, the official one can be found he
 ## Conclusion
 __________
 
-phpBB's system was continuously improved in the past few years and it is now known as the best free forum system. It has become open source and hundreds of developers are working on improving security and adding more features every day. phpBB's main opponents were SMF and myBB, but with the release 3.0, phpBB can compete with the non-free vBulletin and IPB forum systems. <br />
+phpBB's system was continuously improved in the past few years and it is now known as the best free forum system. It has become open source and hundreds of developers are working on improving security and adding more features every day. phpBB's main opponents were SMF and myBB, but with the release 3.0, phpBB can compete with the non-free vBulletin and IPB forum systems.
+
 If you want to have a secure and scalable forum system, phpBB is your best choice!
