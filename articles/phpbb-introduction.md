@@ -1,7 +1,7 @@
 <info>
 title: Introduction to phpBB
 author: dida
-date: %date%
+date: 1343678487
 tags: phpbb, introduction, themes, style, installation, administration, guide
 summary: In this article, I will introduce you to the core features of phpBB and guide you through the installation.
 </info>
