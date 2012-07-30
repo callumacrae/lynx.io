@@ -21,7 +21,7 @@ summary: In this article, I will introduce you to the core features of phpBB and
 
 #### History
 
-phpBB was started on June 17, 2000 by James Atkinson who was planning to make a simple Ultimate Bulletin Boar-like forum for his own website. Later, two other developers joined the team and the work on 1.0.0 began.
+phpBB was started on June 17, 2000 by James Atkinson who was planning to make a simple Ultimate Bulletin Board-like forum for his own website. Later, two other developers joined the team and the work on 1.0.0 began.
 phpBB 1.0.0 was released on December 16, 2000. During the development of this version, several more developers joined the project and the forum went through a huge improvement.
 
 ![phpBB 1.0]({{ articleimages }}/phpbb1.png)
@@ -71,7 +71,9 @@ After installing phpBB (3.0.x), you will find yourself on the index of your bran
 
 Let's just skip to the Administration panel, where you can control your forums, members, plugins, styles and everything else!
 The ACP (Administration Control Panel) link can be found on the bottom of the page (after logging is as an admin user, obviously). To ensure only the administrators can log in, you must re-authenticate yourself and voilá, you are inside!
+
 ![phpBB admin control panel]({{ articleimages }}/aindex.png)
+
 On the '*Admin Index*' you can find the statistics, logs and some other actions you can do. On the top of the screen, below the phpBB logo you can find the main menu bar where you can switch between general administration categories. The default homepage is '*general*'.
 
 Pretty much everything is covered on the usage of the ACP in the documentation, so, again I am going to highlight the main features you must know about as a new forum user:
