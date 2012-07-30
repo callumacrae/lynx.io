@@ -64,13 +64,11 @@ if ($slug && is_readable('articles/' . $slug . '.md')) {
 	}
 
 	$info['raw_body'] = $raw_body;
-	
-	$articleimages = $config['site_url'] . '/assets/imgs/' . $slug;
-	$info['body'] = $markdownParser->transformMarkdown($body[1]);
 
-	$find = $articleimages;
-	$replace = $info['body'];
-	$info['body'] = str_replace('{{ articleimages }}', $find, $replace);
+	$find = '{{ articleimages }}';
+	$replace = $config['site_url'] . '/assets/imgs/' . $slug;
+	$info['body'] = str_replace($find, $replace, $body[1]);
+	$info['body'] = $markdownParser->transformMarkdown($info['body']);
 	
 	$info['tags'] = explode(', ', $info['tags']);
 	$info['slug'] = $slug;
