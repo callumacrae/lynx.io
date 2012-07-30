@@ -2,7 +2,6 @@
 
 $articles = array();
 
-
 if (is_xhr(true) && !empty($_GET['timestamp'])) {
 	$timestamp = (int) $_GET['timestamp'];
 	if ($timestamp < time() - 68400) {
@@ -21,10 +20,10 @@ if (is_xhr(true) && !empty($_GET['timestamp'])) {
 				'date'		=> array(
 					date('Y-m-d', $article->date),
 					date('jS M Y', $article->date),
-					$article->date
+					$article->date,
 				),
 				'summary'	=> $article->summary,
-				'tags'		=> array()
+				'tags'		=> array(),
 			);
 
 			foreach ($article->tags as $tag) {
