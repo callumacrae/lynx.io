@@ -6,9 +6,7 @@ tags: phpbb, introduction, themes, style, installation, administration, guide
 summary: In this article, I will introduce you to the core features of phpBB and guide you through the installation.
 </info>
 
-## Introduction to phpBB
-
-### Quotations
+## Quotations
 
 - phpbb.com: 
 > phpBB is a free flat-forum bulletin board software solution that can be used to stay in touch with a group of people or can power your entire website. With an extensive database of user-created modifications and styles database containing hundreds of style and image packages to customise your board, you can create a very unique forum in minutes.
@@ -17,9 +15,9 @@ summary: In this article, I will introduce you to the core features of phpBB and
 > phpBB is a popular Internet forum package written in the PHP scripting language. The name "phpBB" is an abbreviation of PHP Bulletin Board. Available under the GNU General Public License, phpBB is free and open source software.
 
 
-### History and future
+## History and future
 
-#### History
+### History
 
 phpBB was started on June 17, 2000 by James Atkinson who was planning to make a simple Ultimate Bulletin Board-like forum for his own website. Later, two other developers joined the team and the work on 1.0.0 began.
 phpBB 1.0.0 was released on December 16, 2000. During the development of this version, several more developers joined the project and the forum went through a huge improvement.
@@ -33,7 +31,7 @@ The improvements continued and in January 2005 lead developer Paul Owen announce
 Source: [phpBB.com](http://phpbb.com/about/history) and [Wikipedia.com](http://en.wikipedia.org/wiki/phpBB)
 
 
-#### Future
+### Future
 
 [Nils Aderman](http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=75126) (naderman) assumed the role of Development Team Leader in January 2010 and the future is bright for phpBB with an open, community-focused method of development. In addition to the continued development of phpBB 3.0 "Olympus" and phpBB 3.1 "Ascraeus", planning has also begun for future releases 3.2 "Arsia" and 4.0 "Rhea".
 
