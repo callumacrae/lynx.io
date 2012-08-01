@@ -10,7 +10,7 @@ summary: This is the first in a series of articles that will be covering the var
 
 ## Photoshop Layers & Layer Types
 
-![Layer Panel](Layer Panel.png)
+![Layer Panel]({{ articleimages }}/layer_panel.png)
 *The Photoshop Layer Panel*
 
 Photoshop's "Layers" are the first and maybe most important concept that you need to understand. Just like a painting is the result of superposed layers of paint, a photoshop document is built up from various digital layers containing graphical data.
@@ -33,7 +33,7 @@ So now that you know the different types of layers you can have, let's learn how
 
 *Note that in this section, I'll be referring to the bar at the top of your screen with various buttons and settings as the "settings bar".*
 
-![Tools Panel](Tools Panel.png)
+![Tools Panel]({{ articleimages }}/tools_panel.png)
 *The Photoshop Tools Panel*
 
 ### Shape Tools
