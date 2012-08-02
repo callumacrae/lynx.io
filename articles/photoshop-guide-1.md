@@ -1,7 +1,7 @@
 <info>
 title: Photoshop Guide (Part One)
 author: anonymous
-date: %date%
+date: 1343923907
 tags: photoshop, graphics, layers, tools
 summary: This is the first in a series of articles that will be covering the various concepts you need to understand in order to use Photoshop, the tools that you have at your disposal and how to use them. To understand this post, you are expected to know or have previously read about image types: raster and vector.
 </info>
