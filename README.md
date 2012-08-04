@@ -40,6 +40,8 @@ Some points and guidelines:
 * Articles should be in good English. They can be any length, but they should contain enough information to make it useful.
 * You should not use first-level headings - the article title will be a first level heading.
 * Check out previous articles to see how to format your articles.
+* Images should be no more than 1000px wide (although try to make them smaller). Use the `{{ articleimage }}` variable, which points to `/assets/imgs/article-slug/` (put your images in there).
+* Images should not be hosted externally.
 
 If this is your first article, then you will need to add yourself as an author. Choose your username carefully (it cannot be changed), and then create `authors/username.json` containing the following:
 
