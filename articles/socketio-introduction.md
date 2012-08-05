@@ -63,12 +63,12 @@ Another exposed event is to handle messages from the client.
 		io.sockets.on('connection', function(client) {
 			client.on('message', function(message) {
 				//insert message handling code here
-			}
+			});
 		});
 
 You might have noticed that this event was placed **into** the previous event. Why? If it was just another function itself, we would not have a client to listen to, meaning that the incoming messages would be lost.
 
-There is one more exposed event
+There is one exposed event
 
 		io.sockets.on('connection', function(client) {
 			client.on('message', function(message) {
@@ -123,7 +123,8 @@ Connect event:
 		});
 		
 I chose to use this example, because it helps you understand how to use events and functions together.
-When the client connected to the server successfully, function 'adduser' is called on the server with the parameters of a propmt: the client enters his name, the data is sent to the server and is handled by the adduser function. Easy!
+
+When the client connected to the server successfully, function `adduser` is called on the server with the parameters of a propmt: the client enters his name, the data is sent to the server and is handled by the `adduser` function. Easy!
 
 Connecting event:
 
@@ -189,9 +190,7 @@ Let's get back to coding:
 
 Make sure your server is listening on port 8080 (or any other port you want), then move on to the client side and write the socket connecting part.
 
-		<head>
-			<script src="socket.io/socket.io.js"></script> <!-- require socket.io in the head part-->
-		</head>
+		<script src="socket.io/socket.io.js"></script> <!-- require socket.io in the head part-->
 		<script>
 			var socket = io.connect('http://localhost:8080');
 			//connect to the server
@@ -273,26 +272,26 @@ server.js:
 
 				io.sockets.json.send({ numberOfPlayers: numberOfPlayers});
 				//send all the clients the updated number of players
-    			});
+			});
 		});
 
 And now index.html:
 
 		<!doctype html>
-		<meta charset="utf-8">
 		<html>
  			<head>
+				<meta charset="utf-8">
     				<title>Lynx.io - Socket.io tutorial</title>
-    				<script src="/js/jquery.js"></script>
-    				<script src="/socket.io/socket.io.js"></script>
  			</head>
   			<body>
+    			<script src="/socket.io/socket.io.js"></script>
 			<script>
 				function handle(data){
 					if (data.connectVar) {
 						var userid = data.connectVar[1];
 						var username = data.connectVar[0];
-						var connectionDiv = document.getElementById('connectionDiv');				 							connectionDiv.innerHTML = username + ' connected';
+						var connectionDiv = document.getElementById('connectionDiv');
+						connectionDiv.innerHTML = username + ' connected';
 						connectionDiv.style.display = 'block';
 					}
 					//if connectVar is received from the server
@@ -302,13 +301,13 @@ And now index.html:
 						var connectionDiv = document.getElementById('connectionDiv');
 						connectionDiv.innerHTML = username + ' disconnected';
 						connectionDiv.style.display = 'block';
-    					}
+					}
 					//if disconnecVar is received from the server
 					else if (data.numberOfPlayers) {
 						var numberOfPlayers = data.numberOfPlayers;
 						var numberDiv = document.getElementById('connectedPlayers');
 						numberDiv.innerHTML = 'Connected players: ' + numberOfPlayers;
-    					}
+					}
 					//if numberOfPlayers variable is received from the server
 				}
 				//function for handling data received from the server
@@ -332,7 +331,7 @@ And now index.html:
 
 It isn't that hard after you get used to how SocketIO works. I know that you can learn much faster by reading source code, so make sure to read through the above code several times, until you know how every part works!
 
-There is an important thing about Socket.io that I am going to highlight. There is a huge difference between `socket.send` and `io.sockets.send`: `socket.send` sends data from the client to the server or from the server to one **single** client, while `įo.sockets.send` broadcasts data to all of the connected clients.
+There is an important thing about Socket.io that I am going to highlight. There is a huge difference between `socket.send` and `io.sockets.send`: `socket.send` sends data from the client to the server or from the server to one **single** client, while `io.sockets.send` broadcasts data to all of the connected clients.
 
 ## More on custom events
 
