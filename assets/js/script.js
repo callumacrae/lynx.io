@@ -382,9 +382,9 @@ $('#search').keyup(function (e) {
 	}
 
 	if (!$('.articles:not(.js, .author, .noarticles):visible').length) {
-		$('.noarticles').show();
+		$('.noarticles').removeClass('hidden').show();
 	} else {
-		$('.noarticles').hide();
+		$('.noarticles').addClass('hidden').hide();
 	}
 }).focus(function () {
 	// If mobile device, give user info about search
