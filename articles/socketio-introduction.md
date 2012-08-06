@@ -272,7 +272,7 @@ When `adduser` is emitted on the client side, the data (name) is set to 'nicknam
 
 Retreiving the data from a client can be done with `socket.get`. The usage is:
 
-		socket.get('data', function(err, data) {}
+		socket.get('data', function(err, data) {})
 
 On the client side:
 
@@ -328,7 +328,7 @@ server.js:
 
 		var io = io.listen(server)
 		
-		var numberOfPlayers = 0;
+		var numberOfClients = 0;
 		
 		io.sockets.on('connection', function(client){
 			players.push(client.id);
@@ -341,9 +341,9 @@ server.js:
 					}
 				});
 
-				numberOfPlayers = numberOfPlayers+1;
+				numberOfClients = numberOfClients+1;
 
-				io.sockets.json.send({ numberOfPlayers: numberOfPlayers});
+				io.sockets.json.send({ numberOfClients: numberOfPlayers});
 
 			});
 
@@ -353,9 +353,9 @@ server.js:
 					io.sockets.json.send({ disconnectVar: nick, client.id] });
 				}
 
-				numberOfPlayers = numberOfPlayers-1;
+				numberOfClients = numberOfClients-1;
 
-				io.sockets.json.send({ numberOfPlayers: numberOfPlayers});
+				io.sockets.json.send({ numberOfClients: numberOfClients});
 				//send all the clients the updated number of players
 			});
 		});
