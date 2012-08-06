@@ -12,7 +12,7 @@ summary: Node.js is a platform built on Chrome's JavaScript runtime for easily b
 
 ### Installing NodeJS
 
-NodeJS is a platform build on Chrome's Javascript runtime. It is event-driven, lightweight and efficient, perfect for data-intensive real-time applications. NodeJS does not require a web server, it can function as a web server itself.
+NodeJS is a platform built on Chrome's Javascript runtime. It is event-driven, lightweight and efficient, perfect for data-intensive real-time applications. NodeJS does not require a web server, it can function as a web server itself.
 
 To install NodeJS, visit [the official download page](http://nodejs.org/#download) and select your operating system. If you are using Linux, you will have to compile it yourself or [use a package manager](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager).
 
@@ -32,7 +32,7 @@ You can download a zip file from <http://npmjs.org/dist/>, and unpack it in the 
 
 ### Installing Socket.io
 
-Installing Socket.io is a *nightmare ;)*:
+Installing Socket.io is also a piece of cake:
 
 		npm install socket.io
 		
@@ -42,11 +42,13 @@ You should now have the enviroment set up required for this tutorial.
 
 When I first started using Socket.io, the Wiki confused me a lot. I couldn't find any information on how this whole real-time communication works, so I had to figure it out myself.
 
+We will start learning by having a look at Socket.io's built-in exposed-events. These are events, just like in any other programming language, although you can't overwrite any of them or use their reserved names.
+
+These exposed events differ are different on the server and the client side.
+
+Every event consists of two parts: a *when to do it* and *what to do*
+
 *Note: In this example the variable `io` is socket.io required. This means: `var io = require('socket.io');`*
-
-Socket.io has built-in 'exposed events' on the server side and on the client side.
-
-Exposed events are utilised exclusively by socket.io and they have their names reserved. 
 
 **Let's talk about the server side ones first:**
 
@@ -58,7 +60,7 @@ When a client connects to your application (server-side code):
 
 We'll be using the `client` argument further on in this chapter.
 
-Another exposed event is to handle messages from the client.
+Another exposed event is for handling messages from the client:
 
 		io.sockets.on('connection', function(client) {
 			client.on('message', function(message) {
@@ -68,7 +70,7 @@ Another exposed event is to handle messages from the client.
 
 You might have noticed that this event was placed **into** the previous event. Why? If it was just another function itself, we would not have a client to listen to, meaning that the incoming messages would be lost.
 
-There is one exposed event
+There is one more exposed event:
 
 		io.sockets.on('connection', function(client) {
 			client.on('message', function(message) {
@@ -176,7 +178,7 @@ We can now start routing:
  			res.send('Hello World');
 		});
 
-In this example "GET /" responding with the "Hello World" string. The req and res are the exact same objects that node provides to you, thus you may invoke res.pipe(), req.on('data', callback) and anything else you would do without Express involved.
+In this example "GET /" responding with the "Hello World" string. The `req` and `res` are the exact same objects that node provides to you, thus you may invoke `res.pipe()`, `req.on('data', callback)` and anything else you would do without Express involved.
 
 Now, we have to initialize our server:
 
@@ -196,135 +198,6 @@ Make sure your server is listening on port 8080 (or any other port you want), th
 		</script>
 		
 After having these done, you can move on to handling and writing your own events and coding a nice UI for the clients.
-
-## Putting it together
-
-Let's make a full application together: we want it to have a counter that shows the number of connected client and we also want every client to be able to choose a username. 
-
-server.js:
-
-		var http = require('http')
-  		, url = require('url')
-  		, fs = require('fs')
-  		, io = require('socket.io')
-  		, server;
-		
-		server = http.createServer(function(req, res){
-			var path = url.parse(req.url).pathname;
-			//get the current path
-			
-			switch (path){
-				case '/index.html':
-					fs.readFile(__dirname + path, function(err, data){
-						if (err) return send404(res);
-						res.writeHead(200, {'Content-Type' : 'text/html'})
-						res.write(data, 'utf8');
-						res.end();
-					});
-				break;
-				default: send404(res);
-			}
-		}),
-		
-		send404 = function(res){
-			res.writeHead(404);
-			res.write('404');
-			res.end();
-		};
-
-		server.listen(8080);
-
-		var io = io.listen(server)
-		
-		var nameTable = {};
-		var numberOfPlayers = 0;
-		
-		io.sockets.on('connection', function(client){
-			players.push(client.id);
-
-			client.on('adduser', function(username){
-				//when adduser is emitted
-
-				nameTable[client.id] = username;
-				//store the username with the client id
-
-				io.sockets.json.send({ connectVar: [nameTable[client.id], client.id] });
-				//send connectVar to all the connected clients including the chosen username and the client id
-
-				numberOfPlayers = numberOfPlayers+1;
-
-				io.sockets.json.send({ numberOfPlayers: numberOfPlayers});
-				//send the new number of players to all the clients
-			});
-
-			client.on('disconnect', function(){
-				io.sockets.json.send({ disconnectVar: [nameTable[client.id], client.id] });
-				//tell all clients that somebody disconnected
-
-				nameTable[client.id] = undefined;
-				//delete the client from the nameTable
-
-				numberOfPlayers = numberOfPlayers-1;
-
-				io.sockets.json.send({ numberOfPlayers: numberOfPlayers});
-				//send all the clients the updated number of players
-			});
-		});
-
-And now index.html:
-
-		<!doctype html>
-		<html>
- 			<head>
-				<meta charset="utf-8">
-    				<title>Lynx.io - Socket.io tutorial</title>
- 			</head>
-  			<body>
-    			<script src="/socket.io/socket.io.js"></script>
-			<script>
-				function handle(data){
-					if (data.connectVar) {
-						var userid = data.connectVar[1];
-						var username = data.connectVar[0];
-						var connectionDiv = document.getElementById('connectionDiv');
-						connectionDiv.innerHTML = username + ' connected';
-						connectionDiv.style.display = 'block';
-					}
-					else if (data.disconnectVar) {
-						var userid = data.disconnectVar[1];
-						var username = data.disconnectVar[0];
-						var connectionDiv = document.getElementById('connectionDiv');
-						connectionDiv.innerHTML = username + ' disconnected';
-						connectionDiv.style.display = 'block';
-					}
-					else if (data.numberOfPlayers) {
-						var numberOfPlayers = data.numberOfPlayers;
-						var numberDiv = document.getElementById('connectedPlayers');
-						numberDiv.innerHTML = 'Connected players: ' + numberOfPlayers;
-					}
-				}
-				//function for handling data received from the server
-
-				var socket = io.connect('http://localhost:8080');
-				//establish socket connection
-
-				socket.on('connect', function(){
-					socket.emit('adduser', prompt("What's your desired username?"));
-					//when the connection is finished, emit adduser event
-				});
-				
-				socket.on('message', function(data){
-					handle(data);
-				});
-			</script>
-			<div id='connectedPlayers'>Connected players: 1</div>
-			<div id='connectionDiv' style='display:none'></div>
-			</body>
-		</html>
-
-It isn't that hard after you get used to how SocketIO works. I know that you can learn much faster by reading source code, so make sure to read through the above code several times, until you know how every part works!
-
-There is an important thing about Socket.io that I am going to highlight. There is a huge difference between `socket.send` and `io.sockets.send`: `socket.send` sends data from the client to the server or from the server to one **single** client, while `io.sockets.send` broadcasts data to all of the connected clients.
 
 ## More on custom events
 
@@ -416,6 +289,128 @@ On the client side:
 		</script>
 
 One thing to note in this example is that the message sent from the client is not used.
+
+## Putting it together
+
+Let's make a full application together: we want it to have a counter that shows the number of connected client and we also want every client to be able to choose a username. 
+
+server.js:
+
+		var http = require('http')
+  		, url = require('url')
+  		, fs = require('fs')
+  		, io = require('socket.io')
+  		, server;
+		
+		server = http.createServer(function(req, res){
+			var path = url.parse(req.url).pathname;
+			
+			switch (path){
+				case '/index.html':
+					fs.readFile(__dirname + path, function(err, data){
+						if (err) return send404(res);
+						res.writeHead(200, {'Content-Type' : 'text/html'})
+						res.write(data, 'utf8');
+						res.end();
+					});
+				break;
+				default: send404(res);
+			}
+		}),
+		
+		send404 = function(res){
+			res.writeHead(404);
+			res.write('404');
+			res.end();
+		};
+
+		server.listen(8080);
+
+		var io = io.listen(server)
+		
+		var numberOfPlayers = 0;
+		
+		io.sockets.on('connection', function(client){
+			players.push(client.id);
+
+			client.on('adduser', function(username){
+
+				socket.set('nick', username, function() {
+					socket.get('nick', function(err, nick) {
+						io.sockets.json.send({ connectVar: nick, client.id] });
+					}
+				});
+
+				numberOfPlayers = numberOfPlayers+1;
+
+				io.sockets.json.send({ numberOfPlayers: numberOfPlayers});
+
+			});
+
+			client.on('disconnect', function(){
+	
+				socket.get('nick', function (err, nick) {
+					io.sockets.json.send({ disconnectVar: nick, client.id] });
+				}
+
+				numberOfPlayers = numberOfPlayers-1;
+
+				io.sockets.json.send({ numberOfPlayers: numberOfPlayers});
+				//send all the clients the updated number of players
+			});
+		});
+
+And now index.html:
+
+		<!doctype html>
+		<html>
+ 			<head>
+			<meta charset="utf-8">
+    			<title>Lynx.io - Socket.io tutorial</title>
+ 			</head>
+  			<body>
+    			<script src="/socket.io/socket.io.js"></script>
+			<script>
+				function handle(data){
+					if (data.connectVar) {
+						var userid = data.connectVar[1];
+						var username = data.connectVar[0];
+						var connectionDiv = document.getElementById('connectionDiv');
+						connectionDiv.innerHTML = username + ' connected';
+						connectionDiv.style.display = 'block';
+					}
+					else if (data.disconnectVar) {
+						var userid = data.disconnectVar[1];
+						var username = data.disconnectVar[0];
+						var connectionDiv = document.getElementById('connectionDiv');
+						connectionDiv.innerHTML = username + ' disconnected';
+						connectionDiv.style.display = 'block';
+					}
+					else if (data.numberOfPlayers) {
+						var numberOfPlayers = data.numberOfPlayers;
+						var numberDiv = document.getElementById('connectedPlayers');
+						numberDiv.innerHTML = 'Connected players: ' + numberOfPlayers;
+					}
+				}
+
+				var socket = io.connect('http://localhost:8080');
+
+				socket.on('connect', function(){
+					socket.emit('adduser', prompt("What's your desired username?"));
+				});
+				
+				socket.on('message', function(data){
+					handle(data);
+				});
+			</script>
+			<div id='connectedPlayers'>Connected players: 1</div>
+			<div id='connectionDiv' style='display:none'></div>
+			</body>
+		</html>
+
+It isn't that hard after you get used to how SocketIO works. I know that you can learn much faster by reading source code, so make sure to read through the above code several times, until you know how every part works!
+
+There is an important thing about Socket.io that I am going to highlight. There is a huge difference between `socket.send` and `io.sockets.send`: `socket.send` sends data from the client to the server or from the server to one **single** client, while `io.sockets.send` broadcasts data to all of the connected clients.
 
 ## Expanding your knowledge
 
