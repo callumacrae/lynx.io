@@ -193,7 +193,6 @@ Make sure your server is listening on port 8080 (or any other port you want), th
 		<script src="socket.io/socket.io.js"></script> <!-- require socket.io in the head part-->
 		<script>
 			var socket = io.connect('http://localhost:8080');
-			//connect to the server
 		</script>
 		
 After having these done, you can move on to handling and writing your own events and coding a nice UI for the clients.
@@ -225,7 +224,6 @@ server.js:
 				break;
 				default: send404(res);
 			}
-			//if the client visits index.html, the file gets read and the contents get displayed
 		}),
 		
 		send404 = function(res){
@@ -237,14 +235,12 @@ server.js:
 		server.listen(8080);
 
 		var io = io.listen(server)
-		//make socket.io listen to our server
 		
 		var nameTable = {};
 		var numberOfPlayers = 0;
 		
 		io.sockets.on('connection', function(client){
 			players.push(client.id);
-			//add the client.id to our players
 
 			client.on('adduser', function(username){
 				//when adduser is emitted
@@ -294,7 +290,6 @@ And now index.html:
 						connectionDiv.innerHTML = username + ' connected';
 						connectionDiv.style.display = 'block';
 					}
-					//if connectVar is received from the server
 					else if (data.disconnectVar) {
 						var userid = data.disconnectVar[1];
 						var username = data.disconnectVar[0];
@@ -302,13 +297,11 @@ And now index.html:
 						connectionDiv.innerHTML = username + ' disconnected';
 						connectionDiv.style.display = 'block';
 					}
-					//if disconnecVar is received from the server
 					else if (data.numberOfPlayers) {
 						var numberOfPlayers = data.numberOfPlayers;
 						var numberDiv = document.getElementById('connectedPlayers');
 						numberDiv.innerHTML = 'Connected players: ' + numberOfPlayers;
 					}
-					//if numberOfPlayers variable is received from the server
 				}
 				//function for handling data received from the server
 
@@ -420,7 +413,7 @@ On the client side:
    		   		socket.emit('msg', prompt('What is your message?'));
    		 	});
  		 });
-</script>
+		</script>
 
 One thing to note in this example is that the message sent from the client is not used.
 
