@@ -32,30 +32,7 @@
 
 {% if sidebar %}
 		</div>
-		<div id="sidebar">
-			<input type="text" id="search" placeholder="Search" title="Press ctrl+f again to access the normal find">
-
-			<!--<h2>Sponsors</h2>
-			<ul>
-			</ul>-->
-
-			<h2>Latest articles</h2>
-			<ul>
-				{% for article in latest_articles %}
-				<li><a href="{{ site.url }}/article/{{ article.slug }}">{{ article.title }}</a></li>
-				{% endfor %}
-			</ul>
-
-			<h2>Top articles</h2>
-			<ul>
-				<li><a href="{{ site.url }}/article/preventing-and-dealing-with-spam-in-phpbb">Preventing and Dealing With Spam in phpBB</a></li>
-				<li><a href="{{ site.url }}/article/integrating-phpbb-sessions">Integrating phpBB sessions into your site</a></li>
-				<li><a href="{{ site.url }}/article/codeigniter-image-upload-script">Creating a (very) basic image upload script using Codeigniter</a></li>
-				<li><a href="{{ site.url }}/article/method-chaining-in-php">Method chaining in PHP</a></li>
-				<li><a href="{{ site.url }}/article/mvc-architecture">Utilising the MVC architecture</a></li>
-				<li><a href="{{ site.url }}/article/pdo-basics">PDO - The Basics</a></li>
-			</ul>
-		</div>
+		{% include 'sidebar.twig.html' %}
 	</div>
 {% endif %}
 
