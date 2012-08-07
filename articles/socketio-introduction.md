@@ -370,7 +370,7 @@ And now index.html:
     				<title>lynx.io - Socket.io tutorial</title>
  			</head>
   			<body>
-    				<script src="/socket.io/socket.io.js"></script>
+				<script src="/socket.io/socket.io.js"></script>
 				<script>
 					function handle(data){
 						if (data.connectVar) {
