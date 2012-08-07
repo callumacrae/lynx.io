@@ -1,7 +1,7 @@
 <info>
 title: Using Socket.io with NodeJS
 author: dida
-date: %date%
+date: 1344372491
 tags: javascript, nodejs, socketio, real time
 summary: Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Socket.IO aims to make realtime apps possible in every browser and mobile device, blurring the differences between the different transport mechanisms. It's care-free realtime 100% in JavaScript. In this tutorial, I will show you how to use them together to make real-time web applications.
 </info>
