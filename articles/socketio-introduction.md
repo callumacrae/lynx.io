@@ -201,32 +201,33 @@ After having these done, you can move on to handling and writing your own events
 
 ## More on custom events
 
-The emit function can be used for calling custom events, as we discussed above. I will now show you an examples, where more custom events are called after each other.
+The emit function can be used for calling custom events, as we discussed above. I will now show you an example, where more custom events are called after each other.
 
 Let's set up the server side:
 
 		var app = require('http').createServer(handler)
-  		, io = require('socket.io').listen(app)
-  		, fs = require('fs')
+		, io = require('socket.io').listen(app)
+		, fs = require('fs')
 
 		app.listen(8080);
 
-		function handler (req, res) {
-			fs.readFile(__dirname + '/index.html',
-			function (err, data) {
-				if (err) {
-					res.writeHead(500);
-					return res.end('Error loading index.html');
-				}
-				res.writeHead(200);
-				res.end(data);
-				});
-			}
-			io.sockets.on('connection', function (socket) {
+                function handler (req, res) {
+                        fs.readFile(__dirname + '/index.html', function (err, data) {
+                                if (err) {
+                                        res.writeHead(500);
+                                        return res.end('Error loading index.html');
+                                }
+ 
+                                res.writeHead(200);
+                                res.end(data);
+                        });
+                }
+
+		io.sockets.on('connection', function (socket) {
 				socket.emit('news', { hello: 'world' });
 				socket.on('my other event', function (data) {
-				console.log(data);
-			});
+					console.log(data);
+				});
 		});
 
 When a client connects, the 'news' event is emitted and 'world' is sent. When the client emits 'my other event', the data received is logged to the console.
@@ -272,7 +273,7 @@ When `adduser` is emitted on the client side, the data (name) is set to 'nicknam
 
 Retreiving the data from a client can be done with `socket.get`. The usage is:
 
-		socket.get('data', function(err, data) {})
+		socket.get('data', function(err, data) {});
 
 On the client side:
 
@@ -365,46 +366,46 @@ And now index.html:
 		<!doctype html>
 		<html>
  			<head>
-			<meta charset="utf-8">
-    			<title>Lynx.io - Socket.io tutorial</title>
+				<meta charset="utf-8">
+    				<title>lynx.io - Socket.io tutorial</title>
  			</head>
   			<body>
-    			<script src="/socket.io/socket.io.js"></script>
-			<script>
-				function handle(data){
-					if (data.connectVar) {
-						var userid = data.connectVar[1];
-						var username = data.connectVar[0];
-						var connectionDiv = document.getElementById('connectionDiv');
-						connectionDiv.innerHTML = username + ' connected';
-						connectionDiv.style.display = 'block';
+    				<script src="/socket.io/socket.io.js"></script>
+				<script>
+					function handle(data){
+						if (data.connectVar) {
+							var userid = data.connectVar[1];
+							var username = data.connectVar[0];
+							var connectionDiv = document.getElementById('connectionDiv');
+							connectionDiv.innerHTML = username + ' connected';
+							connectionDiv.style.display = 'block';
+						}
+						else if (data.disconnectVar) {
+							var userid = data.disconnectVar[1];
+							var username = data.disconnectVar[0];
+							var connectionDiv = document.getElementById('connectionDiv');
+							connectionDiv.innerHTML = username + ' disconnected';
+							connectionDiv.style.display = 'block';
+						}
+						else if (data.numberOfPlayers) {
+							var numberOfPlayers = data.numberOfPlayers;
+							var numberDiv = document.getElementById('connectedPlayers');
+							numberDiv.innerHTML = 'Connected players: ' + numberOfPlayers;
+						}
 					}
-					else if (data.disconnectVar) {
-						var userid = data.disconnectVar[1];
-						var username = data.disconnectVar[0];
-						var connectionDiv = document.getElementById('connectionDiv');
-						connectionDiv.innerHTML = username + ' disconnected';
-						connectionDiv.style.display = 'block';
-					}
-					else if (data.numberOfPlayers) {
-						var numberOfPlayers = data.numberOfPlayers;
-						var numberDiv = document.getElementById('connectedPlayers');
-						numberDiv.innerHTML = 'Connected players: ' + numberOfPlayers;
-					}
-				}
 
-				var socket = io.connect('http://localhost:8080');
+					var socket = io.connect('http://localhost:8080');
 
-				socket.on('connect', function(){
-					socket.emit('adduser', prompt("What's your desired username?"));
-				});
-				
-				socket.on('message', function(data){
-					handle(data);
-				});
-			</script>
-			<div id='connectedPlayers'>Connected players: 1</div>
-			<div id='connectionDiv' style='display:none'></div>
+					socket.on('connect', function(){
+						socket.emit('adduser', prompt("What's your desired username?"));
+					});
+					
+					socket.on('message', function(data){
+						handle(data);
+					});
+				</script>
+				<div id='connectedPlayers'>Connected players: 1</div>
+				<div id='connectionDiv' style='display:none'></div>
 			</body>
 		</html>
 
