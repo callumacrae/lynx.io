@@ -1,7 +1,7 @@
 <info>
 title: Array Looping in JavaScript
 author: callumacrae
-date: %date%
+date: 1345460572
 tags: javascript, arrays, looping
 summary: In JavaScript 1.6, two new array methods were introduced for looping through arrays. They are the `.map` and `.forEach` functions, and this article will explain what they do and how they work. As they were only added fairly recently, certain browsers - such as Internet Explorer 8 and earlier - don't support this feature. For this reason, I'll also be discussing how you can add the function or work around them.
 </info>
