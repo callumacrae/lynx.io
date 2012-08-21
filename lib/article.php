@@ -72,6 +72,10 @@ if ($slug && is_readable('articles/' . $slug . '.md')) {
 	
 	$info['tags'] = explode(', ', $info['tags']);
 	$info['slug'] = $slug;
+	
+	if ($info['date'] === '%date%') {
+		$info['date'] = time();
+	}
 
 	// Cache
 	file_put_contents('cache/articles/' . $slug . '.json', json_encode($info));
