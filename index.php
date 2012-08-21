@@ -77,10 +77,15 @@ $path = $path[0];
 
 if (empty($path)) {
 	include('lib/index.php');
-} else if (preg_match('/([a-z]+)\/([^\/]+)\/?/i', $path, $matches)
+} else if (preg_match('/\/$/', $path)) {
+	$redirect = $_SERVER['REQUEST_URI'];
+	$redirect = substr($redirect, 0, strlen($redirect) - 1);
+	header("Location: $redirect");
+	exit;
+} else if (preg_match('/^([a-z]+)\/([^\/]+)$/i', $path, $matches)
 		&& is_readable('lib/' . $matches[1] . '.php')) {
 	include('lib/' . $matches[1] . '.php');
-} else if (preg_match('/([a-z]+)\/?/i', $path, $matches)) {
+} else if (preg_match('/^([a-z]+)$/i', $path, $matches)) {
 	if (is_readable('pages/' . $matches[1] . '.php')) {
 		include('pages/' . $matches[1] . '.php');
 	} else if (is_readable('pages/' . $matches[1] . '.md')) {
