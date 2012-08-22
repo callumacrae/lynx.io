@@ -1,7 +1,7 @@
 <info>
 title: PHP AJAX Best Practices
 author: callumacrae
-date: %date%
+date: 1345621204
 tags: php, ajax, best practices, xhr, json, xml
 summary: As the use of AJAX becomes more and more popular, it becomes increasingly important that when responding to AJAX requests in PHP, there are some best practices that you should stick to in order to make dealing with the response at the other end a lot easier. In this article, I will cover the more important best practices, and explain how they are relevant and how you can do them.
 </info>
