@@ -1,0 +1,35 @@
+div > svg {
+	width: 700px;
+	height: 500px;
+	margin: 0 auto;
+	border: 1px black solid;
+}
+
+#canvas1, #canvas2, #canvas3, #canvas4 {
+	width: 710px;
+	margin: 0 auto;
+}
+
+#canvas5 svg {
+	margin: 0;
+	float: left;
+}
+
+#canvaswrapper {
+	overflow: auto;
+	width: 730px;
+	margin: 0 auto;
+}
+
+#canvascolours {
+	width: 26px;
+	float: left;
+}
+
+#canvascolours [data-colour] {
+	width: 18px;
+	height: 18px;
+	margin-bottom: 10px;
+	cursor: pointer;
+	border: 1px black solid;
+}
