@@ -625,4 +625,21 @@ if ($('.articles').length) {
 }
 
 
+// Shrink images which are too wide
+$('.body img').each(function () {
+	var $this = $(this),
+		maxWidth = $('.body').width();
+
+	$this.load(function () {
+		var width = $this.width();
+	
+		if (width > maxWidth) {
+			$this.click(function () {
+				$this.css('width', $this.width() > maxWidth ? maxWidth : width);
+			}).css('width', maxWidth);
+		}
+	});
+});
+
+
 })(); // WRAPPER TO PREVENT GLOBALS
