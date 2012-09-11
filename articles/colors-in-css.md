@@ -3,7 +3,7 @@ title: Colors in CSS
 author: callumacrae
 date: %date%
 tags: css, colors
-summary: a
+summary: Colors are a vital part of CSS, allowing the user to change the color of text and borders, and the background colors of elements such as text and divs - a fairly major part of design. In this article, I will explain the different syntaxes available - the obvious two are string colours (such as "red" and "black"), and Hex colours (such as `#ef0000`), and I will also cover RGB and HSL colours, both of which are possible in CSS.
 </info>
 
 Colors are a vital part of CSS, allowing the user to change the color of text and borders, and the background colors of elements such as text and divs - a fairly major part of design. In this article, I will explain the different syntaxes available - the obvious two are string colours (such as "red" and "black"), and Hex colours (such as `#ef0000`), and I will also cover RGB and HSL colours, both of which are possible in CSS.
