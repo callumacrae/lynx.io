@@ -51,6 +51,8 @@ function genericFormHandler(url, callback) {
 			error = true;
 		}
 
+		url = url.replace(/\/\//, '/'); // I have no idea...
+
 		if (!error) {
 			$.post(url, $this.serialize(), function (body) {
 				callback.call($this, body);
