@@ -51,8 +51,6 @@ function genericFormHandler(url, callback) {
 			error = true;
 		}
 
-		url = url.replace(/\/\//, '/'); // I have no idea...
-
 		if (!error) {
 			$.post(url, $this.serialize(), function (body) {
 				callback.call($this, body);
@@ -74,6 +72,7 @@ var commentPost = $('#comment_post')[0],
 
 if (commentPost) {
 	url = commentPost.action + '/comment/' + commentPost.slug.value;
+	url = url.replace(/([^:])\/\//g, '$1/'); // No idea...
 	$('#comment_post').submit(genericFormHandler(url, function (body) {
 		if (typeof body === 'object') {
 			newComment = $('#newcomment');
