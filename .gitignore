@@ -13,3 +13,4 @@ phpunit.xml
 .vagrant
 Vagrantfile
 .idea
+.DS_Store
