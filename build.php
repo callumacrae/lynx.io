@@ -7,8 +7,8 @@ require('vendor/autoload.php');
 use dflydev\markdown\MarkdownParser;
 $markdownParser = new MarkdownParser();
 
-$repo = 'https://github.com/callumacrae/lynx.io.git';
-$output = shell_exec("git pull $repo master 2>&1");
+$repo = 'https://' . $config['deploy_token'] . '@github.com/callumacrae/lynx.io.git';
+$output = shell_exec("git pull origin master 2>&1");
 echo $output;
 
 $regex = '/create mode \d+ articles\/([a-z0-9_-]+)\.md/i';
@@ -63,7 +63,7 @@ if ($match) {
 
 	echo PHP_EOL . shell_exec('git commit -am "[auto] Deployed articles.
 
-' . implode(PHP_EOL, $files) . '" && git push origin master');
+' . implode(PHP_EOL, $files) . '" && git push ' . $repo . ' master');
 } else {
 	echo PHP_EOL . 'No new articles.';
 }
