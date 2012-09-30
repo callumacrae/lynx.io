@@ -42,7 +42,7 @@ Some points and guidelines:
 * Check out previous articles to see how to format your articles.
 * Images should be no more than 1000px wide (although try to make them smaller). Use the `{{ articleimage }}` variable, which points to `/assets/imgs/article-slug/` (put your images in there).
 * Images should not be hosted externally.
-* **IF YOU SEND ME AN ARTICLE WITH WINDOWS LINE ENDINGS AND I DON'T NOTICE, IT WILL BREAK THE SITE - PLEASE USE UNIX LINE ENDINGS!**
+* **IF YOU SEND ME AN ARTICLE WITH WINDOWS LINE ENDINGS AND I DON'T NOTICE, IT WILL BREAK THE SITE - PLEASE USE UNIX (`\r\n`) LINE ENDINGS!**
 
 If this is your first article, then you will need to add yourself as an author. Choose your username carefully (it cannot be changed), and then create `authors/username.json` containing the following:
 
