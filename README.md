@@ -4,7 +4,7 @@ The source code for the [lynx.io](http://lynx.io/) website.
 
 ## Installation
 
-To install the lynx.io source locally, create config.php and install the dependencies using composer by running the following commands:
+To install the lynx.io site locally, create config.php and install the dependencies using composer by running the following commands:
 
 ```
 cp config.sample.php config.php
