@@ -334,7 +334,7 @@ if ($('section.comments').length) {
 
 
 // Search
-$('#search').keyup(function (e) {
+$('#search').keyup(function (e, init) {
 	if (!$('.articles').length) {
 		return; // Not on a listing
 	}
@@ -348,7 +348,7 @@ $('#search').keyup(function (e) {
 		$this.val('').keyup().blur();
 	}
 
-	if ((!getHash('search') && !val) || getHash('search') === val) {
+	if ((!getHash('search') && !val) || getHash('search') === val && !init) {
 		return;
 	}
 
@@ -403,24 +403,26 @@ $('#search').keyup(function (e) {
 
 // Various keydown functions
 $(document).keydown(function (e) {
+	var $search = $('#search'),
+		focused = $search.is(':focus');
+
+	if (focused) {
+		return;
+	}
 
 	// meta+f to search
 	if (e.keyCode === 70 && e.metaKey && $('.articles').length) {
-		var $search = $('#search');
+		$search.focus();
 
-		if (!$search.is(':focus')) {
-			$search.focus();
+		// Display tooltip only once
+		if (!$search.data('tipsy').$tip) {
+			$search.tipsy('show');
 
-			// Display tooltip only once
-			if (!$search.data('tipsy').$tip) {
-				$search.tipsy('show');
-
-				setTimeout(function () {
-					$search.tipsy('hide');
-				}, 3000);
-			}
-			e.preventDefault();
+			setTimeout(function () {
+				$search.tipsy('hide');
+			}, 3000);
 		}
+		e.preventDefault();
 
 	// Left to page left
 	} else if (e.keyCode === 37) {
@@ -475,7 +477,7 @@ var changeHash = (function () {
 	var hashchangeCallbacks = {
 		search: function (search) {
 			if ($('#search').val() !== search) {
-				$('#search').val(search).keyup();
+				$('#search').val(search).trigger('keyup', true);
 			}
 		},
 		page: function (page) {
