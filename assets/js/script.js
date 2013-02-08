@@ -589,13 +589,7 @@ function refreshPages(destroy) {
 
 // Fix sidebar in place
 if ($('.articles').length) {
-	var mobileDevice = false;
-
 	$(window).scroll(function (e, widthChange) {
-		if (mobileDevice) {
-			return;
-		}
-
 		var content, contentWidth,
 			sidebar = $('#sidebar'),
 			top = $(window).scrollTop();
@@ -620,8 +614,9 @@ if ($('.articles').length) {
 		$(this).trigger('scroll', true);
 	}).trigger('scroll');
 
+	// Browser sniffing is bad, this will do
 	$(document).on('touchstart', function () {
-		mobileDevice = true;
+		$(window).off('scroll');
 		$('#sidebar').removeClass('sidebarfixed');
 	});
 }
