@@ -1,8 +1,16 @@
+Cookies in PHP
+
 More articles about frameworks, especially CodeIgniter
+ - Framework comparison
 More articles about phpBB
 
-JS array map and forEach
-Currying
-Defining functions
+Choosing a version control system
+Basic version control tutorials
+
+Doctrine DBAL
+
+Using cron to back up a database
+
+SQL tutorial
 
 jPages
