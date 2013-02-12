@@ -1,6 +1,18 @@
 (function () { // WRAPPER TO PREVENT GLOBALS
 "use strict";
 
+var keyMap = {
+	tab: 9,
+	esc: 27,
+	left: 37,
+	right: 39,
+	zero: 48,
+	nine: 57,
+	f: 70,
+	m: 77,
+	t: 84
+};
+
 // Unescape automatically escaped data in code samples. It's better
 // to do this client-side to avoid parsing the DOM server-side.
 $('article.comment .body pre code').each(function () {
@@ -93,7 +105,7 @@ $('textarea').keydown(function (e) {
 	var start, end, nl, value,
 		tabs = 0;
 
-	if (e.keyCode === 9) {
+	if (e.keyCode === keyMap.tab) {
 		e.preventDefault();
 		start = this.selectionStart;
 		nl = end = this.selectionEnd;
@@ -137,7 +149,7 @@ $('textarea').keydown(function (e) {
 // MD cheatsheet
 $(document).keydown(function (e) {
 	var cheatsheet = $('#markdowncheat');
-	if (e.keyCode === 77 && !$(':focus').length) {
+	if (e.keyCode === keyMap.m && !$(':focus').length) {
 		if (cheatsheet.is(':hidden')) {
 			$('.markdown').show();
 			$('.parsedmarkdown').hide();
@@ -146,9 +158,9 @@ $(document).keydown(function (e) {
 			cheatsheet.click();
 		}
 		e.preventDefault();
-	} else if (e.keyCode === 27 && cheatsheet.is(':visible')) {
+	} else if (e.keyCode === keyMap.esc && cheatsheet.is(':visible')) {
 		cheatsheet.click();
-	} else if (e.keyCode === 84 && cheatsheet.is(':visible')) {
+	} else if (e.keyCode === keyMap.t && cheatsheet.is(':visible')) {
 		$('#markdowncheat .toggle').click();
 	}
 });
@@ -172,12 +184,17 @@ var tags = {};
 $('.tags, .more').on('mouseover', 'a', function () {
 	var $this = $(this);
 
+	// If has already been shown for this element, just show
 	if ($this.data('titled')) {
 		$this.tipsy('show');
+
+	// If cached from another element of same tag, get from cache
 	} else if (tags[$this.text()]) {
 		$this.attr('title', tags[$this.text()])
 			.data('titled', true)
 			.tipsy('show');
+
+	// Else get from server
 	} else {
 		$.get($(this).attr('href'), function (title) {
 			title += ' article' + (title === 1 ? '' : 's');
@@ -196,6 +213,7 @@ $('.tags, .more').on('mouseover', 'a', function () {
 });
 
 
+// For AJAX functions; don't get new comments & articles unless window focused
 var pageFocused = true;
 $(window).focus(function () {
 	pageFocused = true;
@@ -267,7 +285,7 @@ if ($('.articles').length) {
 			$('<a></a>').appendTo(footer)
 				.addClass('comments')
 				.attr('href', articles[i].href + '#comments')
-				.text('0 comments'); // Assume zero comments
+				.text('0 comments'); // Assume zero comments; new article
 
 			tags = $('<div></div>').appendTo(footer)
 				.addClass('tags index')
@@ -343,7 +361,7 @@ $('#search').keyup(function (e, init) {
 		change = false,
 		val = $this.val();
 
-	if (e.keyCode === 27) {
+	if (e.keyCode === keyMap.esc) {
 		// Escape has been pressed; clear input and blur
 		$this.val('').keyup().blur();
 	}
@@ -411,7 +429,7 @@ $(document).keydown(function (e) {
 	}
 
 	// meta+f to search
-	if (e.keyCode === 70 && e.metaKey && $('.articles').length) {
+	if (e.keyCode === keyCode.f && e.metaKey && $('.articles').length) {
 		$search.focus();
 
 		// Display tooltip only once
@@ -425,16 +443,16 @@ $(document).keydown(function (e) {
 		e.preventDefault();
 
 	// Left to page left
-	} else if (e.keyCode === 37) {
+	} else if (e.keyCode === keyMap.left) {
 		$('.jp-previous').click();
 
 	// Right to page right
-	} else if (e.keyCode === 39) {
+	} else if (e.keyCode === keyMap.right) {
 		$('.jp-next').click();
 
 	// Numbers to page number
-	} else if (e.keyCode > 48 && e.keyCode < 58 && $('.articles').length) {
-		$('.holder').jPages(e.keyCode - 48);
+	} else if (e.keyCode > keyMap.zero && e.keyCode <= keyMap.nine && $('.articles').length) {
+		$('.holder').jPages(e.keyCode - keyMap.zero);
 	}
 });
 
