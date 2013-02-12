@@ -1,5 +1,5 @@
 {
-	"name": "lynxphp/lynxphp.com",
+	"name": "callumacrae/lynx.io",
 	"require": {
 		"twig/twig": "1.6.*",
 		"dflydev/markdown": "1.*"

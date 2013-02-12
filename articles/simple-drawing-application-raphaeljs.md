@@ -2,7 +2,7 @@
 title: Making a Simple Drawing Application using RaphaëlJS
 author: callumacrae
 date: 1345895974
-tags: javascript, arrays, looping
+tags: raphaëljs, javascript, drawing
 summary: Raphaël is a library for working with vector graphics in JavaScript. It uses SVG, and boasts support for pretty much all browsers. In this tutorial, I'll be showing you how you can create a simple drawing application using Raphaël. It will just support basic line drawings, and you will be able to change the width and colour of the line.
 </info>
 
@@ -13,7 +13,7 @@ Raphaël is a library for working with vector graphics in JavaScript. It uses SV
 
 In this tutorial, I'll be showing you how you can create a simple drawing application using Raphaël. It will just support basic line drawings, and you will be able to change the width and colour of the line. It will support all the browsers mentioned above, as I'm using jQuery to do stuff like event handling.
 
-All the examples in this article are live, and using Raphaël. I'd advise against looking at the source for this article to see how I have done stuff, as I have changed it a bit so that I can get it into the page without it looking funny.
+All the examples in this article are live, and using Raphaël. I'd advise against looking at the source for this article to see how I have done stuff, as I have changed it a bit so that I can get it into the page without it looking funny. **This article seems to be having some issues with Firefox. If the examples don't work, try it in Chrome.**
 
 ## Step one: setting up Raphaël
 

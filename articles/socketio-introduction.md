@@ -336,28 +336,28 @@ server.js:
 
 			client.on('adduser', function(username){
 
-				socket.set('nick', username, function() {
-					socket.get('nick', function(err, nick) {
-						io.sockets.json.send({ connectVar: nick, client.id] });
+				client.set('nick', username, function() {
+					client.set('nick', function(err, nick) {
+						io.sockets.json.send({ connectVar: [nick, client.id] });
 					}
 				});
 
 				numberOfClients = numberOfClients+1;
 
-				io.sockets.json.send({ numberOfClients: numberOfPlayers});
+				io.sockets.json.send({ numberOfClients: numberOfClients});
 
 			});
 
 			client.on('disconnect', function(){
 	
-				socket.get('nick', function (err, nick) {
-					io.sockets.json.send({ disconnectVar: nick, client.id] });
-				}
+				client.get('nick', function (err, nick) {
+					io.sockets.json.send({ disconnectVar: [nick, client.id] });
+				});
 
 				numberOfClients = numberOfClients-1;
 
 				io.sockets.json.send({ numberOfClients: numberOfClients});
-				//send all the clients the updated number of players
+				//send all the clients the updated number of clients
 			});
 		});
 
