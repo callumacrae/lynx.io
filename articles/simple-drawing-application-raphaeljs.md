@@ -15,6 +15,8 @@ In this tutorial, I'll be showing you how you can create a simple drawing applic
 
 All the examples in this article are live, and using Raphaël. I'd advise against looking at the source for this article to see how I have done stuff, as I have changed it a bit so that I can get it into the page without it looking funny. **This article seems to be having some issues with Firefox. If the examples don't work, try it in Chrome.**
 
+This article has been translated to [Serbo-Croation](http://science.webhostinggeeks.com/aplikacija-za-crtanje) by [Anja Skrba](http://webhostinggeeks.com/).
+
 ## Step one: setting up Raphaël
 
 To set up Raphaël, put the following HTML onto your page (for non-HTML users, you'll want to add `type` attributes to the script tags):
