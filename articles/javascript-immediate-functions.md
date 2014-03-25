@@ -6,6 +6,8 @@ tags: javascript, functions, patterns
 summary: In JavaScript, the immediate function pattern is a way of executing a function as soon as it is defined. In this article, I will explain the syntax and explore some of the advantages of using it. This syntax can also be referred to as a closure.
 </info>
 
+**This article has been reposted with a few changes on my new website. Check it out: <http://macr.ae/article/immediate-functions.html>**
+
 In JavaScript, the immediate function pattern is a way of executing a function as soon as it is defined. In this article, I will explain the syntax and explore some of the advantages of using it. This syntax can also be referred to as a closure.
 
 An example of an immediate function:
